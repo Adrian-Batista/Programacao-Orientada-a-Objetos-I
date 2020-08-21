@@ -1,15 +1,24 @@
 package YouTube;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
+import YouTube.entidades.*;
 
 public class Main {
 
+	public static List<Usuarios> usuarios = new ArrayList<Usuarios>();
+	public static List<Videos> videos = new ArrayList<Videos>();
+	public static List<Canais> canais = new ArrayList<Canais>();
+	public static List<Inscricoes> inscricoes = new ArrayList<Inscricoes>();
+	
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
 		int opcao1 =0;
 		int opcao2 = 0;
 		int opcao3 = 0;
+		int opcao4 = 0;
 		int cont = 0;
 		
 		Scanner entrada = new Scanner(System.in);
@@ -26,6 +35,7 @@ public class Main {
 			System.out.println("| ( 1 ) - MENU DO USUARIO       | \n|\t\t\t\t|");
 			System.out.println("| ( 2 ) - MENU DE VÍDEOS        | \n|\t\t\t\t| ");
 			System.out.println("| ( 3 ) - MENU DE CANAIS        | \n|\t\t\t\t| ");
+			System.out.println("| ( 4 ) - MENU DE INSCRICOES    | \n|\t\t\t\t| ");			
 			System.out.println("| ( 0 ) - SAIR                  | \n|\t\t\t\t|");
 			System.out.println("=================================\n");
 	
@@ -39,14 +49,13 @@ public class Main {
 // ----------------------------------------- LOGIN DE USUARIO ----------------------------------------------
 			case 1:
 				
+				
 				do {
 					Main.LimparTela();
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
 					System.out.println("\n=========================================\n|\t\t\t\t\t|");
 					System.out.println("| ( 1 ) - CADASTRAR - SE                |\n|\t\t\t\t\t|");
-					System.out.println("| ( 2 ) - ADICIONAR VÍDEO FAVORITO      |\n|\t\t\t\t\t|");
-					System.out.println("| ( 3 ) - LISTAR VÍDEO FAVORITO         |\n|\t\t\t\t\t|");
-					System.out.println("| ( 4 ) - REMOVER VÍDEO FAVORITO        |\n|\t\t\t\t\t|");
+					System.out.println("| ( 2 ) - LISTAR CADASTRO               |\n|\t\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                        |\n|\t\t\t\t\t|");
 					System.out.println("=========================================\n");
 				
@@ -57,18 +66,14 @@ public class Main {
 					
 					switch (opcao1) {
 					
-					case 1:			
+					case 1:
+						Usuarios.AdicionaUsuario();
 						break;
 					
 					case 2:
+						Usuarios.ListarUsuarios();
 						break;
-					
-					case 3:					
-						break;
-					
-					case 4:			
-						break;
-					
+						
 					case 0:					
 						break;
 				
@@ -86,10 +91,8 @@ public class Main {
 				
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
 					System.out.println("\n=================================\n|\t\t\t\t|");
-					System.out.println("| ( 1 ) - LISTAR VÍDEOS         |\n|\t\t\t\t|");
-					System.out.println("| ( 2 ) - ADICIONAR VÍDEO       |\n|\t\t\t\t|");
-					System.out.println("| ( 3 ) - REMOVER VÍDEO         |\n|\t\t\t\t|");
-					System.out.println("| ( 4 ) - ATUALIZAR VÍDEO       |\n|\t\t\t\t|");
+					System.out.println("| ( 1 ) - ADICIONAR VÍDEO       |\n|\t\t\t\t|");
+					System.out.println("| ( 2 ) - LISTAR VÍDEOS         |\n|\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                |\n|\t\t\t\t|");
 					System.out.println("=================================\n");
 				
@@ -101,15 +104,11 @@ public class Main {
 					switch (opcao2) {
 				
 					case 1:
+						Videos.AdicionaVideos();
 						break;
 					
 					case 2:
-						break;
-					
-					case 3:					
-						break;
-					
-					case 4:		
+						Videos.ListarVideos();
 						break;
 					
 					case 0:					
@@ -132,10 +131,8 @@ public class Main {
 					}
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
 					System.out.println("\n=================================\n|\t\t\t\t|");
-					System.out.println("| ( 1 ) - LISTAR CANAIS         |\n|\t\t\t\t|");
-					System.out.println("| ( 2 ) - ADICIONAR CANAL       |\n|\t\t\t\t|");
-					System.out.println("| ( 3 ) - REMOVER CANAL         |\n|\t\t\t\t|");
-					System.out.println("| ( 4 ) - ATUALIZAR CANAL       |\n|\t\t\t\t|");
+					System.out.println("| ( 1 ) - ADICIONAR CANAL       |\n|\t\t\t\t|");
+					System.out.println("| ( 2 ) - LISTAR CANAIS         |\n|\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                |\n|\t\t\t\t|");
 					System.out.println("=================================\n");
 					
@@ -146,15 +143,11 @@ public class Main {
 					switch (opcao3) {
 					
 					case 1:
+						Canais.AdicionaCanais();
 						break;
 						
 					case 2:
-						break;
-						
-					case 3:
-						break;
-						
-					case 4:
+						Canais.ListarCanais();
 						break;
 						
 					case 0:					
@@ -162,6 +155,46 @@ public class Main {
 					
 						}
 					}while (opcao3 != 0);
+				
+				break;
+				
+				
+// --------------------------------------- INSCRICOES ----------------------------------------				
+				
+				
+			case 4:
+				do {
+					
+					for(int i = 0; i < 100; i++)
+					{
+					       System.out.println("");
+					}
+					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
+					System.out.println("\n=================================\n|\t\t\t\t|");
+					System.out.println("| ( 1 ) - ADICIONAR INSCRICOES  |\n|\t\t\t\t|");
+					System.out.println("| ( 2 ) - LISTAR INSCRICOES     |\n|\t\t\t\t|");				
+					System.out.println("| ( 0 ) - VOLTAR                |\n|\t\t\t\t|");
+					System.out.println("=================================\n");
+					
+					System.out.println(" Escolha uma das opções: ");
+					opcao4 = entrada.nextInt();
+					entrada.nextLine();
+					System.out.print("\n");
+					switch (opcao4) {
+					
+					case 1:
+						Inscricoes.AdicionaInscricao();
+						break;
+						
+					case 2:
+						Inscricoes.ListaInscricao();
+						break;
+						
+					case 0:					
+						break;
+					
+						}
+					}while (opcao4 != 0);
 				
 				break;
 				
@@ -187,5 +220,12 @@ public class Main {
 	       System.out.println("");
 	}
 
+	public List<Usuarios> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuarios> usuarios) {
+		Main.usuarios = usuarios;
+	}
 	
 }
