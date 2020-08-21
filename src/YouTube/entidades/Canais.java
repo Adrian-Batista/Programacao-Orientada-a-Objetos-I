@@ -40,8 +40,11 @@ static Scanner entrada = new Scanner(System.in);
 			System.out.printf("Digite uma descrição para este Canal: ");
 			canal.setDescricaoCanal(entrada.nextLine());
 			
-			System.out.printf("Digite o seu Público Alvo: ");
-			canal.setPublicoAlvoCanal(entrada.nextLine());
+			//System.out.printf("Digite o seu Público Alvo: ");
+		//	canal.setPublicoAlvoCanal(entrada.nextLine());
+			
+			PublicoAlvo.EscolherPublicoAlvo();
+			canal.setPublicoAlvoCanal(PublicoAlvo.opcao);
 			
 			Main.canais.add(canal);
 			

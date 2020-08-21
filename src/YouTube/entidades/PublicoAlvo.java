@@ -1,39 +1,114 @@
 package YouTube.entidades;
 
+import java.util.Scanner;
+
+import YouTube.Main;
+
 public class PublicoAlvo {
 	
-	private String generoPublico;
-	private String idadePublico;
-	private String generoCanal;
+	static String opcao = "NULL";
+	private static String opc1 = "Crianças";
+	private static String opc2 = "Jovens";
+	private static String opc3 = "Adultos";
+	private static String opc4 = "Idosos";
+	private static String opc5 = "Todos";
 
-	public PublicoAlvo(String generoPublico, String idadePublico, String generoCanal) {
-		this.setGeneroPublico(generoPublico);
-		this.setIdadePublico(idadePublico);
-		this.setGeneroCanal(generoCanal);
+	public PublicoAlvo(String opc1, String opc2, String opc3, String opc4, String opc5, String opcao) {
+		PublicoAlvo.opcao = opcao;
+		PublicoAlvo.opc1 = opc1;
+		PublicoAlvo.opc2 = opc2;
+		PublicoAlvo.opc3 = opc3;
+		PublicoAlvo.opc4 = opc4;
+		PublicoAlvo.opc5 = opc5;
+	}
+	
+	static Scanner entrada = new Scanner(System.in);
+	
+	public static void EscolherPublicoAlvo() {
+			int escolha = 0;
+			Main.LimparTela();
+			
+			System.out.println("\n Usuario selecione o publico alvo dos seu Canal: " );
+			System.out.println("\n============================================");
+			System.out.println("|  1 - Crianças (abaixo de 12 anos)        | ");
+			System.out.println("|  2 - Jovens   (13 a 24 anos)             | ");
+			System.out.println("|  3 - Adultos  (25 a 50 anos)             | ");
+			System.out.println("|  4 - Idosos   (acima de 51 anos)         | ");
+			System.out.println("|  5 - Todos                               | ");
+			System.out.println("============================================\n");
+		
+			do {
+				System.out.println(" Escolha uma das opções: ");
+				escolha = entrada.nextInt();
+				entrada.nextLine();
+		
+			}while(escolha<1 || escolha>5);
+		
+			if(escolha==1)
+				opcao = opc1;
+			if(escolha==2)
+				opcao = opc2;
+			if(escolha==3)
+				opcao = opc3;
+			if(escolha==4)
+				opcao = opc4;
+			if(escolha==5)
+			opcao = opc5;
+			
+	}
+	
+	
+
+	public String getOpcao() {
+		return opcao;
 	}
 
-	public String getGeneroPublico() {
-		return generoPublico;
+
+	public void setOpcao(String opcao) {
+		PublicoAlvo.opcao = opcao;
 	}
 
-	public void setGeneroPublico(String generoPublico) {
-		this.generoPublico = generoPublico;
+
+	public String getOpc1() {
+		return opc1;
 	}
 
-	public String getIdadePublico() {
-		return idadePublico;
+	public void setOpc1(String opc1) {
+		PublicoAlvo.opc1 = opc1;
 	}
 
-	public void setIdadePublico(String idadePublico) {
-		this.idadePublico = idadePublico;
+	public String getOpc2() {
+		return opc2;
 	}
 
-	public String getGeneroCanal() {
-		return generoCanal;
+	public void setOpc2(String opc2) {
+		PublicoAlvo.opc2 = opc2;
 	}
 
-	public void setGeneroCanal(String generoCanal) {
-		this.generoCanal = generoCanal;
+	public String getOpc3() {
+		return opc3;
 	}
 
+	public void setOpc3(String opc3) {
+		PublicoAlvo.opc3 = opc3;
+	}
+
+	public String getOpc4() {
+		return opc4;
+	}
+
+	public void setOpc4(String opc4) {
+		PublicoAlvo.opc4 = opc4;
+	}
+
+	public String getOpc5() {
+		return opc5;
+	}
+
+	public void setOpc5(String opc5) {
+		PublicoAlvo.opc5 = opc5;
+	}
+
+	
+	
 }
