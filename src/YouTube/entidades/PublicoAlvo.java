@@ -12,6 +12,10 @@ public class PublicoAlvo {
 	private static String opc3 = "Adultos";
 	private static String opc4 = "Idosos";
 	private static String opc5 = "Todos";
+	
+	public PublicoAlvo(String opcao) {
+		PublicoAlvo.opcao = opcao;
+	}
 
 	public PublicoAlvo(String opc1, String opc2, String opc3, String opc4, String opc5, String opcao) {
 		PublicoAlvo.opcao = opcao;

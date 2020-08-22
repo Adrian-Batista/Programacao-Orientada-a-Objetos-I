@@ -93,6 +93,8 @@ public class Main {
 					System.out.println("\n=================================\n|\t\t\t\t|");
 					System.out.println("| ( 1 ) - ADICIONAR VÍDEO       |\n|\t\t\t\t|");
 					System.out.println("| ( 2 ) - LISTAR VÍDEOS         |\n|\t\t\t\t|");
+					System.out.println("| ( 3 ) - ATUALIZAR VÍDEO       |\n|\t\t\t\t|");
+					System.out.println("| ( 4 ) - REMOVER VÍDEO         |\n|\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                |\n|\t\t\t\t|");
 					System.out.println("=================================\n");
 				
@@ -109,6 +111,14 @@ public class Main {
 					
 					case 2:
 						Videos.ListarVideos();
+						break;
+						
+					case 3:
+						Videos.AtualizarVideo();
+						break;
+						
+					case 4:
+						Videos.RemoverVideo();
 						break;
 					
 					case 0:					
@@ -133,6 +143,8 @@ public class Main {
 					System.out.println("\n=================================\n|\t\t\t\t|");
 					System.out.println("| ( 1 ) - ADICIONAR CANAL       |\n|\t\t\t\t|");
 					System.out.println("| ( 2 ) - LISTAR CANAIS         |\n|\t\t\t\t|");
+					System.out.println("| ( 2 ) - ATUALIZAR CANAL       |\n|\t\t\t\t|");
+					System.out.println("| ( 2 ) - REMOVER CANAL         |\n|\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                |\n|\t\t\t\t|");
 					System.out.println("=================================\n");
 					
@@ -148,6 +160,14 @@ public class Main {
 						
 					case 2:
 						Canais.ListarCanais();
+						break;
+						
+					case 3:
+						Canais.AtualizarCanal();
+						break;
+						
+					case 4:
+						Canais.RemoverCanal();
 						break;
 						
 					case 0:					

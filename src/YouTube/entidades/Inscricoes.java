@@ -25,6 +25,7 @@ public class Inscricoes {
 			int opc = 0;
 			int aux = 0;
 			int aux2 = 0;
+			int auxiliar = 0;
 							
 			
 			do {
@@ -55,6 +56,9 @@ public class Inscricoes {
 								aux2++;
 								inscricao.setNomeCanalInscr(canalBusca);
 								Main.inscricoes.add(inscricao);
+								auxiliar = Main.canais.get(indice).getInscritosCanal();
+								auxiliar++;
+								Main.canais.get(indice).setInscritosCanal(auxiliar);
 							
 								Main.LimparTela();
 								System.out.printf("Canal Localizado com Sucesso!! \n");

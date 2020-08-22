@@ -5,24 +5,37 @@ import java.util.Scanner;
 
 import YouTube.Main;
 
+
+
 public class Canais {
 	
 	private String nomeCanal;
 	private String autorCanal;
 	private String descricaoCanal;
-	private String dataCanal;
 	private String publicoAlvoCanal;
+	private int inscritosCanal;
+	static String auxiliar;
 	
 
+	public Canais(String NomeCanal, String AutorCanal, String DescricaoCanal) {
+		setNomeCanal(nomeCanal);
+		setAutorCanal(autorCanal);
+		setDescricaoCanal(descricaoCanal);
+	}
+	
 	public Canais() {
-		this.setNomeCanal(nomeCanal);
-		this.setAutorCanal(autorCanal);
-		this.setDescricaoCanal(descricaoCanal);
-		this.setPublicoAlvoCanal(publicoAlvoCanal);
+		setNomeCanal(nomeCanal);
+		setAutorCanal(autorCanal);
+		setDescricaoCanal(descricaoCanal);
+		setInscritosCanal(0);
+		setPublicoAlvoCanal(publicoAlvoCanal);
 	}
 
 	
-static Scanner entrada = new Scanner(System.in);
+
+	static Scanner entrada = new Scanner(System.in);
+	
+	
 	
 	//-------------------------------------------------------------------------------
 	
@@ -40,17 +53,15 @@ static Scanner entrada = new Scanner(System.in);
 			System.out.printf("Digite uma descrição para este Canal: ");
 			canal.setDescricaoCanal(entrada.nextLine());
 			
-			//System.out.printf("Digite o seu Público Alvo: ");
-		//	canal.setPublicoAlvoCanal(entrada.nextLine());
-			
 			PublicoAlvo.EscolherPublicoAlvo();
 			canal.setPublicoAlvoCanal(PublicoAlvo.opcao);
 			
 			Main.canais.add(canal);
 			
+			auxiliar = canal.nomeCanal;
+			
 			System.out.printf("\nDados Armazenados com sucesso!! \n");
 			System.out.println("Pressione Enter Novamente...");
-			System.in.read();
 		}
 		
 		
@@ -65,6 +76,7 @@ static Scanner entrada = new Scanner(System.in);
 				System.out.println("\nNome Canal : " + Main.canais.get(i).getNomeCanal());
 				System.out.println("Autor : " + Main.canais.get(i).getAutorCanal());
 				System.out.println("Descrição : " + Main.canais.get(i).getDescricaoCanal());
+				System.out.println("Inscritos : " + Main.canais.get(i).getInscritosCanal());
 				System.out.println("Público Alvo : " + Main.canais.get(i).getPublicoAlvoCanal());
 								
 				System.out.println("\n=============================================================\n"); 
@@ -76,8 +88,116 @@ static Scanner entrada = new Scanner(System.in);
 		}	
 		
 		//-------------------------------------------------------------------------------
-	
+		
+		
+		public static void RemoverCanal() throws IOException {
+			Main.LimparTela();
+			int auxiliar = 0;
+			int aux = 0;
+			System.out.printf("Digite o nome do Canal a ser removido:  \n");
+			String nomeRemove = entrada.nextLine();
+			
+			for (int indice = 0; indice < Main.canais.size(); indice++) {
+				if (Main.canais.get(indice).getNomeCanal().contentEquals(nomeRemove)) {
+					
+					for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
+						if (Main.videos.get(indice2).getNome().contentEquals(nomeRemove))
+							auxiliar++;
+					}
+					
+					do {
+					System.out.printf("O Canal " + nomeRemove +" possui " + auxiliar + " videos, deseja remove-los do Youtube?");
+					System.out.println("\n============================================");
+					System.out.println("|  1 - Remover tudo                       | ");
+					System.out.println("|  2 - Voltar                             | ");
+					System.out.println("============================================\n");
+					aux = entrada.nextInt();
+					
+					if(aux==1) {
+						for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
+							if (Main.videos.get(indice2).getNome().contentEquals(nomeRemove)) {
+								Main.videos.remove(indice2);
+								indice2--;
+							}
+						}
+						
+						Main.canais.remove(indice);
+						
+						Main.LimparTela();
+						System.out.printf("Canal removido com Sucesso!! \n");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
+						break;
+					}
+					if(aux==2) {
+						return;
+					}
+					
+					}while(aux !=1 || aux!=2);
+					
+				}
+				
+			}
+			if(auxiliar==0) {
+				Main.LimparTela();
+				System.out.printf("Canal não localizado tente novamente!! \n");
+				System.in.read();
+				return;
+			}
+		}
 
+		//--------------------------------------------------------------------------------
+
+		public static void AtualizarCanal() throws IOException {
+			
+			System.out.printf("Digite o nome do Canal a ser Atualizado:  \n");
+			String nomeUpdate = entrada.nextLine();
+			int aux = 0;
+			
+			
+			for (int indice = 0; indice < Main.canais.size(); indice++) {
+				
+				if (Main.canais.get(indice).getNomeCanal().contentEquals(nomeUpdate)) {
+					aux++;
+					Main.LimparTela();
+					
+					System.out.printf("Digite o Nome do Canal: ");
+					Main.canais.get(indice).setNomeCanal(entrada.nextLine());
+					
+					System.out.printf("Digite o nome do autor: ");
+					Main.canais.get(indice).setAutorCanal(entrada.nextLine());
+					
+					System.out.printf("Digite uma descrição para este Canal: ");
+					Main.canais.get(indice).setDescricaoCanal(entrada.nextLine());
+					
+					Main.canais.get(indice).setPublicoAlvoCanal(PublicoAlvo.opcao);
+					PublicoAlvo.EscolherPublicoAlvo();
+					
+					
+					for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
+						aux++;
+						if (Main.videos.get(indice2).getNome().contentEquals(nomeUpdate)) {
+							Main.videos.get(indice2).setNome(Main.canais.get(indice).getNomeCanal());
+						}
+					}
+					
+					System.out.printf("Dados Armazenados com sucesso!! \n");
+					System.out.println("Pressione Enter Novamente...");
+					System.in.read();
+					break;
+				}
+				
+				}
+				if(aux==Main.canais.size()) {
+					System.out.printf("Canal não Localizado tente novamente!! \n");
+					System.out.println("Pressione Enter ...");
+					System.in.read();
+					return;
+			}
+		}
+		
+		//--------------------------------------------------------------------------------------------------
+		
 	public String getNomeCanal() {
 		return nomeCanal;
 	}
@@ -108,16 +228,6 @@ static Scanner entrada = new Scanner(System.in);
 	}
 
 
-	public String getDataCanal() {
-		return dataCanal;
-	}
-
-
-	public void setDataCanal(String dataCanal) {
-		this.dataCanal = dataCanal;
-	}
-
-
 	public String getPublicoAlvoCanal() {
 		return publicoAlvoCanal;
 	}
@@ -125,6 +235,14 @@ static Scanner entrada = new Scanner(System.in);
 
 	public void setPublicoAlvoCanal(String publicoAlvoCanal) {
 		this.publicoAlvoCanal = publicoAlvoCanal;
+	}
+
+	public int getInscritosCanal() {
+		return inscritosCanal;
+	}
+
+	public void setInscritosCanal(int inscritosCanal2) {
+		this.inscritosCanal = inscritosCanal2;
 	}
 
 }

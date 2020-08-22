@@ -8,13 +8,23 @@ import YouTube.Main;
 public class Usuarios {
 	
 	private String nomeUsuario;
+	private String enderecoUsuario;
 	private String emailUsuario;
 	private String senhaUsuario;
+	
+	public Usuarios(String nomeUsuario) {
+		setNomeUsuario(nomeUsuario);
+	}
+	
+	public Usuarios(String NomeUsuario, String EnderecoUsuario, String EmailUsuario, String SehaUsuario) {
+		setNomeUsuario(nomeUsuario);
+		setEnderecoUsuario(enderecoUsuario);
+		setEmailUsuario(emailUsuario);
+		setSenhaUsuario(senhaUsuario);
+	}
 
 	public Usuarios() {
-		this.setNomeUsuario(nomeUsuario);
-		this.setEmailUsuario(emailUsuario);
-		this.setSenhaUsuario(senhaUsuario);
+		// TODO Auto-generated constructor stub
 	}
 
 	static Scanner entrada = new Scanner(System.in);
@@ -26,10 +36,13 @@ public class Usuarios {
 	public static void AdicionaUsuario () throws IOException {
 		Main.LimparTela();
 		
-		Usuarios usuario = new Usuarios();
+		 Usuarios usuario = new Usuarios();
 		
 		System.out.printf("Digite seu nome: ");
 		usuario.setNomeUsuario(entrada.nextLine());
+		
+		System.out.printf("Digite seu endereco: ");
+		usuario.setEnderecoUsuario(entrada.nextLine());
 		
 		System.out.printf("Digite o seu email: ");
 		usuario.setEmailUsuario(entrada.nextLine());
@@ -91,5 +104,16 @@ public class Usuarios {
 	public void setSenhaUsuario(String senhaUsuario) {
 		this.senhaUsuario = senhaUsuario;
 	}
+
+
+	public String getEnderecoUsuario() {
+		return enderecoUsuario;
+	}
+
+
+	public void setEnderecoUsuario(String enderecoUsuario) {
+		this.enderecoUsuario = enderecoUsuario;
+	}
+
 
 }
