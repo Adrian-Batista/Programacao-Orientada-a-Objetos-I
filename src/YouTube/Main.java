@@ -56,6 +56,8 @@ public class Main {
 					System.out.println("\n=========================================\n|\t\t\t\t\t|");
 					System.out.println("| ( 1 ) - CADASTRAR - SE                |\n|\t\t\t\t\t|");
 					System.out.println("| ( 2 ) - LISTAR CADASTRO               |\n|\t\t\t\t\t|");
+					System.out.println("| ( 3 ) - REMOVER CADASTRO              |\n|\t\t\t\t\t|");
+					System.out.println("| ( 4 ) - ATUALIZAR CADASTRO            |\n|\t\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                        |\n|\t\t\t\t\t|");
 					System.out.println("=========================================\n");
 				
@@ -72,6 +74,14 @@ public class Main {
 					
 					case 2:
 						Usuarios.ListarUsuarios();
+						break;
+						
+					case 3:
+						Usuarios.RemoverUsuario();
+						break;
+						
+					case 4:
+						Usuarios.AtualizarUsuario();
 						break;
 						
 					case 0:					
@@ -143,8 +153,9 @@ public class Main {
 					System.out.println("\n=================================\n|\t\t\t\t|");
 					System.out.println("| ( 1 ) - ADICIONAR CANAL       |\n|\t\t\t\t|");
 					System.out.println("| ( 2 ) - LISTAR CANAIS         |\n|\t\t\t\t|");
-					System.out.println("| ( 2 ) - ATUALIZAR CANAL       |\n|\t\t\t\t|");
-					System.out.println("| ( 2 ) - REMOVER CANAL         |\n|\t\t\t\t|");
+					System.out.println("| ( 3 ) - ATUALIZAR CANAL       |\n|\t\t\t\t|");
+					System.out.println("| ( 4 ) - REMOVER CANAL         |\n|\t\t\t\t|");
+					System.out.println("| ( 5 ) - ATUALIZAR PÚBLICO ALVO|\n|\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                |\n|\t\t\t\t|");
 					System.out.println("=================================\n");
 					
@@ -170,6 +181,10 @@ public class Main {
 						Canais.RemoverCanal();
 						break;
 						
+					case 5:
+						PublicoAlvo.AtualizarPublicoAlvo();
+						break;
+						
 					case 0:					
 						break;
 					
@@ -192,7 +207,8 @@ public class Main {
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
 					System.out.println("\n=================================\n|\t\t\t\t|");
 					System.out.println("| ( 1 ) - ADICIONAR INSCRICOES  |\n|\t\t\t\t|");
-					System.out.println("| ( 2 ) - LISTAR INSCRICOES     |\n|\t\t\t\t|");				
+					System.out.println("| ( 2 ) - LISTAR INSCRICOES     |\n|\t\t\t\t|");
+					System.out.println("| ( 3 ) - REMOVER INSCRICOES    |\n|\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                |\n|\t\t\t\t|");
 					System.out.println("=================================\n");
 					
@@ -208,6 +224,10 @@ public class Main {
 						
 					case 2:
 						Inscricoes.ListaInscricao();
+						break;
+						
+					case 3:
+						Inscricoes.RemoveInscricao();
 						break;
 						
 					case 0:					

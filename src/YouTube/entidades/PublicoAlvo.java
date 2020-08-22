@@ -1,5 +1,6 @@
 package YouTube.entidades;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import YouTube.Main;
@@ -27,6 +28,8 @@ public class PublicoAlvo {
 	}
 	
 	static Scanner entrada = new Scanner(System.in);
+	
+//--------------------------------------------------------------------------------------------------------
 	
 	public static void EscolherPublicoAlvo() {
 			int escolha = 0;
@@ -61,6 +64,64 @@ public class PublicoAlvo {
 			
 	}
 	
+	
+	//--------------------------------------------------------------------------------------------------------
+	
+	public static void AtualizarPublicoAlvo() throws IOException {
+		int escolha = 0;
+		Main.LimparTela();
+		
+		System.out.printf("Digite o nome do Canal a ser atualizado o Público Alvo:  \n");
+		String nomeUpdate = entrada.nextLine();
+		int aux = 0;
+		
+		for (int indice = 0; indice < Main.canais.size(); indice++) {
+			if (Main.canais.get(indice).getNomeCanal().contentEquals(nomeUpdate)) {
+				aux++;
+				Main.LimparTela();
+				System.out.printf("Canal localizado com sucesso!! \n\n");
+				
+				System.out.println("O Público Alvo definido anteriormente é : " + Main.canais.get(indice).getPublicoAlvoCanal() + ", para este Canal!");
+				System.out.println("\n\n Usuario selecione o publico alvo dos seu Canal: " );
+				System.out.println("\n============================================");
+				System.out.println("|  1 - Crianças (abaixo de 12 anos)        | ");
+				System.out.println("|  2 - Jovens   (13 a 24 anos)             | ");
+				System.out.println("|  3 - Adultos  (25 a 50 anos)             | ");
+				System.out.println("|  4 - Idosos   (acima de 51 anos)         | ");
+				System.out.println("|  5 - Todos                               | ");
+				System.out.println("============================================\n");
+			
+				do {
+					System.out.println(" Escolha uma das opções: ");
+					escolha = entrada.nextInt();
+					entrada.nextLine();
+			
+				}while(escolha<1 || escolha>5);
+			
+				if(escolha==1)
+					opcao = opc1;
+				if(escolha==2)
+					opcao = opc2;
+				if(escolha==3)
+					opcao = opc3;
+				if(escolha==4)
+					opcao = opc4;
+				if(escolha==5)
+				opcao = opc5;
+				
+				Main.canais.get(indice).setPublicoAlvoCanal(opcao);;
+			}	
+		}
+		if(aux==0) {
+			Main.LimparTela();
+			System.out.printf("Canal não localizado tente novamente!! \n\n");
+			System.in.read();
+			return;
+		}
+		
+}
+	
+	//--------------------------------------------------------------------------------------------------------
 	
 
 	public String getOpcao() {

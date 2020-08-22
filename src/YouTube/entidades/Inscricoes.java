@@ -79,6 +79,71 @@ public class Inscricoes {
 				}
 		}
 		
+	//------------------------------------------------------------------------------
+		
+public static void RemoveInscricao () throws IOException {
+			
+			Main.LimparTela();
+			Inscricoes inscricao = new Inscricoes();
+			int opc = 0;
+			int aux = 0;
+			int aux2 = 0;
+			int auxiliar = 0;
+							
+			
+			do {
+					System.out.printf("Para remover a inscrição em um canal: ");
+					System.out.println("\n============================================");
+					System.out.println("|  1 - Buscar Canal                       | ");
+					System.out.println("|  0 - Voltar                             | ");
+					System.out.println("============================================\n");
+					opc = entrada.nextInt();
+					entrada.nextLine();
+					
+					aux = opc;
+					
+			}while(aux!=1 && aux !=0 );
+			
+				switch (opc) { 
+				
+					case 0:
+						break;
+					
+					case 1:
+						System.out.printf("Digite o nome do Canal a ser localizado:  \n");
+						String canalBusca = entrada.nextLine();
+					
+					
+						for (int indice = 0; indice < Main.canais.size(); indice++) {
+							if (Main.canais.get(indice).getNomeCanal().contentEquals(canalBusca)) {
+								aux2++;
+								inscricao.setNomeCanalInscr(canalBusca);
+								Main.inscricoes.add(inscricao);
+								auxiliar = Main.canais.get(indice).getInscritosCanal();
+								if(auxiliar>0) {
+									auxiliar--;	
+								}
+								Main.canais.get(indice).setInscritosCanal(auxiliar);
+							
+								Main.LimparTela();
+								System.out.printf("Canal Localizado com Sucesso!! \n");
+								System.out.printf("Agora você não é mais inscrito deste Canal!! \n");
+								System.out.println("Pressione Enter Novamente...\n\n");
+								System.in.read();
+								break;
+							}
+						}
+							
+						if(aux2==0) {
+							Main.LimparTela();
+							System.out.printf("Canal não localizado tente novamente!! \n\n");
+							System.in.read();
+							break;
+						}
+							
+				}
+		}
+		
 	// -----------------------------------------------------------------------------
 		public static void ListaInscricao () throws IOException {
 			
