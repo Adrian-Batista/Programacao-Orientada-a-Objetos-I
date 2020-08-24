@@ -12,6 +12,7 @@ public class Main {
 	public static List<Videos> videos = new ArrayList<Videos>();
 	public static List<Canais> canais = new ArrayList<Canais>();
 	public static List<Inscricoes> inscricoes = new ArrayList<Inscricoes>();
+	public static List<VideosFavoritos>videosfavoritos = new ArrayList<VideosFavoritos>();
 	
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
@@ -19,6 +20,7 @@ public class Main {
 		int opcao2 = 0;
 		int opcao3 = 0;
 		int opcao4 = 0;
+		int opcao5 = 0;
 		int cont = 0;
 		
 		Scanner entrada = new Scanner(System.in);
@@ -35,7 +37,8 @@ public class Main {
 			System.out.println("| ( 1 ) - MENU DO USUARIO       | \n|\t\t\t\t|");
 			System.out.println("| ( 2 ) - MENU DE VÍDEOS        | \n|\t\t\t\t| ");
 			System.out.println("| ( 3 ) - MENU DE CANAIS        | \n|\t\t\t\t| ");
-			System.out.println("| ( 4 ) - MENU DE INSCRICOES    | \n|\t\t\t\t| ");			
+			System.out.println("| ( 4 ) - MENU DE INSCRICOES    | \n|\t\t\t\t| ");
+			System.out.println("| ( 5 ) - MENU DE FAVORITOS     | \n|\t\t\t\t| ");
 			System.out.println("| ( 0 ) - SAIR                  | \n|\t\t\t\t|");
 			System.out.println("=================================\n");
 	
@@ -235,6 +238,54 @@ public class Main {
 					
 						}
 					}while (opcao4 != 0);
+				
+				break;
+				
+// -------------------------------------- VÍDEOS FAVORITOS ------------------------------------------------					
+
+			case 5:
+				do {
+					
+					for(int i = 0; i < 100; i++)
+					{
+					       System.out.println("");
+					}
+					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
+					System.out.println("\n===================================\n|\t\t\t\t  |");
+					System.out.println("| ( 1 ) - ADICIONAR VÍDEO FAVORITO|\n|\t\t\t\t  |");
+					System.out.println("| ( 2 ) - LISTAR VÍDEO FAVORITO   |\n|\t\t\t\t  |");
+					System.out.println("| ( 3 ) - REMOVER VÍDEO FAVORITO  |\n|\t\t\t\t  |");
+					System.out.println("| ( 4 ) - ATUALIZAR VÍDEO FAVORITO|\n|\t\t\t\t  |");
+					System.out.println("| ( 0 ) - VOLTAR                  |\n|\t\t\t\t  |");
+					System.out.println("===================================\n");
+					
+					System.out.println(" Escolha uma das opções: ");
+					opcao5 = entrada.nextInt();
+					entrada.nextLine();
+					System.out.print("\n");
+					switch (opcao5) {
+					
+					case 1:
+						VideosFavoritos.AdicionaVideoFavorito();
+						break;
+						
+					case 2:
+						VideosFavoritos.ListaVideoFavorito();
+						break;
+						
+					case 3:
+						VideosFavoritos.RemoveVideoFavorito();
+						break;
+						
+					case 4:
+						VideosFavoritos.AtualizaVideoFavorito();
+						break;
+						
+					case 0:					
+						break;
+					
+						}
+					}while (opcao5 != 0);
 				
 				break;
 				
