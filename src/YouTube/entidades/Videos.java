@@ -6,13 +6,11 @@ import java.util.Scanner;
 import YouTube.Main;
 
 
-public class Videos {
+public class Videos extends Canais{
 	
-	private String nome;
 	private String link;
 	private String date;
 	private String canalVideo;
-	private String generoVideo;
 	private double precoVideo;
 	
 
@@ -22,11 +20,10 @@ public class Videos {
 	}
 	
 	public Videos() {
-		this.setNome(nome);
+		super();
 		this.setLink(link);
 		this.setDate(date);
 		this.setCanalVideo(canalVideo);
-		this.setGeneroVideo(generoVideo);
 		this.setPrecoVideo(0);
 	}
 
@@ -66,7 +63,7 @@ public class Videos {
 					
 					
 						for (int indice = 0; indice < Main.canais.size(); indice++) {
-							if (Main.canais.get(indice).getNomeCanal().contentEquals(canalBusca)) {
+							if (Main.canais.get(indice).getNome().contentEquals(canalBusca)) {
 								aux2++;
 								video.setCanalVideo(canalBusca);
 								Main.LimparTela();
@@ -133,7 +130,7 @@ public class Videos {
 			video.setDate(entrada.nextLine());
 			
 			System.out.printf("Digite o gênero do seu vídeo: ");
-			video.setGeneroVideo(entrada.nextLine());
+			video.setDescricao(entrada.nextLine());
 			
 			System.out.printf("Digite o valor que será cobrado pelo seu vídeo, caso for gratuito digite 0: ");
 			video.setPrecoVideo(entrada.nextDouble());
@@ -158,7 +155,7 @@ public class Videos {
 				System.out.println("Link : " + Main.videos.get(i).getLink());
 				System.out.println("Data : " + Main.videos.get(i).getDate());
 				System.out.println("Canal : " + Main.videos.get(i).getCanalVideo());
-				System.out.println("Gênero : " + Main.videos.get(i).getGeneroVideo());
+				System.out.println("Gênero : " + Main.videos.get(i).getDescricao());
 				System.out.println("Preço : " + Main.videos.get(i).getPrecoVideo());
 								
 				System.out.println("\n=============================================================\n"); 
@@ -246,7 +243,7 @@ public class Videos {
 					Main.videos.get(indice).setDate(entrada.nextLine());
 					
 					System.out.printf("Digite o gênero do seu vídeo: ");
-					Main.videos.get(indice).setGeneroVideo(entrada.nextLine());
+					Main.videos.get(indice).setDescricao(entrada.nextLine());
 					
 					System.out.printf("Digite o valor que será cobrado pelo seu vídeo, caso for gratuito digite 0: ");
 					Main.videos.get(indice).setPrecoVideo(entrada.nextDouble());
@@ -267,17 +264,6 @@ public class Videos {
 		
 //--------------------------------------------------------------------------------------------------------------
 
-
-	public String getNome() {
-		return nome;
-	}
-
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-
 	public String getLink() {
 		return link;
 	}
@@ -295,16 +281,6 @@ public class Videos {
 
 	public void setDate(String date) {
 		this.date = date;
-	}
-
-
-	public String getGeneroVideo() {
-		return generoVideo;
-	}
-
-
-	public void setGeneroVideo(String generoVideo) {
-		this.generoVideo = generoVideo;
 	}
 
 

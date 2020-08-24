@@ -76,12 +76,12 @@ public class PublicoAlvo {
 		int aux = 0;
 		
 		for (int indice = 0; indice < Main.canais.size(); indice++) {
-			if (Main.canais.get(indice).getNomeCanal().contentEquals(nomeUpdate)) {
+			if (Main.canais.get(indice).getNome().contentEquals(nomeUpdate)) {
 				aux++;
 				Main.LimparTela();
 				System.out.printf("Canal localizado com sucesso!! \n\n");
 				
-				System.out.println("O Público Alvo definido anteriormente é : " + Main.canais.get(indice).getPublicoAlvoCanal() + ", para este Canal!");
+				System.out.println("O Público Alvo definido anteriormente é : " + Main.canais.get(indice).getPublicoAlvo() + ", para este Canal!");
 				System.out.println("\n\n Usuario selecione o publico alvo dos seu Canal: " );
 				System.out.println("\n============================================");
 				System.out.println("|  1 - Crianças (abaixo de 12 anos)        | ");
@@ -109,7 +109,7 @@ public class PublicoAlvo {
 				if(escolha==5)
 				opcao = opc5;
 				
-				Main.canais.get(indice).setPublicoAlvoCanal(opcao);;
+				Main.canais.get(indice).setPublicoAlvo(opcao);;
 			}	
 		}
 		if(aux==0) {

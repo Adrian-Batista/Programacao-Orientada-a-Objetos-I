@@ -52,13 +52,13 @@ public class Inscricoes {
 					
 					
 						for (int indice = 0; indice < Main.canais.size(); indice++) {
-							if (Main.canais.get(indice).getNomeCanal().contentEquals(canalBusca)) {
+							if (Main.canais.get(indice).getNome().contentEquals(canalBusca)) {
 								aux2++;
 								inscricao.setNomeCanalInscr(canalBusca);
 								Main.inscricoes.add(inscricao);
-								auxiliar = Main.canais.get(indice).getInscritosCanal();
+								auxiliar = Main.canais.get(indice).getInscritos();
 								auxiliar++;
-								Main.canais.get(indice).setInscritosCanal(auxiliar);
+								Main.canais.get(indice).setInscritos(auxiliar);
 							
 								Main.LimparTela();
 								System.out.printf("Canal Localizado com Sucesso!! \n");
@@ -115,15 +115,15 @@ public static void RemoveInscricao () throws IOException {
 					
 					
 						for (int indice = 0; indice < Main.canais.size(); indice++) {
-							if (Main.canais.get(indice).getNomeCanal().contentEquals(canalBusca)) {
+							if (Main.canais.get(indice).getNome().contentEquals(canalBusca)) {
 								aux2++;
 								inscricao.setNomeCanalInscr(canalBusca);
 								Main.inscricoes.add(inscricao);
-								auxiliar = Main.canais.get(indice).getInscritosCanal();
+								auxiliar = Main.canais.get(indice).getInscritos();
 								if(auxiliar>0) {
 									auxiliar--;	
 								}
-								Main.canais.get(indice).setInscritosCanal(auxiliar);
+								Main.canais.get(indice).setInscritos(auxiliar);
 							
 								Main.LimparTela();
 								System.out.printf("Canal Localizado com Sucesso!! \n");

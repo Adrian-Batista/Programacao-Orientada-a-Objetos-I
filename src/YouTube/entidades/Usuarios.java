@@ -5,22 +5,15 @@ import java.util.Scanner;
 
 import YouTube.Main;
 
-public class Usuarios {
+public class Usuarios extends Canais {
 	
-	private String nomeUsuario;
-	private String enderecoUsuario;
-	private String emailUsuario;
-	private String senhaUsuario;
+	private String endereco;
+	private String senha;
 	
-	public Usuarios(String nomeUsuario) {
-		setNomeUsuario(nomeUsuario);
-	}
-	
-	public Usuarios(String NomeUsuario, String EnderecoUsuario, String EmailUsuario, String SehaUsuario) {
-		setNomeUsuario(nomeUsuario);
-		setEnderecoUsuario(enderecoUsuario);
-		setEmailUsuario(emailUsuario);
-		setSenhaUsuario(senhaUsuario);
+	public Usuarios(String nome, String email, String Endereco, String Senha) {
+		super(nome, email);
+		setEndereco(endereco);
+		setSenha(senha);
 	}
 
 	public Usuarios() {
@@ -39,16 +32,16 @@ public class Usuarios {
 		 Usuarios usuario = new Usuarios();
 		
 		System.out.printf("Digite seu nome: ");
-		usuario.setNomeUsuario(entrada.nextLine());
+		usuario.setNome(entrada.nextLine());
 		
 		System.out.printf("Digite seu endereco: ");
-		usuario.setEnderecoUsuario(entrada.nextLine());
+		usuario.setEndereco(entrada.nextLine());
 		
 		System.out.printf("Digite o seu email: ");
-		usuario.setEmailUsuario(entrada.nextLine());
+		usuario.setEmail(entrada.nextLine());
 		
 		System.out.printf("Digite uma senha: ");
-		usuario.setSenhaUsuario(entrada.nextLine());
+		usuario.setSenha(entrada.nextLine());
 		
 		Main.usuarios.add(usuario);
 		
@@ -66,10 +59,10 @@ public class Usuarios {
 				
 		System.out.println("\n=============================================================\n"); 
 		for(int i = 0;i<Main.usuarios.size();i++){  
-			System.out.println("\nNome : " + Main.usuarios.get(i).getNomeUsuario());
-			System.out.println("\nEndereço : " + Main.usuarios.get(i).getEnderecoUsuario());
-			System.out.println("E-mail : " + Main.usuarios.get(i).getEmailUsuario());
-			System.out.println("Senha : " + Main.usuarios.get(i).getSenhaUsuario());
+			System.out.println("\nNome : " + Main.usuarios.get(i).getNome());
+			System.out.println("\nEndereço : " + Main.usuarios.get(i).getEndereco());
+			System.out.println("E-mail : " + Main.usuarios.get(i).getEmail());
+			System.out.println("Senha : " + Main.usuarios.get(i).getSenha());
 							
 			System.out.println("\n=============================================================\n"); 
 		}
@@ -87,7 +80,7 @@ public class Usuarios {
 		int aux = 0;
 		
 		for (int indice = 0; indice < Main.usuarios.size(); indice++) {
-			if (Main.usuarios.get(indice).getNomeUsuario().contentEquals(nomeRemove)) {
+			if (Main.usuarios.get(indice).getNome().contentEquals(nomeRemove)) {
 				aux++;
 				Main.usuarios.remove(indice);
 				System.out.printf("Usuário removido com Sucesso!! \n");
@@ -113,7 +106,7 @@ public class Usuarios {
 		int aux3 = 0;
 		
 		for (int indice = 0; indice < Main.usuarios.size(); indice++) {
-			if (Main.usuarios.get(indice).getNomeUsuario().contentEquals(nomeUpdate)) {
+			if (Main.usuarios.get(indice).getNome().contentEquals(nomeUpdate)) {
 				aux++;
 				Main.LimparTela();
 				
@@ -123,21 +116,21 @@ public class Usuarios {
 					System.out.printf("Digite o seu nome: ");
 					verificador = (entrada.nextLine());
 					for (int indice2 = 0; indice2 < Main.usuarios.size(); indice2++) {
-						if (Main.usuarios.get(indice2).getNomeUsuario().contentEquals(verificador)){
+						if (Main.usuarios.get(indice2).getNome().contentEquals(verificador)){
 							aux3++;
 							System.out.printf("\nO nome escolhido ja está em uso, selecione outro:\n\n ");
 							break;
 						}
 					}
 					if(aux3==0) {
-						Main.usuarios.get(indice).setNomeUsuario(verificador);
+						Main.usuarios.get(indice).setNome(verificador);
 					}
 					
 				}while(aux3 != 0);
 				
 				System.out.printf("Digite seu endereco: ");
 				verificador = (entrada.nextLine());
-				Main.usuarios.get(indice).setEnderecoUsuario(verificador);
+				Main.usuarios.get(indice).setEndereco(verificador);
 				
 				do {
 					aux3=0;
@@ -145,20 +138,20 @@ public class Usuarios {
 					System.out.printf("Digite o seu email: ");
 					verificador = (entrada.nextLine());
 					for (int indice2 = 0; indice2 < Main.usuarios.size(); indice2++) {
-						if (Main.usuarios.get(indice2).getEmailUsuario().contentEquals(verificador)){
+						if (Main.usuarios.get(indice2).getEmail().contentEquals(verificador)){
 							aux3++;
 							System.out.printf("\nO E-mail escolhido ja está em uso, selecione outro:\n\n ");
 							break;
 						}
 					}
 					if(aux3==0) {
-						Main.usuarios.get(indice).setEmailUsuario(verificador);
+						Main.usuarios.get(indice).setEmail(verificador);
 					}
 				}while(aux3 != 0);
 				
 				System.out.printf("Digite uma senha: ");
 				verificador = (entrada.nextLine());
-				Main.usuarios.get(indice).setSenhaUsuario(verificador);
+				Main.usuarios.get(indice).setSenha(verificador);
 				
 				System.out.printf("Dados Armazenados com sucesso!! \n");
 				System.out.println("Pressione Enter Novamente...");
@@ -175,39 +168,23 @@ public class Usuarios {
 	}		
 	
 	//-------------------------------------------------------------------------------
-	
-	public String getNomeUsuario() {
-		return nomeUsuario;
+
+	public String getSenha() {
+		return senha;
 	}
 
-	public void setNomeUsuario(String nomeUsuario) {
-		this.nomeUsuario = nomeUsuario;
-	}
-
-	public String getEmailUsuario() {
-		return emailUsuario;
-	}
-
-	public void setEmailUsuario(String emailUsuario) {
-		this.emailUsuario = emailUsuario;
-	}
-
-	public String getSenhaUsuario() {
-		return senhaUsuario;
-	}
-
-	public void setSenhaUsuario(String senhaUsuario) {
-		this.senhaUsuario = senhaUsuario;
+	public void setSenha(String senha) {
+		this.senha = senha;
 	}
 
 
-	public String getEnderecoUsuario() {
-		return enderecoUsuario;
+	public String getEndereco() {
+		return endereco;
 	}
 
 
-	public void setEnderecoUsuario(String enderecoUsuario) {
-		this.enderecoUsuario = enderecoUsuario;
+	public void setEndereco(String endereco) {
+		this.endereco = endereco;
 	}
 
 
