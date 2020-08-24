@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 import YouTube.Main;
 
-public class Inscricoes {
+public class Inscricoes extends Canais{
 	
 	private String nomeCanalInscr;
 	
@@ -149,9 +149,12 @@ public static void RemoveInscricao () throws IOException {
 			
 			Main.LimparTela();
 			
+			
 			System.out.println("\n=============================================================\n"); 
 			for(int i = 0;i<Main.inscricoes.size();i++){  
-				System.out.println("\nCanal : " + Main.inscricoes.get(i).getNomeCanalInscr());		
+				System.out.println("\nCanal : " + Main.inscricoes.get(i).getNomeCanalInscr());
+				System.out.println("\nInscritos : " + Main.inscricoes.get(i).getInscritos());
+				
 				System.out.println("\n=============================================================\n");
 			}
 			 

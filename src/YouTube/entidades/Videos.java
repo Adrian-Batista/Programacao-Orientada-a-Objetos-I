@@ -129,7 +129,7 @@ public class Videos extends Canais{
 			System.out.printf("Digite a data de publicação: ");
 			video.setDate(entrada.nextLine());
 			
-			System.out.printf("Digite o gênero do seu vídeo: ");
+			System.out.printf("Digite uma descrição ao vídeo: ");
 			video.setDescricao(entrada.nextLine());
 			
 			System.out.printf("Digite o valor que será cobrado pelo seu vídeo, caso for gratuito digite 0: ");
@@ -146,24 +146,86 @@ public class Videos extends Canais{
 //------------------------------------------ Listar Vídeos ----------------------------------------------
 		
 		public static void ListarVideos () throws IOException {
+			int auxiliar = 0;
+			int auxiliar2 = 0;
+			int opc = 0;
 			
-			Main.LimparTela();
+			do {
+				Main.LimparTela();
+				do {
+					System.out.printf("Para adicionar um novo vídeo é necessário um Canal.\n Voce ja tem um Canal ou deseja criar um? ");
+					System.out.println("\n============================================");
+					System.out.println("|  1 - Listar todos os vídeos             | ");
+					System.out.println("|  2 - Listar por Canal                   | ");
+					System.out.println("|  0 - Voltar                             | ");
+					System.out.println("============================================\n");
+					opc = entrada.nextInt();
+					entrada.nextLine();
 					
-			System.out.println("\n=============================================================\n"); 
-			for(int i = 0;i<Main.videos.size();i++){  
-				System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
-				System.out.println("Link : " + Main.videos.get(i).getLink());
-				System.out.println("Data : " + Main.videos.get(i).getDate());
-				System.out.println("Canal : " + Main.videos.get(i).getCanalVideo());
-				System.out.println("Gênero : " + Main.videos.get(i).getDescricao());
-				System.out.println("Preço : " + Main.videos.get(i).getPrecoVideo());
+					if(opc==1 || opc == 2 || opc == 0)
+						auxiliar2 = 1;
+					
+				}while(auxiliar2 !=1);
+			
+				switch (opc) { 
+					
+					case 1:
+						Main.LimparTela();
+						System.out.println("\n=============================================================\n"); 
+						for(int i = 0;i<Main.videos.size();i++){  
+							System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
+							System.out.println("Link : " + Main.videos.get(i).getLink());
+							System.out.println("Data : " + Main.videos.get(i).getDate());
+							System.out.println("Canal : " + Main.videos.get(i).getCanalVideo());
+							System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
+							System.out.println("Preço : " + Main.videos.get(i).getPrecoVideo());
+											
+							System.out.println("\n=============================================================\n"); 
+						}
 								
-				System.out.println("\n=============================================================\n"); 
-			}
+																
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
+						break;
 					
+					case 2:
+						Main.LimparTela();
+						
+						System.out.printf("Digite o nome do Canal:  \n");
+						String nomeCanal = entrada.nextLine();
+						auxiliar2 = 0;
+						
+						System.out.println("\n=============================================================\n"); 
+						for (int i = 0; i < Main.videos.size(); i++) {
+							if (Main.videos.get(i).getCanalVideo().contentEquals(nomeCanal)) {
+								auxiliar2++;
+								 
+									System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
+									System.out.println("Link : " + Main.videos.get(i).getLink());
+									System.out.println("Data : " + Main.videos.get(i).getDate());
+									System.out.println("Canal : " + Main.videos.get(i).getCanalVideo());
+									System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
+									System.out.println("Preço : " + Main.videos.get(i).getPrecoVideo());
 													
-			System.out.println("Pressione Enter Novamente...");
-			System.in.read();
+									System.out.println("\n=============================================================\n"); 
+								
+							}	
+						}
+						if(auxiliar2==0) {
+							Main.LimparTela();
+							System.out.printf("Canal não localizado tente novamente!! \n\n");
+							return;
+						}
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
+						break;
+					
+					case 0: 
+						return;
+				}
+				
+			}while(auxiliar==0);
+					
 		}	
 		
 // ---------------------------------- MÉTODO REMOVER VÍDEO -------------------------------------------
