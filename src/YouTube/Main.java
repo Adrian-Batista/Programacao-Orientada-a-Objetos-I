@@ -72,19 +72,131 @@ public class Main {
 					switch (opcao1) {
 					
 					case 1:
-						Usuarios.AdicionaUsuario();
+						Main.LimparTela();
+						
+						 Usuarios usuario = new Usuarios(null, null, null);
+						
+						System.out.printf("Digite seu nome: ");
+						usuario.setNome(entrada.nextLine());
+						
+						System.out.printf("Digite seu e-mail: ");
+						usuario.setEmail(entrada.nextLine());
+						
+						System.out.printf("Digite uma senha: ");
+						usuario.setSenha(entrada.nextLine());
+						
+						usuarios.add(usuario);
+						
+						System.out.printf("\nDados Armazenados com sucesso!! \n");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						break;
 					
 					case 2:
-						Usuarios.ListarUsuarios();
+						Main.LimparTela();
+						
+						System.out.println("\n=============================================================\n"); 
+						for(int i = 0;i<Main.usuarios.size();i++){  
+							System.out.println("\nNome : " + Main.usuarios.get(i).getNome());
+							System.out.println("Email : " + Main.usuarios.get(i).getEmail());
+											
+							System.out.println("\n=============================================================\n"); 
+						}
+								
+																
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						break;
 						
 					case 3:
-						Usuarios.RemoverUsuario();
+						/*System.out.printf("Digite o nome do Usuario a ser removido:  \n");
+						String nomeRemove = entrada.nextLine();
+						int aux = 0;
+						
+						for (int indice = 0; indice < Main.usuarios.size(); indice++) {
+							if (Main.usuarios.get(indice).getNome().contentEquals(nomeRemove)) {
+								aux++;
+								Main.usuarios.remove(indice);
+								System.out.printf("Usuário removido com Sucesso!! \n");
+								System.out.println("Pressione Enter Novamente...");
+								System.in.read();
+							}	
+						}
+						if(aux==0) {
+							Main.LimparTela();
+							System.out.printf("Usuário não localizado tente novamente!! \n\n");
+							System.in.read();
+							return;
+						}*/
 						break;
 						
 					case 4:
-						Usuarios.AtualizarUsuario();
+						/*System.out.printf("Digite o nome do Usuario a ser Atualizado:  \n");
+						String nomeUpdate = entrada.nextLine();
+						String verificador;
+						int aux = 0;
+						int aux3 = 0;
+						
+						for (int indice = 0; indice < Main.usuarios.size(); indice++) {
+							if (Main.usuarios.get(indice).getNome().contentEquals(nomeUpdate)) {
+								aux++;
+								Main.LimparTela();
+								
+								
+								do {
+									aux3=0;
+									System.out.printf("Digite o seu nome: ");
+									verificador = (entrada.nextLine());
+									for (int indice2 = 0; indice2 < Main.usuarios.size(); indice2++) {
+										if (Main.usuarios.get(indice2).getNome().contentEquals(verificador)){
+											aux3++;
+											System.out.printf("\nO nome escolhido ja está em uso, selecione outro:\n\n ");
+											break;
+										}
+									}
+									if(aux3==0) {
+										Main.usuarios.get(indice).setNome(verificador);
+									}
+									
+								}while(aux3 != 0);
+								
+								System.out.printf("Digite seu endereco: ");
+								verificador = (entrada.nextLine());
+								Main.usuarios.get(indice).setEndereco(verificador);
+								
+								do {
+									aux3=0;
+									
+									System.out.printf("Digite o seu email: ");
+									verificador = (entrada.nextLine());
+									for (int indice2 = 0; indice2 < Main.usuarios.size(); indice2++) {
+										if (Main.usuarios.get(indice2).getEmail().contentEquals(verificador)){
+											aux3++;
+											System.out.printf("\nO E-mail escolhido ja está em uso, selecione outro:\n\n ");
+											break;
+										}
+									}
+									if(aux3==0) {
+										Main.usuarios.get(indice).setEmail(verificador);
+									}
+								}while(aux3 != 0);
+								
+								System.out.printf("Digite uma senha: ");
+								verificador = (entrada.nextLine());
+								Main.usuarios.get(indice).setSenha(verificador);
+								
+								System.out.printf("Dados Armazenados com sucesso!! \n");
+								System.out.println("Pressione Enter Novamente...");
+								System.in.read();
+								break;
+							}	
+						}
+						if(aux==0) {
+							System.out.printf("Usuario não Localizado tente novamente!! \n");
+							System.out.println("Pressione Enter ...");
+							System.in.read();
+							return;
+						}*/
 						break;
 						
 					case 0:					
@@ -119,19 +231,282 @@ public class Main {
 					switch (opcao2) {
 				
 					case 1:
-						Videos.AdicionaVideos();
+						Main.LimparTela();
+						
+						Videos video = new Videos(null, null, null, null, null);
+						int opc= 0;
+						int aux = 0;
+						int aux2 = 0;
+										
+						do {
+							do {
+								System.out.printf("Para adicionar um novo vídeo é necessário um Canal.\n Voce ja tem um Canal ou deseja criar um? ");
+								System.out.println("\n============================================");
+								System.out.println("|  1 - Buscar Canal                       | ");
+								System.out.println("|  0 - Voltar                             | ");
+								System.out.println("============================================\n");
+								opc = entrada.nextInt();
+								entrada.nextLine();
+								
+								if(opc==1 || opc == 0)
+									aux = 1;
+								
+							}while(aux !=1);
+						
+							switch (opc) { 
+								
+								case 1:
+									System.out.printf("Digite o nome do Canal a ser localizado:  \n");
+									String canalBusca = entrada.nextLine();
+								
+								
+									for (int indice = 0; indice < canais.size(); indice++) {
+										if (canais.get(indice).getNome().contentEquals(canalBusca)) {
+											aux2++;
+											video.setCanal(canalBusca);
+											Main.LimparTela();
+											System.out.printf("Canal Localizado com Sucesso!! \n");
+											System.out.println("Pressione Enter Novamente...\n\n");
+											break;
+										}
+									}
+										
+										if(aux2==0) {
+											Main.LimparTela();
+											System.out.printf("Canal não localizado tente novamente!! \n\n");
+											break;
+										}
+									break;
+								
+								case 0:
+									aux2++;
+									break;
+							}
+							
+						}while(aux2==0);
+						
+						if(opc == 0) {
+							break;
+						}
+						
+						Main.LimparTela();
+						
+						
+						do {
+							aux2=0;
+							System.out.printf("Digite o Tíulo do Vídeo: ");
+							video.setNome(entrada.nextLine());
+							
+							for (int indice = 0; indice < videos.size(); indice++) {
+								if (videos.get(indice).getNome().contentEquals(video.getNome())){
+									aux2++;
+									System.out.printf("\nO Título escolhido ja está em uso, selecione outro:\n\n ");
+									break;
+								}
+							}
+							
+						}while(aux2 != 0);
+						
+						do {
+							aux2=0;
+							System.out.printf("Digite o link de acesso: ");
+							video.setLink(entrada.nextLine());
+							for (int indice = 0; indice < videos.size(); indice++) {
+								if (videos.get(indice).getLink().contentEquals(video.getLink())){
+									aux2++;
+									System.out.printf("\nO Link escolhido ja está em uso, selecione outro:\n\n ");
+									break;
+								}
+							}
+							
+						}while(aux2 != 0);
+						
+						
+						System.out.printf("Digite a data de publicação: ");
+						video.setDate(entrada.nextLine());
+						
+						System.out.printf("Digite uma descrição ao vídeo: ");
+						video.setDescricao(entrada.nextLine());
+						
+						
+						videos.add(video);
+						
+						System.out.printf("\nDados Armazenados com sucesso!! \n");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						break;
 					
 					case 2:
-						Videos.ListarVideos();
+						int auxiliar = 0;
+						int auxiliar2 = 0;
+						opc = 0;
+						
+						do {
+							Main.LimparTela();
+							do {
+								System.out.printf("Para adicionar um novo vídeo é necessário um Canal.\n Voce ja tem um Canal ou deseja criar um? ");
+								System.out.println("\n============================================");
+								System.out.println("|  1 - Listar todos os vídeos             | ");
+								System.out.println("|  2 - Listar por Canal                   | ");
+								System.out.println("|  0 - Voltar                             | ");
+								System.out.println("============================================\n");
+								opc = entrada.nextInt();
+								entrada.nextLine();
+								
+								if(opc==1 || opc == 2 || opc == 0)
+									auxiliar2 = 1;
+								
+							}while(auxiliar2 !=1);
+						
+							switch (opc) { 
+								
+								case 1:
+									Main.LimparTela();
+									System.out.println("\n=============================================================\n"); 
+									for(int i = 0;i<Main.videos.size();i++){  
+										System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
+										System.out.println("Link : " + Main.videos.get(i).getLink());
+										System.out.println("Data : " + Main.videos.get(i).getDate());
+										System.out.println("Canal : " + Main.videos.get(i).getCanal());
+										System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
+														
+										System.out.println("\n=============================================================\n"); 
+									}
+											
+																			
+									System.out.println("Pressione Enter Novamente...");
+									System.in.read();
+									break;
+								
+								case 2:
+									Main.LimparTela();
+									
+									System.out.printf("Digite o nome do Canal:  \n");
+									String nomeCanal = entrada.nextLine();
+									auxiliar2 = 0;
+									
+									System.out.println("\n=============================================================\n"); 
+									for (int i = 0; i < Main.videos.size(); i++) {
+										if (Main.videos.get(i).getCanal().contentEquals(nomeCanal)) {
+											auxiliar2++;
+											 
+												System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
+												System.out.println("Link : " + Main.videos.get(i).getLink());
+												System.out.println("Data : " + Main.videos.get(i).getDate());
+												System.out.println("Canal : " + Main.videos.get(i).getCanal());
+												System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
+																
+												System.out.println("\n=============================================================\n"); 
+											
+										}	
+									}
+									if(auxiliar2==0) {
+										Main.LimparTela();
+										System.out.printf("Canal não localizado tente novamente!! \n\n");
+										
+									}
+									System.out.println("Pressione Enter Novamente...");
+									System.in.read();
+									break;
+								
+								case 0: 
+									auxiliar++;
+									break;
+							}
+							
+						}while(auxiliar==0);
 						break;
 						
 					case 3:
-						Videos.AtualizarVideo();
+						/*System.out.printf("Digite o nome do Video a ser Atualizado:  \n");
+						String nomeUpdate = entrada.nextLine();
+						String verificador;
+						int aux = 0;
+						int aux3 = 0;
+						
+						for (int indice = 0; indice < Main.videos.size(); indice++) {
+							if (Main.videos.get(indice).getNome().contentEquals(nomeUpdate)) {
+								aux++;
+								Main.LimparTela();
+								
+								
+								do {
+									aux3=0;
+									System.out.printf("Digite o Tíulo do Vídeo: ");
+									verificador = (entrada.nextLine());
+									for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
+										if (Main.videos.get(indice2).getNome().contentEquals(verificador)){
+											aux3++;
+											System.out.printf("\nO Título escolhido ja está em uso, selecione outro:\n\n ");
+											break;
+										}
+									}
+									if(aux3==0) {
+										Main.videos.get(indice).setNome(verificador);
+									}
+									
+								}while(aux3 != 0);
+								
+								do {
+									aux3=0;
+									System.out.printf("Digite o Link do Vídeo: ");
+									verificador = (entrada.nextLine());
+									for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
+										if (Main.videos.get(indice2).getLink().contentEquals(verificador)){
+											aux3++;
+											System.out.printf("\nO Link escolhido ja está em uso, selecione outro:\n\n ");
+											break;
+										}
+									}
+									if(aux3==0) {
+										Main.videos.get(indice).setLink(verificador);
+									}
+									
+								}while(aux3 != 0);
+								
+								System.out.printf("Digite a data de publicação: ");
+								Main.videos.get(indice).setDate(entrada.nextLine());
+								
+								System.out.printf("Digite o gênero do seu vídeo: ");
+								Main.videos.get(indice).setDescricao(entrada.nextLine());
+								
+								System.out.printf("Digite o valor que será cobrado pelo seu vídeo, caso for gratuito digite 0: ");
+								Main.videos.get(indice).setPrecoVideo(entrada.nextDouble());
+								
+								System.out.printf("Dados Armazenados com sucesso!! \n");
+								System.out.println("Pressione Enter Novamente...");
+								System.in.read();
+								break;
+							}	
+						}
+						if(aux==0) {
+							System.out.printf("Video não Localizado tente novamente!! \n");
+							System.out.println("Pressione Enter ...");
+							System.in.read();
+							return;
+						}*/
 						break;
 						
 					case 4:
-						Videos.RemoverVideo();
+					/*	System.out.printf("Digite o nome do Video a ser removido:  \n");
+						String nomeRemove = entrada.nextLine();
+						int aux = 0;
+						
+						for (int indice = 0; indice < Main.videos.size(); indice++) {
+							if (Main.videos.get(indice).getNome().contentEquals(nomeRemove)) {
+								aux++;
+								Main.videos.remove(indice);
+								System.out.printf("Video removido com Sucesso!! \n");
+								System.out.println("Pressione Enter Novamente...");
+								System.in.read();
+							}	
+						}
+						if(aux==0) {
+							Main.LimparTela();
+							System.out.printf("Vídeo não localizado tente novamente!! \n\n");
+							System.in.read();
+							return;
+						}*/
 						break;
 					
 					case 0:					
@@ -169,23 +544,188 @@ public class Main {
 					switch (opcao3) {
 					
 					case 1:
-						Canais.AdicionaCanais();
+						Main.LimparTela();
+
+						Canais canal = new Canais(null, null, null, null);
+
+						System.out.printf("Digite o nome do Canal: ");
+						canal.setNome(entrada.nextLine());
+
+						System.out.printf("Digite seu Nome: ");
+						canal.setAutor(entrada.nextLine());
+
+						System.out.printf("Digite uma descrição para este Canal: ");
+						canal.setDescricao(entrada.nextLine());
+
+						PublicoAlvo publico = new PublicoAlvo(null, null, null, null, null, null);
+						int escolha = 0;
+						Main.LimparTela();
+						
+						publico.setOpc1("Crianças");
+						publico.setOpc2("Jovens");
+						publico.setOpc3("Adultos");
+						publico.setOpc4("Idosos");
+						publico.setOpc5("Todos");
+						
+						System.out.println("\n Usuario selecione o publico alvo dos seu Canal: " );
+						System.out.println("\n============================================");
+						System.out.println("|  1 - Crianças (abaixo de 12 anos)        | ");
+						System.out.println("|  2 - Jovens   (13 a 24 anos)             | ");
+						System.out.println("|  3 - Adultos  (25 a 50 anos)             | ");
+						System.out.println("|  4 - Idosos   (acima de 51 anos)         | ");
+						System.out.println("|  5 - Todos                               | ");
+						System.out.println("============================================\n");
+					
+						do {
+							System.out.println(" Escolha uma das opções: ");
+							escolha = entrada.nextInt();
+							entrada.nextLine();
+					
+						}while(escolha<1 || escolha>5);
+					
+						if(escolha==1)
+							publico.setOpcao(publico.getOpc1());
+						if(escolha==2)
+							publico.setOpcao(publico.getOpc2());
+						if(escolha==3)
+							publico.setOpcao(publico.getOpc3());
+						if(escolha==4)
+							publico.setOpcao(publico.getOpc4());
+						if(escolha==5) {
+							publico.setOpcao(publico.getOpc5());
+						}
+						
+						canal.setPublico(publico.getOpcao());
+
+						canais.add(canal);
+
+						System.out.printf("\nDados Armazenados com sucesso!! \n");
+						System.out.println("Pressione Enter Novamente...");
 						break;
 						
 					case 2:
-						Canais.ListarCanais();
+						Main.LimparTela();
+
+						System.out.println("\n=============================================================\n"); 
+						for(int i = 0;i<Main.canais.size();i++){  
+							System.out.println("\nNome Canal : " + canais.get(i).getNome());
+							System.out.println("Autor : " + canais.get(i).getAutor());
+							System.out.println("Descrição : " + canais.get(i).getDescricao());
+							System.out.println("Público Alvo : " + canais.get(i).getPublico());
+
+							System.out.println("\n=============================================================\n"); 
+						}
+
+
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						break;
 						
 					case 3:
-						Canais.AtualizarCanal();
+						/*System.out.printf("Digite o nome do Canal a ser Atualizado:  \n");
+						String nomeUpdate = entrada.nextLine();
+						int aux = 0;
+
+
+						for (int indice = 0; indice < Main.canais.size(); indice++) {
+
+							if (Main.canais.get(indice).getNome().contentEquals(nomeUpdate)) {
+								aux++;
+								Main.LimparTela();
+
+								System.out.printf("Digite o Nome do Canal: ");
+								Main.canais.get(indice).setNome(entrada.nextLine());
+
+								System.out.printf("Digite o nome do autor: ");
+								Main.canais.get(indice).setAutor(entrada.nextLine());
+
+								System.out.printf("Digite uma descrição para este Canal: ");
+								Main.canais.get(indice).setDescricao(entrada.nextLine());
+
+								Main.canais.get(indice).setPublicoAlvo(PublicoAlvo.opcao);
+								PublicoAlvo.EscolherPublicoAlvo();
+
+
+								for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
+									aux++;
+									if (Main.videos.get(indice2).getNome().contentEquals(nomeUpdate)) {
+										Main.videos.get(indice2).setNome(Main.canais.get(indice).getNome());
+									}
+								}
+
+								System.out.printf("Dados Armazenados com sucesso!! \n");
+								System.out.println("Pressione Enter Novamente...");
+								System.in.read();
+								break;
+							}
+
+						}
+						if(aux==Main.canais.size()) {
+							System.out.printf("Canal não Localizado tente novamente!! \n");
+							System.out.println("Pressione Enter ...");
+							System.in.read();
+							return;
+						}*/
 						break;
 						
 					case 4:
-						Canais.RemoverCanal();
+						/*Main.LimparTela();
+						int auxiliar = 0;
+						int aux = 0;
+						System.out.printf("Digite o nome do Canal a ser removido:  \n");
+						String nomeRemove = entrada.nextLine();
+
+						for (int indice = 0; indice < Main.canais.size(); indice++) {
+							if (Main.canais.get(indice).getNome().contentEquals(nomeRemove)) {
+
+								for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
+									if (Main.videos.get(indice2).getNome().contentEquals(nomeRemove))
+										auxiliar++;
+								}
+
+								do {
+									System.out.printf("O Canal " + nomeRemove +" possui " + auxiliar + " videos, deseja remove-los do Youtube?");
+									System.out.println("\n============================================");
+									System.out.println("|  1 - Remover tudo                       | ");
+									System.out.println("|  2 - Voltar                             | ");
+									System.out.println("============================================\n");
+									aux = entrada.nextInt();
+
+									if(aux==1) {
+										for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
+											if (Main.videos.get(indice2).getNome().contentEquals(nomeRemove)) {
+												Main.videos.remove(indice2);
+												indice2--;
+											}
+										}
+
+										Main.canais.remove(indice);
+
+										Main.LimparTela();
+										System.out.printf("Canal removido com Sucesso!! \n");
+										System.out.println("Pressione Enter Novamente...");
+										System.in.read();
+										break;
+									}
+									if(aux==2) {
+										return;
+									}
+
+								}while(aux !=1 || aux!=2);
+
+							}
+
+						}
+						if(auxiliar==0) {
+							Main.LimparTela();
+							System.out.printf("Canal não localizado tente novamente!! \n");
+							System.in.read();
+							return;
+						}*/
 						break;
 						
 					case 5:
-						PublicoAlvo.AtualizarPublicoAlvo();
+						/*PublicoAlvo.AtualizarPublicoAlvo();*/
 						break;
 						
 					case 0:					

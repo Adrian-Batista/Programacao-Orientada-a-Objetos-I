@@ -1,330 +1,34 @@
 package YouTube.entidades;
 
-import java.io.IOException;
-import java.util.Scanner;
-
-import YouTube.Main;
-
-
-public class Videos extends Canais{
+public class Videos{
 	
+	private String nome;
 	private String link;
 	private String date;
-	private String canalVideo;
-	private double precoVideo;
+	private String canal;
+	private String descricao;
 	
-
-	public Videos(String nome, String link) {
-		this.setNome(nome);
-		this.setLink(link);
-	}
 	
-	public Videos() {
+	public Videos(String nome, String link, String date, String canal, String descricao) {
 		super();
-		this.setLink(link);
-		this.setDate(date);
-		this.setCanalVideo(canalVideo);
-		this.setPrecoVideo(0);
+		this.nome = nome;
+		this.link = link;
+		this.date = date;
+		this.canal = canal;
+		this.descricao = descricao;
+	}
+		
+//---------------------------------------- GETTERS E SETTERS ---------------------------------------------
+
+	public String getNome() {
+		return nome;
 	}
 
-	static Scanner entrada = new Scanner(System.in);
-	
-//------------------------------------------ Adicionar Vídeos ---------------------------------------------
-	
-		public static void AdicionaVideos () throws IOException {
-			Main.LimparTela();
-			
-			Videos video = new Videos();
-			int opc= 0;
-			int aux = 0;
-			int aux2 = 0;
-							
-			do {
-				do {
-					System.out.printf("Para adicionar um novo vídeo é necessário um Canal.\n Voce ja tem um Canal ou deseja criar um? ");
-					System.out.println("\n============================================");
-					System.out.println("|  1 - Buscar Canal                       | ");
-					System.out.println("|  2 - Criar Canal                        | ");
-					System.out.println("|  0 - Voltar                             | ");
-					System.out.println("============================================\n");
-					opc = entrada.nextInt();
-					entrada.nextLine();
-					
-					if(opc==1 || opc == 2 || opc == 0)
-						aux = 1;
-					
-				}while(aux !=1);
-			
-				switch (opc) { 
-					
-					case 1:
-						System.out.printf("Digite o nome do Canal a ser localizado:  \n");
-						String canalBusca = entrada.nextLine();
-					
-					
-						for (int indice = 0; indice < Main.canais.size(); indice++) {
-							if (Main.canais.get(indice).getNome().contentEquals(canalBusca)) {
-								aux2++;
-								video.setCanalVideo(canalBusca);
-								Main.LimparTela();
-								System.out.printf("Canal Localizado com Sucesso!! \n");
-								System.out.println("Pressione Enter Novamente...\n\n");
-								break;
-							}
-						}
-							
-							if(aux2==0) {
-								Main.LimparTela();
-								System.out.printf("Canal não localizado tente novamente!! \n\n");
-								break;
-							}
-						break;
-					
-					case 2: 
-						aux2++;
-						Canais.AdicionaCanais();
-						video.setCanalVideo(Canais.auxiliar);
-						break;
-					
-					case 0: 
-						return;
-				}
-				
-			}while(aux2==0);
-			
-			
-			Main.LimparTela();
-			
-			
-			do {
-				aux2=0;
-				System.out.printf("Digite o Tíulo do Vídeo: ");
-				video.setNome(entrada.nextLine());
-				
-				for (int indice = 0; indice < Main.videos.size(); indice++) {
-					if (Main.videos.get(indice).getNome().contentEquals(video.getNome())){
-						aux2++;
-						System.out.printf("\nO Título escolhido ja está em uso, selecione outro:\n\n ");
-						break;
-					}
-				}
-				
-			}while(aux2 != 0);
-			
-			do {
-				aux2=0;
-				System.out.printf("Digite o link de acesso: ");
-				video.setLink(entrada.nextLine());
-				for (int indice = 0; indice < Main.videos.size(); indice++) {
-					if (Main.videos.get(indice).getLink().contentEquals(video.getLink())){
-						aux2++;
-						System.out.printf("\nO Link escolhido ja está em uso, selecione outro:\n\n ");
-						break;
-					}
-				}
-				
-			}while(aux2 != 0);
-			
-			
-			System.out.printf("Digite a data de publicação: ");
-			video.setDate(entrada.nextLine());
-			
-			System.out.printf("Digite uma descrição ao vídeo: ");
-			video.setDescricao(entrada.nextLine());
-			
-			System.out.printf("Digite o valor que será cobrado pelo seu vídeo, caso for gratuito digite 0: ");
-			video.setPrecoVideo(entrada.nextDouble());
-			
-			Main.videos.add(video);
-			
-			System.out.printf("\nDados Armazenados com sucesso!! \n");
-			System.out.println("Pressione Enter Novamente...");
-			System.in.read();
-		}
-		
-		
-//------------------------------------------ Listar Vídeos ----------------------------------------------
-		
-		public static void ListarVideos () throws IOException {
-			int auxiliar = 0;
-			int auxiliar2 = 0;
-			int opc = 0;
-			
-			do {
-				Main.LimparTela();
-				do {
-					System.out.printf("Para adicionar um novo vídeo é necessário um Canal.\n Voce ja tem um Canal ou deseja criar um? ");
-					System.out.println("\n============================================");
-					System.out.println("|  1 - Listar todos os vídeos             | ");
-					System.out.println("|  2 - Listar por Canal                   | ");
-					System.out.println("|  0 - Voltar                             | ");
-					System.out.println("============================================\n");
-					opc = entrada.nextInt();
-					entrada.nextLine();
-					
-					if(opc==1 || opc == 2 || opc == 0)
-						auxiliar2 = 1;
-					
-				}while(auxiliar2 !=1);
-			
-				switch (opc) { 
-					
-					case 1:
-						Main.LimparTela();
-						System.out.println("\n=============================================================\n"); 
-						for(int i = 0;i<Main.videos.size();i++){  
-							System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
-							System.out.println("Link : " + Main.videos.get(i).getLink());
-							System.out.println("Data : " + Main.videos.get(i).getDate());
-							System.out.println("Canal : " + Main.videos.get(i).getCanalVideo());
-							System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
-							System.out.println("Preço : " + Main.videos.get(i).getPrecoVideo());
-											
-							System.out.println("\n=============================================================\n"); 
-						}
-								
-																
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						break;
-					
-					case 2:
-						Main.LimparTela();
-						
-						System.out.printf("Digite o nome do Canal:  \n");
-						String nomeCanal = entrada.nextLine();
-						auxiliar2 = 0;
-						
-						System.out.println("\n=============================================================\n"); 
-						for (int i = 0; i < Main.videos.size(); i++) {
-							if (Main.videos.get(i).getCanalVideo().contentEquals(nomeCanal)) {
-								auxiliar2++;
-								 
-									System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
-									System.out.println("Link : " + Main.videos.get(i).getLink());
-									System.out.println("Data : " + Main.videos.get(i).getDate());
-									System.out.println("Canal : " + Main.videos.get(i).getCanalVideo());
-									System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
-									System.out.println("Preço : " + Main.videos.get(i).getPrecoVideo());
-													
-									System.out.println("\n=============================================================\n"); 
-								
-							}	
-						}
-						if(auxiliar2==0) {
-							Main.LimparTela();
-							System.out.printf("Canal não localizado tente novamente!! \n\n");
-							return;
-						}
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						break;
-					
-					case 0: 
-						return;
-				}
-				
-			}while(auxiliar==0);
-					
-		}	
-		
-// ---------------------------------- MÉTODO REMOVER VÍDEO -------------------------------------------
-		
-		public static void RemoverVideo() throws IOException {
-			System.out.printf("Digite o nome do Video a ser removido:  \n");
-			String nomeRemove = entrada.nextLine();
-			int aux = 0;
-			
-			for (int indice = 0; indice < Main.videos.size(); indice++) {
-				if (Main.videos.get(indice).getNome().contentEquals(nomeRemove)) {
-					aux++;
-					Main.videos.remove(indice);
-					System.out.printf("Video removido com Sucesso!! \n");
-					System.out.println("Pressione Enter Novamente...");
-					System.in.read();
-				}	
-			}
-			if(aux==0) {
-				Main.LimparTela();
-				System.out.printf("Vídeo não localizado tente novamente!! \n\n");
-				System.in.read();
-				return;
-			}
-		}	
-		
-// -------------------------------- MÉTODO ATUALIZAR VÍDEO -------------------------------------------		
-		
-		public static void AtualizarVideo() throws IOException {
-			System.out.printf("Digite o nome do Video a ser Atualizado:  \n");
-			String nomeUpdate = entrada.nextLine();
-			String verificador;
-			int aux = 0;
-			int aux3 = 0;
-			
-			for (int indice = 0; indice < Main.videos.size(); indice++) {
-				if (Main.videos.get(indice).getNome().contentEquals(nomeUpdate)) {
-					aux++;
-					Main.LimparTela();
-					
-					
-					do {
-						aux3=0;
-						System.out.printf("Digite o Tíulo do Vídeo: ");
-						verificador = (entrada.nextLine());
-						for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
-							if (Main.videos.get(indice2).getNome().contentEquals(verificador)){
-								aux3++;
-								System.out.printf("\nO Título escolhido ja está em uso, selecione outro:\n\n ");
-								break;
-							}
-						}
-						if(aux3==0) {
-							Main.videos.get(indice).setNome(verificador);
-						}
-						
-					}while(aux3 != 0);
-					
-					do {
-						aux3=0;
-						System.out.printf("Digite o Link do Vídeo: ");
-						verificador = (entrada.nextLine());
-						for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
-							if (Main.videos.get(indice2).getLink().contentEquals(verificador)){
-								aux3++;
-								System.out.printf("\nO Link escolhido ja está em uso, selecione outro:\n\n ");
-								break;
-							}
-						}
-						if(aux3==0) {
-							Main.videos.get(indice).setLink(verificador);
-						}
-						
-					}while(aux3 != 0);
-					
-					System.out.printf("Digite a data de publicação: ");
-					Main.videos.get(indice).setDate(entrada.nextLine());
-					
-					System.out.printf("Digite o gênero do seu vídeo: ");
-					Main.videos.get(indice).setDescricao(entrada.nextLine());
-					
-					System.out.printf("Digite o valor que será cobrado pelo seu vídeo, caso for gratuito digite 0: ");
-					Main.videos.get(indice).setPrecoVideo(entrada.nextDouble());
-					
-					System.out.printf("Dados Armazenados com sucesso!! \n");
-					System.out.println("Pressione Enter Novamente...");
-					System.in.read();
-					break;
-				}	
-			}
-			if(aux==0) {
-				System.out.printf("Video não Localizado tente novamente!! \n");
-				System.out.println("Pressione Enter ...");
-				System.in.read();
-				return;
-			}
-		}		
-		
-//--------------------------------------------------------------------------------------------------------------
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 
 	public String getLink() {
 		return link;
@@ -346,19 +50,23 @@ public class Videos extends Canais{
 	}
 
 
-	public double getPrecoVideo() {
-		return precoVideo;
+	public String getCanal() {
+		return canal;
 	}
 
-	public void setPrecoVideo(double precoVideo) {
-		this.precoVideo = precoVideo;
+
+	public void setCanal(String canal) {
+		this.canal = canal;
 	}
 
-	public String getCanalVideo() {
-		return canalVideo;
+
+	public String getDescricao() {
+		return descricao;
 	}
 
-	public void setCanalVideo(String canalVideo) {
-		this.canalVideo = canalVideo;
+
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
 	}
+	
 }
