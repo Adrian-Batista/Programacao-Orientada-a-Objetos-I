@@ -12,6 +12,11 @@ public class Usuarios{
 		this.email = email;
 		this.senha = senha;
 	}
+	
+	public Usuarios() {
+		super();
+	
+	}
 		
 // -------------------------------- GETTERS E SETTERS ----------------------------
 

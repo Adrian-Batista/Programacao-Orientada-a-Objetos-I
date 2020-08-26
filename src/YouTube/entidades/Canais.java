@@ -8,12 +8,12 @@ public class Canais {
 	private String publico;
 
 public Canais(String nome, String autor, String descricao, String publico) {
-		super();
-		this.nome = nome;
-		this.autor = autor;
-		this.descricao = descricao;
-		this.publico = publico;
-	}
+	super();
+	this.nome = nome;
+	this.autor = autor;
+	this.descricao = descricao;
+	this.publico = publico;
+}
 
 // --------------------- GETTERS E SETTERS ----------------------------
 	

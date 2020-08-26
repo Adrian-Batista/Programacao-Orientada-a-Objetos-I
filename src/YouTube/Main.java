@@ -14,6 +14,7 @@ public class Main {
 	public static List<Inscricoes> inscricoes = new ArrayList<Inscricoes>();
 	public static List<VideosFavoritos>videosfavoritos = new ArrayList<VideosFavoritos>();
 	
+	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
 		int opcao1 =0;
@@ -547,6 +548,7 @@ public class Main {
 						Main.LimparTela();
 
 						Canais canal = new Canais(null, null, null, null);
+						
 
 						System.out.printf("Digite o nome do Canal: ");
 						canal.setNome(entrada.nextLine());
@@ -806,19 +808,104 @@ public class Main {
 					switch (opcao5) {
 					
 					case 1:
-						VideosFavoritos.AdicionaVideoFavorito();
+						int aux=0;
+						String addFavorito;
+
+						Videos favorito = new VideosFavoritos(null, null, null, null, null);
+
+						System.out.println("Digite o LINK do vídeo a ser adicionado aos favoritos:");
+						addFavorito = entrada.nextLine();
+
+						for(int i = 0; i<videos.size(); i++) {
+							if(videos.get(i).getLink().contentEquals(addFavorito)) {
+								favorito = videos.get(i);
+								videosfavoritos.add((VideosFavoritos) favorito);
+								aux++;
+								System.out.println("Vídeo localizado com Sucesso!");
+								System.in.read();
+								break;
+							}
+							if(aux == 0) {
+								System.out.println("Video não localizado tente novamente!");
+								System.in.read();
+							}
+
+						}
 						break;
 						
 					case 2:
-						VideosFavoritos.ListaVideoFavorito();
+						Main.LimparTela();
+						System.out.println("\n=============================================================\n"); 
+						for(int i = 0;i<Main.videosfavoritos.size();i++){  
+							System.out.println("\nTítulo : " + videosfavoritos.get(i).getNome());
+							System.out.println("Link : " + videosfavoritos.get(i).getLink());
+							System.out.println("Data : " + videosfavoritos.get(i).getDate());
+							System.out.println("Canal : " + videosfavoritos.get(i).getCanal());
+							System.out.println("Descrição : " + videosfavoritos.get(i).getDescricao());
+											
+							System.out.println("\n=============================================================\n"); 
+						}											
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						break;
 						
 					case 3:
-						VideosFavoritos.RemoveVideoFavorito();
+						/*aux=0;
+						String remFavorito;
+
+						System.out.println("Digite o LINK do vídeo a ser removido dos favoritos:");
+						remFavorito = entrada.nextLine();
+
+						for(int i = 0; i<videos.size(); i++) {
+							if(videos.get(i).getLink().contentEquals(remFavorito)) {
+								videosfavoritos.remove(i);
+								aux++;
+								System.out.println("Vídeo localizado com Sucesso!");
+								System.in.read();
+								break;
+							}
+							if(aux == 0) {
+								System.out.println("Video não localizado tente novamente!");
+								System.in.read();
+							}
+
+						}*/
 						break;
 						
 					case 4:
-						VideosFavoritos.AtualizaVideoFavorito();
+						/*aux=0;
+						String upFavorito;
+
+					
+
+						System.out.println("Digite o LINK do vídeo favorito a ser sobreescrito por outro:");
+						upFavorito = entrada.nextLine();
+
+						for(int i = 0; i<videosfavoritos.size(); i++) {
+							if(videosfavoritos.get(i).getLink().contentEquals(upFavorito)) {
+
+								System.out.println("Digite o LINK do vídeo favorito a ser adicionado:");
+								upFavorito = entrada.nextLine();
+
+								for(int indice = 0; indice<videos.size(); indice++) {
+									if(videos.get(indice).getLink().contentEquals(upFavorito)) {
+										favorito = Main.videos.get(indice);
+										videosfavoritos.add(i, (VideosFavoritos) favorito);
+										aux++;
+										System.out.println("Vídeo localizado com Sucesso!");
+										System.in.read();
+										break;
+									}		
+								}
+							}
+
+							break;
+						}
+						if(aux == 0) {
+							System.out.println("Video não localizado tente novamente!");
+							System.in.read();
+						}
+					*/
 						break;
 						
 					case 0:					
