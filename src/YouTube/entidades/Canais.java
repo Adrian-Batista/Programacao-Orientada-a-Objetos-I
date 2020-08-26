@@ -6,13 +6,16 @@ public class Canais {
 	private String autor;
 	private String descricao;
 	private String publico;
+	private int inscritos;
 
-public Canais(String nome, String autor, String descricao, String publico) {
+
+public Canais(String nome, String autor, String descricao, String publico, int inscritos) {
 	super();
 	this.nome = nome;
 	this.autor = autor;
 	this.descricao = descricao;
 	this.publico = publico;
+	this.inscritos = inscritos;
 }
 
 // --------------------- GETTERS E SETTERS ----------------------------
@@ -40,6 +43,14 @@ public Canais(String nome, String autor, String descricao, String publico) {
 	}
 	public void setPublico(String publico) {
 		this.publico = publico;
+	}
+
+	public int getInscritos() {
+		return inscritos;
+	}
+
+	public void setInscritos(int inscritos) {
+		this.inscritos = inscritos;
 	}
 	
 

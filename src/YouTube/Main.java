@@ -563,7 +563,7 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 
-						Canais canal = new Canais(null, null, null, null);
+						Canais canal = new Canais(null, null, null, null, 0);
 						
 
 						System.out.printf("Digite o nome do Canal: ");
@@ -780,8 +780,8 @@ public class Main {
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
 					System.out.println("\n=================================\n|\t\t\t\t|");
 					System.out.println("| ( 1 ) - ADICIONAR INSCRICOES  |\n|\t\t\t\t|");
-					System.out.println("| ( 2 ) - LISTAR INSCRICOES     |\n|\t\t\t\t|");
-					System.out.println("| ( 3 ) - REMOVER INSCRICOES    |\n|\t\t\t\t|");
+					System.out.println("| ( 2 ) - REMOVER INSCRICOES    |\n|\t\t\t\t|");
+					System.out.println("| ( 3 ) - LISTAR INSCRICOES     |\n|\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                |\n|\t\t\t\t|");
 					System.out.println("=================================\n");
 					
@@ -793,9 +793,62 @@ public class Main {
 					
 					case 1:
 						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
+						Inscricoes inscricao = new Inscricoes();
+						int opc = 0;
+						int aux = 0;
+						int aux2 = 0;
+						int auxiliar = 0;
+										
+						
+						do {
+								System.out.printf("Para se inscrever em um canal: ");
+								System.out.println("\n============================================");
+								System.out.println("|  1 - Buscar Canal                       | ");
+								System.out.println("|  0 - Voltar                             | ");
+								System.out.println("============================================\n");
+								opc = entrada.nextInt();
+								entrada.nextLine();
+								
+								aux = opc;
+								
+						}while(aux!=1 && aux !=0 );
+						
+							switch (opc) { 
+							
+								case 0:
+									break;
+								
+								case 1:
+									System.out.printf("Digite o nome do Canal a ser localizado:  \n");
+									String canalBusca = entrada.nextLine();
+								
+								
+									for (int indice = 0; indice < canais.size(); indice++) {
+										if (canais.get(indice).getNome().contentEquals(canalBusca)) {
+											aux2++;
+											inscricao.setNomeCanalInscr(canalBusca);
+											inscricoes.add(inscricao);
+											auxiliar = canais.get(indice).getInscritos();
+											auxiliar++;
+											canais.get(indice).setInscritos(auxiliar);
+										
+											Main.LimparTela();
+											System.out.printf("Canal Localizado com Sucesso!! \n");
+											System.out.printf("Agora você é um inscrito!! \n");
+											System.out.println("Pressione Enter Novamente...\n\n");
+											System.in.read();
+											break;
+										}
+									}
+										
+									if(aux2==0) {
+										Main.LimparTela();
+										System.out.printf("Canal não localizado tente novamente!! \n\n");
+										System.in.read();
+										break;
+									}
+										
+							}
 						break;
 						
 					case 2:
@@ -803,13 +856,81 @@ public class Main {
 						System.out.println("Em Desenvolvimento!!");
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
+						/*Main.LimparTela();
+						Inscricoes inscricao = new Inscricoes();
+						int opc = 0;
+						int aux = 0;
+						int aux2 = 0;
+						int auxiliar = 0;
+										
+						
+						do {
+								System.out.printf("Para remover a inscrição em um canal: ");
+								System.out.println("\n============================================");
+								System.out.println("|  1 - Buscar Canal                       | ");
+								System.out.println("|  0 - Voltar                             | ");
+								System.out.println("============================================\n");
+								opc = entrada.nextInt();
+								entrada.nextLine();
+								
+								aux = opc;
+								
+						}while(aux!=1 && aux !=0 );
+						
+							switch (opc) { 
+							
+								case 0:
+									break;
+								
+								case 1:
+									System.out.printf("Digite o nome do Canal a ser localizado:  \n");
+									String canalBusca = entrada.nextLine();
+								
+								
+									for (int indice = 0; indice < Main.canais.size(); indice++) {
+										if (Main.canais.get(indice).getNome().contentEquals(canalBusca)) {
+											aux2++;
+											inscricao.setNomeCanalInscr(canalBusca);
+											Main.inscricoes.add(inscricao);
+											auxiliar = Main.canais.get(indice).getInscritos();
+											if(auxiliar>0) {
+												auxiliar--;	
+											}
+											Main.canais.get(indice).setInscritos(auxiliar);
+										
+											Main.LimparTela();
+											System.out.printf("Canal Localizado com Sucesso!! \n");
+											System.out.printf("Agora você não é mais inscrito deste Canal!! \n");
+											System.out.println("Pressione Enter Novamente...\n\n");
+											System.in.read();
+											break;
+										}
+									}
+										
+									if(aux2==0) {
+										Main.LimparTela();
+										System.out.printf("Canal não localizado tente novamente!! \n\n");
+										System.in.read();
+										break;
+									}
+										
+							}*/
 						break;
 						
 					case 3:
 						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
+						
+						System.out.println("\n=============================================================\n"); 
+						for(int i = 0;i<Main.inscricoes.size();i++){  
+							System.out.println("\nCanal : " + inscricoes.get(i).getNomeCanalInscr());
+							
+							System.out.println("\n=============================================================\n");
+						}
+						 
+														
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
+						
 						break;
 						
 					case 0:					
