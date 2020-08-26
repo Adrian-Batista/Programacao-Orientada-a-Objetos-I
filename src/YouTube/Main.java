@@ -969,7 +969,7 @@ public class Main {
 						int aux=0;
 						String addFavorito;
 
-						Videos favorito = new VideosFavoritos(null, null, null, null, null);
+						Videos favorito = new Videos(null, null, null, null, null);
 
 						System.out.println("Digite o LINK do vídeo a ser adicionado aos favoritos:");
 						addFavorito = entrada.nextLine();
