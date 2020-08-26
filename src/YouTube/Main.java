@@ -14,7 +14,6 @@ public class Main {
 	public static List<Inscricoes> inscricoes = new ArrayList<Inscricoes>();
 	public static List<VideosFavoritos>videosfavoritos = new ArrayList<VideosFavoritos>();
 	
-	@SuppressWarnings("unused")
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
 		int opcao1 =0;
@@ -110,7 +109,12 @@ public class Main {
 						break;
 						
 					case 3:
-						/*System.out.printf("Digite o nome do Usuario a ser removido:  \n");
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
+						
+					  /*System.out.printf("Digite o nome do Usuario a ser removido:  \n");
 						String nomeRemove = entrada.nextLine();
 						int aux = 0;
 						
@@ -132,6 +136,10 @@ public class Main {
 						break;
 						
 					case 4:
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						/*System.out.printf("Digite o nome do Usuario a ser Atualizado:  \n");
 						String nomeUpdate = entrada.nextLine();
 						String verificador;
@@ -419,6 +427,10 @@ public class Main {
 						break;
 						
 					case 3:
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						/*System.out.printf("Digite o nome do Video a ser Atualizado:  \n");
 						String nomeUpdate = entrada.nextLine();
 						String verificador;
@@ -489,6 +501,10 @@ public class Main {
 						break;
 						
 					case 4:
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 					/*	System.out.printf("Digite o nome do Video a ser removido:  \n");
 						String nomeRemove = entrada.nextLine();
 						int aux = 0;
@@ -624,6 +640,10 @@ public class Main {
 						break;
 						
 					case 3:
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						/*System.out.printf("Digite o nome do Canal a ser Atualizado:  \n");
 						String nomeUpdate = entrada.nextLine();
 						int aux = 0;
@@ -671,6 +691,10 @@ public class Main {
 						break;
 						
 					case 4:
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						/*Main.LimparTela();
 						int auxiliar = 0;
 						int aux = 0;
@@ -727,6 +751,10 @@ public class Main {
 						break;
 						
 					case 5:
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						/*PublicoAlvo.AtualizarPublicoAlvo();*/
 						break;
 						
@@ -764,15 +792,24 @@ public class Main {
 					switch (opcao4) {
 					
 					case 1:
-						Inscricoes.AdicionaInscricao();
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						break;
 						
 					case 2:
-						Inscricoes.ListaInscricao();
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						break;
 						
 					case 3:
-						Inscricoes.RemoveInscricao();
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						break;
 						
 					case 0:					
@@ -850,6 +887,10 @@ public class Main {
 						break;
 						
 					case 3:
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						/*aux=0;
 						String remFavorito;
 
@@ -873,6 +914,10 @@ public class Main {
 						break;
 						
 					case 4:
+						Main.LimparTela();
+						System.out.println("Em Desenvolvimento!!");
+						System.out.println("Pressione Enter Novamente...");
+						System.in.read();
 						/*aux=0;
 						String upFavorito;
 
