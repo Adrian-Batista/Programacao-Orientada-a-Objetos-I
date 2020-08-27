@@ -42,6 +42,39 @@ public class Videos{
 		}
 		return false;
 	}
+	
+	public static void ListarVideos(String auxiliar) {
+		int cont=0;
+		if(auxiliar==null) {
+			System.out.println("\n=============================================================\n"); 
+			for(int i = 0;i<Main.videos.size();i++){  
+				System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
+				System.out.println("Link : " + Main.videos.get(i).getLink());
+				System.out.println("Data : " + Main.videos.get(i).getDate());
+				System.out.println("Canal : " + Main.videos.get(i).getCanal().getNomecanal());
+				System.out.println("Descrição : " + Main.videos.get(i).getDescricao());				
+				System.out.println("\n=============================================================\n"); 
+			}
+		}else{
+			System.out.println("\n=============================================================\n"); 
+			for (int i = 0; i < Main.videos.size(); i++) {
+				if (Main.videos.get(i).getCanal().getNomecanal().contentEquals(auxiliar)) {
+					cont++;
+					System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
+					System.out.println("Link : " + Main.videos.get(i).getLink());
+					System.out.println("Data : " + Main.videos.get(i).getDate());
+					System.out.println("Canal : " + Main.videos.get(i).getCanal().getNomecanal());
+					System.out.println("Descrição : " + Main.videos.get(i).getDescricao());					
+					System.out.println("\n=============================================================\n"); 
+				}	
+			}
+			if(cont==0) {
+				Main.LimparTela();
+				System.out.printf("Canal não localizado tente novamente!! \n\n");
+				
+			}	
+		}	
+	}
 		
 //---------------------------------------- GETTERS E SETTERS ---------------------------------------------
 

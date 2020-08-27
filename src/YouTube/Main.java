@@ -310,49 +310,16 @@ public class Main {
 								
 								case 1:
 									Main.LimparTela();
-									System.out.println("\n=============================================================\n"); 
-									for(int i = 0;i<Main.videos.size();i++){  
-										System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
-										System.out.println("Link : " + Main.videos.get(i).getLink());
-										System.out.println("Data : " + Main.videos.get(i).getDate());
-										System.out.println("Canal : " + Main.videos.get(i).getCanal().getNomecanal());
-										System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
-														
-										System.out.println("\n=============================================================\n"); 
-									}
-											
-																			
+									Videos.ListarVideos(null);										
 									System.out.println("Pressione Enter Novamente...");
 									System.in.read();
 									break;
 								
 								case 2:
 									Main.LimparTela();
-									
 									System.out.printf("Digite o nome do Canal:  \n");
 									String nomeCanal = entrada.nextLine();
-									auxiliar2 = 0;
-									
-									System.out.println("\n=============================================================\n"); 
-									for (int i = 0; i < Main.videos.size(); i++) {
-										if (Main.videos.get(i).getCanal().getNomecanal().contentEquals(nomeCanal)) {
-											auxiliar2++;
-											 
-												System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
-												System.out.println("Link : " + Main.videos.get(i).getLink());
-												System.out.println("Data : " + Main.videos.get(i).getDate());
-												System.out.println("Canal : " + Main.videos.get(i).getCanal().getNomecanal());
-												System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
-																
-												System.out.println("\n=============================================================\n"); 
-											
-										}	
-									}
-									if(auxiliar2==0) {
-										Main.LimparTela();
-										System.out.printf("Canal não localizado tente novamente!! \n\n");
-										
-									}
+									Videos.ListarVideos(nomeCanal);
 									System.out.println("Pressione Enter Novamente...");
 									System.in.read();
 									break;
