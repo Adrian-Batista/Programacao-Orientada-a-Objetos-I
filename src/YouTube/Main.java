@@ -565,7 +565,9 @@ public class Main {
 
 						Canais canal = new Canais();
 						Usuarios U = new Usuarios();
+						PublicoAlvo P = new PublicoAlvo();
 						canal.setUsuario(U);
+						canal.setPublico(P);
 					
 
 						System.out.printf("Digite o nome do canal: ");
@@ -615,7 +617,7 @@ public class Main {
 							publico.setOpcao(publico.getOpc5());
 						}
 						
-						canal.setPublico(publico.getOpcao());
+						canal.getPublico().setOpcao(publico.getOpcao());
 
 						canais.add(canal);
 
@@ -631,7 +633,7 @@ public class Main {
 							System.out.println("\nNome Canal : " + canais.get(i).getNomecanal());
 							System.out.println("Autor : " + canais.get(i).getUsuario().getNome());
 							System.out.println("Descrição : " + canais.get(i).getDescricao());
-							System.out.println("Público Alvo : " + canais.get(i).getPublico());
+							System.out.println("Público Alvo : " + canais.get(i).getPublico().getOpcao());
 
 							System.out.println("\n=============================================================\n"); 
 						}

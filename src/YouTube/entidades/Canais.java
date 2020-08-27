@@ -5,11 +5,11 @@ public class Canais {
 	private Usuarios usuario;
 	private String nomecanal;
 	private String descricao;
-	private String publico;
+	private PublicoAlvo publico;
 	private int inscritos;
 
 
-public Canais(Usuarios usuario, String nomecanal, String descricao, String publico, int inscritos) {
+public Canais(Usuarios usuario, String nomecanal, String descricao, PublicoAlvo publico, int inscritos) {
 	super();
 	this.usuario = usuario;
 	this.nomecanal = nomecanal;
@@ -42,10 +42,10 @@ public Canais(Usuarios usuario, String nomecanal, String descricao, String publi
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	public String getPublico() {
+	public PublicoAlvo getPublico() {
 		return publico;
 	}
-	public void setPublico(String publico) {
+	public void setPublico(PublicoAlvo publico) {
 		this.publico = publico;
 	}
 
