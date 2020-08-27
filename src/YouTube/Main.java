@@ -270,7 +270,7 @@ public class Main {
 								
 								
 									for (int indice = 0; indice < canais.size(); indice++) {
-										if (canais.get(indice).getNome().contentEquals(canalBusca)) {
+										if (canais.get(indice).getUsuario().getNome().contentEquals(canalBusca)) {
 											aux2++;
 											video.setCanal(canalBusca);
 											Main.LimparTela();
@@ -563,19 +563,21 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 
-						Canais canal = new Canais(null, null, null, null, 0);
+						Canais canal = new Canais();
+						Usuarios U = new Usuarios();
+						canal.setUsuario(U);
+					
+
+						System.out.printf("Digite o nome do canal: ");
+						canal.setNomecanal(entrada.nextLine());
+
+						System.out.printf("Digite o seu nome: ");
+						canal.getUsuario().setNome(entrada.nextLine());
 						
-
-						System.out.printf("Digite o nome do Canal: ");
-						canal.setNome(entrada.nextLine());
-
-						System.out.printf("Digite seu Nome: ");
-						canal.setAutor(entrada.nextLine());
-
 						System.out.printf("Digite uma descrição para este Canal: ");
 						canal.setDescricao(entrada.nextLine());
 
-						PublicoAlvo publico = new PublicoAlvo(null, null, null, null, null, null);
+						PublicoAlvo publico = new PublicoAlvo();
 						int escolha = 0;
 						Main.LimparTela();
 						
@@ -626,8 +628,8 @@ public class Main {
 
 						System.out.println("\n=============================================================\n"); 
 						for(int i = 0;i<Main.canais.size();i++){  
-							System.out.println("\nNome Canal : " + canais.get(i).getNome());
-							System.out.println("Autor : " + canais.get(i).getAutor());
+							System.out.println("\nNome Canal : " + canais.get(i).getNomecanal());
+							System.out.println("Autor : " + canais.get(i).getUsuario().getNome());
 							System.out.println("Descrição : " + canais.get(i).getDescricao());
 							System.out.println("Público Alvo : " + canais.get(i).getPublico());
 
@@ -824,7 +826,7 @@ public class Main {
 								
 								
 									for (int indice = 0; indice < canais.size(); indice++) {
-										if (canais.get(indice).getNome().contentEquals(canalBusca)) {
+										if (canais.get(indice).getUsuario().getNome().contentEquals(canalBusca)) {
 											aux2++;
 											inscricao.setNomeCanalInscr(canalBusca);
 											inscricoes.add(inscricao);

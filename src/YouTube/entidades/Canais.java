@@ -2,17 +2,17 @@ package YouTube.entidades;
 
 public class Canais {
 
-	private String nome;
-	private String autor;
+	private Usuarios usuario;
+	private String nomecanal;
 	private String descricao;
 	private String publico;
 	private int inscritos;
 
 
-public Canais(String nome, String autor, String descricao, String publico, int inscritos) {
+public Canais(Usuarios usuario, String nomecanal, String descricao, String publico, int inscritos) {
 	super();
-	this.nome = nome;
-	this.autor = autor;
+	this.usuario = usuario;
+	this.nomecanal = nomecanal;
 	this.descricao = descricao;
 	this.publico = publico;
 	this.inscritos = inscritos;
@@ -20,17 +20,21 @@ public Canais(String nome, String autor, String descricao, String publico, int i
 
 // --------------------- GETTERS E SETTERS ----------------------------
 	
-	public String getNome() {
-		return nome;
+	public Canais() {
+	// TODO Auto-generated constructor stub
+}
+
+	public Usuarios getUsuario() {
+		return usuario;
 	}
-	public void setNome(String nome) {
-		this.nome = nome;
+	public void setUsuario(Usuarios usuario) {
+		this.usuario = usuario;
 	}
-	public String getAutor() {
-		return autor;
+	public String getNomecanal() {
+		return nomecanal;
 	}
-	public void setAutor(String autor) {
-		this.autor = autor;
+	public void setNomecanal(String nomecanal) {
+		this.nomecanal = nomecanal;
 	}
 	public String getDescricao() {
 		return descricao;
