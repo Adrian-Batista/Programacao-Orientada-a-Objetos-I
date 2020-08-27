@@ -8,10 +8,10 @@ public class Canais {
 	private String nomecanal;
 	private String descricao;
 	private PublicoAlvo publico;
-	private int inscritos;
+	private Inscricoes inscritos;
 
 
-public Canais(Usuarios usuario, String nomecanal, String descricao, PublicoAlvo publico, int inscritos) {
+public Canais(Usuarios usuario, String nomecanal, String descricao, PublicoAlvo publico, Inscricoes inscritos) {
 	super();
 	this.usuario = usuario;
 	this.nomecanal = nomecanal;
@@ -78,11 +78,11 @@ public static boolean VerificarNomeCanal1(String auxiliar) {
 		this.publico = publico;
 	}
 
-	public int getInscritos() {
+	public Inscricoes getInscritos() {
 		return inscritos;
 	}
 
-	public void setInscritos(int inscritos) {
+	public void setInscritos(Inscricoes inscritos) {
 		this.inscritos = inscritos;
 	}
 	

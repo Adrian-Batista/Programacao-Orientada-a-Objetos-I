@@ -27,7 +27,7 @@ public class Usuarios{
 		Scanner entrada = new Scanner(System.in);
 		Usuarios usuario = new Usuarios();
 		
-		System.out.printf("Digite seu nome: ");
+		System.out.printf("Digite seu nome completo: ");
 		usuario.setNome(entrada.nextLine());
 		
 		System.out.printf("Digite seu e-mail: ");
@@ -37,6 +37,7 @@ public class Usuarios{
 		usuario.setSenha(entrada.nextLine());
 		
 		Main.usuarios.add(usuario);
+		
 	}
 	
 	public static void ListarUsuario() {
@@ -47,6 +48,24 @@ public class Usuarios{
 							
 			System.out.println("\n=============================================================\n");
 		}
+	}
+	
+	public static String VerificaUsuario() {
+		Scanner entrada = new Scanner(System.in);
+		System.out.println("Digite seu nome completo: ");
+		String auxiliar = entrada.nextLine();
+		for(int i = 0; i<Main.usuarios.size(); i++) {
+			if(Main.usuarios.get(i).getNome().contentEquals(auxiliar)) {
+				System.out.println("Digite sua senha:");
+				String auiliar2 = entrada.nextLine();
+				if(Main.usuarios.get(i).getNome().contentEquals(auiliar2)) {
+					return auxiliar;
+				}
+			}
+			entrada.close();
+		}
+		return null;
+		
 	}
 // -------------------------------- GETTERS E SETTERS ----------------------------
 

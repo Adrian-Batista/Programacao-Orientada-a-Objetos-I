@@ -4,7 +4,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import YouTube.entidades.*;
+
+import YouTube.entidades.Canais;
+import YouTube.entidades.Inscricoes;
+import YouTube.entidades.PublicoAlvo;
+import YouTube.entidades.Usuarios;
+import YouTube.entidades.Videos;
+import YouTube.entidades.VideosFavoritos;
 
 public class Main {
 
@@ -472,8 +478,10 @@ public class Main {
 						Canais canal = new Canais();
 						Usuarios U = new Usuarios();
 						PublicoAlvo P = new PublicoAlvo();
+						Inscricoes I = new Inscricoes();
 						canal.setUsuario(U);
 						canal.setPublico(P);
+						canal.setInscritos(I);
 					
 						do {
 							System.out.printf("Digite o nome do canal: ");
@@ -519,6 +527,7 @@ public class Main {
 							System.out.println("Autor : " + canais.get(i).getUsuario().getNome());
 							System.out.println("Descrição : " + canais.get(i).getDescricao());
 							System.out.println("Público Alvo : " + canais.get(i).getPublico().getOpcao());
+							System.out.println("Público Alvo : " + canais.get(i).getInscritos().getNumeroInscritos());
 							System.out.println("\n=============================================================\n"); 
 						}
 						System.out.println("Pressione Enter Novamente...");
@@ -658,11 +667,7 @@ public class Main {
 				
 			case 4:
 				do {
-					
-					for(int i = 0; i < 100; i++)
-					{
-					       System.out.println("");
-					}
+					Main.LimparTela();
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
 					System.out.println("\n=================================\n|\t\t\t\t|");
 					System.out.println("| ( 1 ) - ADICIONAR INSCRICOES  |\n|\t\t\t\t|");
@@ -679,12 +684,8 @@ public class Main {
 					
 					case 1:
 						Main.LimparTela();
-						Inscricoes inscricao = new Inscricoes();
 						int opc = 0;
-						int aux = 0;
-						int aux2 = 0;
-						int auxiliar = 0;
-										
+						int aux = 0;				
 						
 						do {
 								System.out.printf("Para se inscrever em um canal: ");
@@ -707,35 +708,10 @@ public class Main {
 								case 1:
 									System.out.printf("Digite o nome do Canal a ser localizado:  \n");
 									String canalBusca = entrada.nextLine();
-								
-								
-									for (int indice = 0; indice < canais.size(); indice++) {
-										if (canais.get(indice).getUsuario().getNome().contentEquals(canalBusca)) {
-											aux2++;
-											inscricao.setNomeCanalInscr(canalBusca);
-											inscricoes.add(inscricao);
-											auxiliar = canais.get(indice).getInscritos();
-											auxiliar++;
-											canais.get(indice).setInscritos(auxiliar);
-										
-											Main.LimparTela();
-											System.out.printf("Canal Localizado com Sucesso!! \n");
-											System.out.printf("Agora você é um inscrito!! \n");
-											System.out.println("Pressione Enter Novamente...\n\n");
-											System.in.read();
-											break;
-										}
-									}
-										
-									if(aux2==0) {
-										Main.LimparTela();
-										System.out.printf("Canal não localizado tente novamente!! \n\n");
-										System.in.read();
-										break;
-									}
-										
+									Inscricoes.RealizarInscricao(canalBusca);		
+									break;
 							}
-						break;
+							break;
 						
 					case 2:
 						Main.LimparTela();
@@ -805,12 +781,14 @@ public class Main {
 						
 					case 3:
 						Main.LimparTela();
+						aux=1;
 						
 						System.out.println("\n=============================================================\n"); 
 						for(int i = 0;i<Main.inscricoes.size();i++){  
-							System.out.println("\nCanal : " + inscricoes.get(i).getNomeCanalInscr());
+							System.out.println("\n"+aux+" ) Canal : " + inscricoes.get(i).getNomeCanal());
 							
 							System.out.println("\n=============================================================\n");
+							aux++;
 						}
 						 
 														
