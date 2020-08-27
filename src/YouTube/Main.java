@@ -475,26 +475,18 @@ public class Main {
 						canal.setUsuario(U);
 						canal.setPublico(P);
 					
-
-						System.out.printf("Digite o nome do canal: ");
-						canal.setNomecanal(entrada.nextLine());
-
+						do {
+							System.out.printf("Digite o nome do canal: ");
+							canal.setNomecanal(entrada.nextLine());
+						}while(Canais.VerificarNomeCanal1(canal.getNomecanal()) == true);
 						System.out.printf("Digite o seu nome: ");
 						canal.getUsuario().setNome(entrada.nextLine());
 						
 						System.out.printf("Digite uma descrição para este Canal: ");
 						canal.setDescricao(entrada.nextLine());
-
-						PublicoAlvo publico = new PublicoAlvo();
+	
 						int escolha = 0;
 						Main.LimparTela();
-						
-						publico.setOpc1("Crianças");
-						publico.setOpc2("Jovens");
-						publico.setOpc3("Adultos");
-						publico.setOpc4("Idosos");
-						publico.setOpc5("Todos");
-						
 						System.out.println("\n Usuario selecione o publico alvo dos seu Canal: " );
 						System.out.println("\n============================================");
 						System.out.println("|  1 - Crianças (abaixo de 12 anos)        | ");
@@ -510,20 +502,7 @@ public class Main {
 							entrada.nextLine();
 					
 						}while(escolha<1 || escolha>5);
-					
-						if(escolha==1)
-							publico.setOpcao(publico.getOpc1());
-						if(escolha==2)
-							publico.setOpcao(publico.getOpc2());
-						if(escolha==3)
-							publico.setOpcao(publico.getOpc3());
-						if(escolha==4)
-							publico.setOpcao(publico.getOpc4());
-						if(escolha==5) {
-							publico.setOpcao(publico.getOpc5());
-						}
-						
-						canal.getPublico().setOpcao(publico.getOpcao());
+						canal.getPublico().setOpcao(PublicoAlvo.SelecionaPublicoAlvo(escolha));
 
 						canais.add(canal);
 
@@ -540,11 +519,8 @@ public class Main {
 							System.out.println("Autor : " + canais.get(i).getUsuario().getNome());
 							System.out.println("Descrição : " + canais.get(i).getDescricao());
 							System.out.println("Público Alvo : " + canais.get(i).getPublico().getOpcao());
-
 							System.out.println("\n=============================================================\n"); 
 						}
-
-
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
 						break;

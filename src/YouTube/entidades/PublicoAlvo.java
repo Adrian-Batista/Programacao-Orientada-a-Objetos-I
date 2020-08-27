@@ -3,11 +3,11 @@ package YouTube.entidades;
 public class PublicoAlvo {
 	
 	 String opcao = "NULL";
-	private String opc1;
-	private String opc2;
-	private String opc3;
-	private String opc4;
-	private String opc5;
+	private String opc1 = "Crianças";
+	private String opc2 = "Jovens";
+	private String opc3 = "Adultos";
+	private String opc4 = "Idosos";
+	private String opc5 = "Todos";
 	
 	
 	public PublicoAlvo(String opcao, String opc1, String opc2, String opc3, String opc4, String opc5) {
@@ -21,6 +21,23 @@ public class PublicoAlvo {
 	}
 	
 	public PublicoAlvo() {
+		
+	}
+	
+	public static String SelecionaPublicoAlvo(int escolha) {
+		PublicoAlvo publico = new PublicoAlvo();
+		if(escolha==1)
+			publico.setOpcao(publico.getOpc1());
+		if(escolha==2)
+			publico.setOpcao(publico.getOpc2());
+		if(escolha==3)
+			publico.setOpcao(publico.getOpc3());
+		if(escolha==4)
+			publico.setOpcao(publico.getOpc4());
+		if(escolha==5) {
+			publico.setOpcao(publico.getOpc5());
+		}
+		return publico.getOpcao();
 		
 	}
 
