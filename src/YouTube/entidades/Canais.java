@@ -18,11 +18,13 @@ public Canais(Usuarios usuario, String nomecanal, String descricao, PublicoAlvo 
 	this.inscritos = inscritos;
 }
 
-// --------------------- GETTERS E SETTERS ----------------------------
-	
-	public Canais() {
+public Canais() {
 	// TODO Auto-generated constructor stub
 }
+
+// --------------------- GETTERS E SETTERS ----------------------------
+	
+	
 
 	public Usuarios getUsuario() {
 		return usuario;

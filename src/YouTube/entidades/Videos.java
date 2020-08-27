@@ -5,11 +5,11 @@ public class Videos{
 	private String nome;
 	private String link;
 	private String date;
-	private String canal;
+	private Canais canal;
 	private String descricao;
 	
 	
-	public Videos(String nome, String link, String date, String canal, String descricao) {
+	public Videos(String nome, String link, String date, Canais canal, String descricao) {
 		super();
 		this.nome = nome;
 		this.link = link;
@@ -17,8 +17,13 @@ public class Videos{
 		this.canal = canal;
 		this.descricao = descricao;
 	}
+	public Videos() {
+		// TODO Auto-generated constructor stub
+	}
 		
 //---------------------------------------- GETTERS E SETTERS ---------------------------------------------
+
+	
 
 	public String getNome() {
 		return nome;
@@ -50,12 +55,12 @@ public class Videos{
 	}
 
 
-	public String getCanal() {
+	public Canais getCanal() {
 		return canal;
 	}
 
 
-	public void setCanal(String canal) {
+	public void setCanal(Canais canal) {
 		this.canal = canal;
 	}
 

@@ -73,37 +73,15 @@ public class Main {
 					
 					case 1:
 						Main.LimparTela();
-						
-						 Usuarios usuario = new Usuarios(null, null, null);
-						
-						System.out.printf("Digite seu nome: ");
-						usuario.setNome(entrada.nextLine());
-						
-						System.out.printf("Digite seu e-mail: ");
-						usuario.setEmail(entrada.nextLine());
-						
-						System.out.printf("Digite uma senha: ");
-						usuario.setSenha(entrada.nextLine());
-						
-						usuarios.add(usuario);
-						
+						Usuarios.AdicionarUsuario();
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
 						break;
 					
 					case 2:
-						Main.LimparTela();
-						
-						System.out.println("\n=============================================================\n"); 
-						for(int i = 0;i<Main.usuarios.size();i++){  
-							System.out.println("\nNome : " + Main.usuarios.get(i).getNome());
-							System.out.println("Email : " + Main.usuarios.get(i).getEmail());
-											
-							System.out.println("\n=============================================================\n"); 
-						}
-								
-																
+						Main.LimparTela();		
+						Usuarios.ListarUsuario();					
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
 						break;
@@ -242,7 +220,9 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 						
-						Videos video = new Videos(null, null, null, null, null);
+						Videos video = new Videos();
+						Canais C = new Canais();
+						video.setCanal(C);
 						int opc= 0;
 						int aux = 0;
 						int aux2 = 0;
@@ -270,9 +250,9 @@ public class Main {
 								
 								
 									for (int indice = 0; indice < canais.size(); indice++) {
-										if (canais.get(indice).getUsuario().getNome().contentEquals(canalBusca)) {
+										if (canais.get(indice).getNomecanal().contentEquals(canalBusca)) {
 											aux2++;
-											video.setCanal(canalBusca);
+											video.getCanal().setNomecanal(canalBusca);
 											Main.LimparTela();
 											System.out.printf("Canal Localizado com Sucesso!! \n");
 											System.out.println("Pressione Enter Novamente...\n\n");
@@ -376,7 +356,7 @@ public class Main {
 										System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
 										System.out.println("Link : " + Main.videos.get(i).getLink());
 										System.out.println("Data : " + Main.videos.get(i).getDate());
-										System.out.println("Canal : " + Main.videos.get(i).getCanal());
+										System.out.println("Canal : " + Main.videos.get(i).getCanal().getNomecanal());
 										System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
 														
 										System.out.println("\n=============================================================\n"); 
@@ -396,13 +376,13 @@ public class Main {
 									
 									System.out.println("\n=============================================================\n"); 
 									for (int i = 0; i < Main.videos.size(); i++) {
-										if (Main.videos.get(i).getCanal().contentEquals(nomeCanal)) {
+										if (Main.videos.get(i).getCanal().getNomecanal().contentEquals(nomeCanal)) {
 											auxiliar2++;
 											 
 												System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
 												System.out.println("Link : " + Main.videos.get(i).getLink());
 												System.out.println("Data : " + Main.videos.get(i).getDate());
-												System.out.println("Canal : " + Main.videos.get(i).getCanal());
+												System.out.println("Canal : " + Main.videos.get(i).getCanal().getNomecanal());
 												System.out.println("Descrição : " + Main.videos.get(i).getDescricao());
 																
 												System.out.println("\n=============================================================\n"); 
