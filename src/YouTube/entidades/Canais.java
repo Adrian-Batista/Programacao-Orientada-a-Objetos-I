@@ -1,5 +1,7 @@
 package YouTube.entidades;
 
+import YouTube.Main;
+
 public class Canais {
 
 	private Usuarios usuario;
@@ -20,6 +22,19 @@ public Canais(Usuarios usuario, String nomecanal, String descricao, PublicoAlvo 
 
 public Canais() {
 	// TODO Auto-generated constructor stub
+}
+
+public static int VerificarNomeCanal(String auxiliar) {
+	for (int indice = 0; indice < Main.canais.size(); indice++) {
+		if (Main.canais.get(indice).getNomecanal().contentEquals(auxiliar)) {
+			Main.LimparTela();
+			System.out.printf("Canal Localizado com Sucesso!! \n\n");
+			return 1;
+		}
+	}
+	Main.LimparTela();
+	System.out.printf("Canal não Localizado Tente Novamente!! \n\n");
+	return 0;
 }
 
 // --------------------- GETTERS E SETTERS ----------------------------

@@ -1,5 +1,7 @@
 package YouTube.entidades;
 
+import YouTube.Main;
+
 public class Videos{
 	
 	private String nome;
@@ -19,6 +21,26 @@ public class Videos{
 	}
 	public Videos() {
 		// TODO Auto-generated constructor stub
+	}
+	
+	public static boolean VerificaTitulo(String auxiliar) {
+		for (int indice = 0; indice < Main.videos.size(); indice++) {
+			if (Main.videos.get(indice).getNome().contentEquals(auxiliar)){
+				System.out.printf("\nO Título escolhido ja está em uso, selecione outro:\n\n ");
+				return true;
+			}		
+		}
+		return false;
+	}
+	
+	public static boolean VerificaLink(String auxiliar) {
+		for (int indice = 0; indice < Main.videos.size(); indice++) {
+			if (Main.videos.get(indice).getLink().contentEquals(auxiliar)){
+				System.out.printf("\nO Link escolhido ja está em uso, selecione outro:\n\n ");
+				return true;
+			}
+		}
+		return false;
 	}
 		
 //---------------------------------------- GETTERS E SETTERS ---------------------------------------------

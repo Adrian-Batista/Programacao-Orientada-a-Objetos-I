@@ -246,25 +246,8 @@ public class Main {
 								
 								case 1:
 									System.out.printf("Digite o nome do Canal a ser localizado:  \n");
-									String canalBusca = entrada.nextLine();
-								
-								
-									for (int indice = 0; indice < canais.size(); indice++) {
-										if (canais.get(indice).getNomecanal().contentEquals(canalBusca)) {
-											aux2++;
-											video.getCanal().setNomecanal(canalBusca);
-											Main.LimparTela();
-											System.out.printf("Canal Localizado com Sucesso!! \n");
-											System.out.println("Pressione Enter Novamente...\n\n");
-											break;
-										}
-									}
-										
-										if(aux2==0) {
-											Main.LimparTela();
-											System.out.printf("Canal não localizado tente novamente!! \n\n");
-											break;
-										}
+									video.getCanal().setNomecanal(entrada.nextLine());
+									aux2 = Canais.VerificarNomeCanal(video.getCanal().getNomecanal());
 									break;
 								
 								case 0:
@@ -278,45 +261,21 @@ public class Main {
 							break;
 						}
 						
-						Main.LimparTela();
-						
-						
+						Main.LimparTela();					
 						do {
-							aux2=0;
 							System.out.printf("Digite o Tíulo do Vídeo: ");
-							video.setNome(entrada.nextLine());
-							
-							for (int indice = 0; indice < videos.size(); indice++) {
-								if (videos.get(indice).getNome().contentEquals(video.getNome())){
-									aux2++;
-									System.out.printf("\nO Título escolhido ja está em uso, selecione outro:\n\n ");
-									break;
-								}
-							}
-							
-						}while(aux2 != 0);
+							video.setNome(entrada.nextLine());			
+						}while(Videos.VerificaTitulo(video.getNome()) == true);
 						
 						do {
-							aux2=0;
 							System.out.printf("Digite o link de acesso: ");
 							video.setLink(entrada.nextLine());
-							for (int indice = 0; indice < videos.size(); indice++) {
-								if (videos.get(indice).getLink().contentEquals(video.getLink())){
-									aux2++;
-									System.out.printf("\nO Link escolhido ja está em uso, selecione outro:\n\n ");
-									break;
-								}
-							}
-							
-						}while(aux2 != 0);
-						
-						
+						}while(Videos.VerificaLink(video.getLink()) == true);
+												
 						System.out.printf("Digite a data de publicação: ");
-						video.setDate(entrada.nextLine());
-						
+						video.setDate(entrada.nextLine());					
 						System.out.printf("Digite uma descrição ao vídeo: ");
 						video.setDescricao(entrada.nextLine());
-						
 						
 						videos.add(video);
 						
