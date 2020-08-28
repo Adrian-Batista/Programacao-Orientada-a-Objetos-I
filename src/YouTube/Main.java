@@ -527,7 +527,7 @@ public class Main {
 							System.out.println("Autor : " + canais.get(i).getUsuario().getNome());
 							System.out.println("Descrição : " + canais.get(i).getDescricao());
 							System.out.println("Público Alvo : " + canais.get(i).getPublico().getOpcao());
-							System.out.println("Público Alvo : " + canais.get(i).getInscritos().getNumeroInscritos());
+							System.out.println("Inscritos : " + canais.get(i).getInscritos().getNumeroInscritos());
 							System.out.println("\n=============================================================\n"); 
 						}
 						System.out.println("Pressione Enter Novamente...");
@@ -785,7 +785,7 @@ public class Main {
 						
 						System.out.println("\n=============================================================\n"); 
 						for(int i = 0;i<Main.inscricoes.size();i++){  
-							System.out.println("\n"+aux+" ) Canal : " + inscricoes.get(i).getNomeCanal());
+							System.out.println("\n"+aux+" ) Canal : " + inscricoes.get(i).getNomeCanal().getNomecanal());
 							
 							System.out.println("\n=============================================================\n");
 							aux++;

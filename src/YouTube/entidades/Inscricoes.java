@@ -30,10 +30,16 @@ public class Inscricoes{
 				if(NomeUsuario != null) {
 					int aux = Main.canais.get(indice).getInscritos().getNumeroInscritos();
 					aux++;
-					Inscricoes inscricoes = new Inscricoes();
-					inscricoes.getNomeUsuario().setNome(NomeUsuario);
-					inscricoes.getNomeCanal().setNomecanal(auxiliar);
-					inscricoes.setNumeroInscritos(aux);
+					Inscricoes inscritos = new Inscricoes();
+					Canais C = new Canais();
+					Usuarios U = new Usuarios();
+					inscritos.setNomeCanal(C);
+					inscritos.setNomeUsuario(U);
+					inscritos.getNomeCanal().setNomecanal(auxiliar);
+					inscritos.getNomeUsuario().setNome(NomeUsuario);
+					inscritos.setNumeroInscritos(aux);
+					Main.canais.get(indice).getInscritos().setNumeroInscritos(aux);
+					Main.inscricoes.add(inscritos);
 					Main.LimparTela();
 					System.out.println("\nParabéns agora você é um inscrito do Canal "+ auxiliar+"\n\n");
 					break;

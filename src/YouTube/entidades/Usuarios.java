@@ -22,9 +22,9 @@ public class Usuarios{
 	
 	}
 		
-	
+	static Scanner entrada = new Scanner(System.in);
 	public static void AdicionarUsuario() {
-		Scanner entrada = new Scanner(System.in);
+		
 		Usuarios usuario = new Usuarios();
 		
 		System.out.printf("Digite seu nome completo: ");
@@ -51,18 +51,19 @@ public class Usuarios{
 	}
 	
 	public static String VerificaUsuario() {
-		Scanner entrada = new Scanner(System.in);
+		
 		System.out.println("Digite seu nome completo: ");
 		String auxiliar = entrada.nextLine();
 		for(int i = 0; i<Main.usuarios.size(); i++) {
 			if(Main.usuarios.get(i).getNome().contentEquals(auxiliar)) {
 				System.out.println("Digite sua senha:");
 				String auiliar2 = entrada.nextLine();
-				if(Main.usuarios.get(i).getNome().contentEquals(auiliar2)) {
+				if(Main.usuarios.get(i).getSenha().contentEquals(auiliar2)) {
 					return auxiliar;
+				}else {
+					return null;
 				}
 			}
-			entrada.close();
 		}
 		return null;
 		
