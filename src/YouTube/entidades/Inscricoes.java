@@ -3,11 +3,11 @@ package YouTube.entidades;
 import YouTube.Main;
 
 public class Inscricoes{
-	
+
 	private Canais nomeCanal;
 	private Usuarios nomeUsuario;
 	private int numeroInscritos =0;
-	
+
 
 	public Inscricoes(Canais nomeCanal, Usuarios nomeUsuario, int numeroInscritos) {
 		super();
@@ -24,9 +24,9 @@ public class Inscricoes{
 		for (int indice = 0; indice < Main.canais.size(); indice++) {
 			if (Main.canais.get(indice).getNomecanal().contentEquals(auxiliar)) {	
 				System.out.println("Para se inscrever vamos lhe solicitar seus dados.");
-					
+
 				String NomeUsuario = Usuarios.VerificaUsuario();
-				
+
 				if(NomeUsuario != null) {
 					int aux = Main.canais.get(indice).getInscritos().getNumeroInscritos();
 					aux++;
@@ -79,7 +79,7 @@ public class Inscricoes{
 	public void setNumeroInscritos(int numeroInscritos) {
 		this.numeroInscritos = numeroInscritos;
 	}
-	
-	
+
+
 
 }

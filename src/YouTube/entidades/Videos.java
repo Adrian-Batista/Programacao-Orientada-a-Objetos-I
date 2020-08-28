@@ -3,14 +3,14 @@ package YouTube.entidades;
 import YouTube.Main;
 
 public class Videos{
-	
+
 	private String nome;
 	private String link;
 	private String date;
 	private Canais canal;
 	private String descricao;
-	
-	
+
+
 	public Videos(String nome, String link, String date, Canais canal, String descricao) {
 		super();
 		this.nome = nome;
@@ -22,7 +22,7 @@ public class Videos{
 	public Videos() {
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	public static boolean VerificaTitulo(String auxiliar) {
 		for (int indice = 0; indice < Main.videos.size(); indice++) {
 			if (Main.videos.get(indice).getNome().contentEquals(auxiliar)){
@@ -32,7 +32,7 @@ public class Videos{
 		}
 		return false;
 	}
-	
+
 	public static boolean VerificaLink(String auxiliar) {
 		for (int indice = 0; indice < Main.videos.size(); indice++) {
 			if (Main.videos.get(indice).getLink().contentEquals(auxiliar)){
@@ -42,7 +42,7 @@ public class Videos{
 		}
 		return false;
 	}
-	
+
 	public static void ListarVideos(String auxiliar) {
 		int cont=0;
 		if(auxiliar==null) {
@@ -71,14 +71,14 @@ public class Videos{
 			if(cont==0) {
 				Main.LimparTela();
 				System.out.printf("Canal não localizado tente novamente!! \n\n");
-				
+
 			}	
 		}	
 	}
-		
-//---------------------------------------- GETTERS E SETTERS ---------------------------------------------
 
-	
+	//---------------------------------------- GETTERS E SETTERS ---------------------------------------------
+
+
 
 	public String getNome() {
 		return nome;
@@ -128,5 +128,5 @@ public class Videos{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 }

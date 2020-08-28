@@ -11,47 +11,47 @@ public class Canais {
 	private Inscricoes inscritos;
 
 
-public Canais(Usuarios usuario, String nomecanal, String descricao, PublicoAlvo publico, Inscricoes inscritos) {
-	super();
-	this.usuario = usuario;
-	this.nomecanal = nomecanal;
-	this.descricao = descricao;
-	this.publico = publico;
-	this.inscritos = inscritos;
-}
-
-public Canais() {
-	// TODO Auto-generated constructor stub
-}
-
-public static int VerificarNomeCanal(String auxiliar) {
-	for (int indice = 0; indice < Main.canais.size(); indice++) {
-		if (Main.canais.get(indice).getNomecanal().contentEquals(auxiliar)) {
-			Main.LimparTela();
-			System.out.printf("Canal Localizado!! \n\n");
-			return 1;
-		}
+	public Canais(Usuarios usuario, String nomecanal, String descricao, PublicoAlvo publico, Inscricoes inscritos) {
+		super();
+		this.usuario = usuario;
+		this.nomecanal = nomecanal;
+		this.descricao = descricao;
+		this.publico = publico;
+		this.inscritos = inscritos;
 	}
-	Main.LimparTela();
-	System.out.printf("Canal não Localizado!! \n\n");
-	return 0;
-}
-public static boolean VerificarNomeCanal1(String auxiliar) {
-	for (int indice = 0; indice < Main.canais.size(); indice++) {
-		if (Main.canais.get(indice).getNomecanal().contentEquals(auxiliar)) {
-			Main.LimparTela();
-			System.out.printf("Canal já existente, escolha outro nome!! \n\n");
-			return true;
-		}
-	}
-	Main.LimparTela();
-	System.out.printf("Nome do Canal disponível!! \n\n");
-	return false;
-}
 
-// --------------------- GETTERS E SETTERS ----------------------------
-	
-	
+	public Canais() {
+		// TODO Auto-generated constructor stub
+	}
+
+	public static int VerificarNomeCanal(String auxiliar) {
+		for (int indice = 0; indice < Main.canais.size(); indice++) {
+			if (Main.canais.get(indice).getNomecanal().contentEquals(auxiliar)) {
+				Main.LimparTela();
+				System.out.printf("Canal Localizado!! \n\n");
+				return 1;
+			}
+		}
+		Main.LimparTela();
+		System.out.printf("Canal não Localizado!! \n\n");
+		return 0;
+	}
+	public static boolean VerificarNomeCanal1(String auxiliar) {
+		for (int indice = 0; indice < Main.canais.size(); indice++) {
+			if (Main.canais.get(indice).getNomecanal().contentEquals(auxiliar)) {
+				Main.LimparTela();
+				System.out.printf("Canal já existente, escolha outro nome!! \n\n");
+				return true;
+			}
+		}
+		Main.LimparTela();
+		System.out.printf("Nome do Canal disponível!! \n\n");
+		return false;
+	}
+
+	// --------------------- GETTERS E SETTERS ----------------------------
+
+
 
 	public Usuarios getUsuario() {
 		return usuario;
@@ -85,6 +85,6 @@ public static boolean VerificarNomeCanal1(String auxiliar) {
 	public void setInscritos(Inscricoes inscritos) {
 		this.inscritos = inscritos;
 	}
-	
+
 
 }

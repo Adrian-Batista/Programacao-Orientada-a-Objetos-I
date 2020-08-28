@@ -14,22 +14,24 @@ public class VideosFavoritos extends Videos{
 		// TODO Auto-generated constructor stub
 	}
 
-	public static boolean AdicionaFavorito(String auxiliar) {
-		VideosFavoritos favorito = new VideosFavoritos();
+	public static boolean AdicionaFavorito(String auxiliar){
+		Videos favorito = new VideosFavoritos();
+		Canais C = new Canais();
+		favorito.setCanal(C);
 		for(int i = 0; i<Main.videos.size(); i++) {
 			if(Main.videos.get(i).getLink().contentEquals(auxiliar)) {
-				favorito = (VideosFavoritos) Main.videos.get(i);
+				favorito = Main.videos.get(i);
 				Main.videosfavoritos.add((VideosFavoritos) favorito);
 				return true;
 			}
 
 		}
 		return false;
-		
+
 	}
 
-	
-		
+
+
 }
 
 
