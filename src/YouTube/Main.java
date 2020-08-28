@@ -830,29 +830,19 @@ public class Main {
 					switch (opcao5) {
 					
 					case 1:
-						int aux=0;
 						String addFavorito;
-
-						Videos favorito = new Videos(null, null, null, null, null);
-
 						System.out.println("Digite o LINK do vídeo a ser adicionado aos favoritos:");
 						addFavorito = entrada.nextLine();
-
-						for(int i = 0; i<videos.size(); i++) {
-							if(videos.get(i).getLink().contentEquals(addFavorito)) {
-								favorito = videos.get(i);
-								videosfavoritos.add((VideosFavoritos) favorito);
-								aux++;
-								System.out.println("Vídeo localizado com Sucesso!");
-								System.in.read();
-								break;
+						if(VideosFavoritos.AdicionaFavorito(addFavorito)==true) {
+							Main.LimparTela();
+							System.out.println("Vídeo adicionado aos Favoritos!");
+							System.in.read();
+						}else {
+							Main.LimparTela();
+							System.out.println("Vídeo não localizado!");
+							System.in.read();
 							}
-							if(aux == 0) {
-								System.out.println("Video não localizado tente novamente!");
-								System.in.read();
-							}
-
-						}
+						
 						break;
 						
 					case 2:
