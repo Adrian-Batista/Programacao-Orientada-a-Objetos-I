@@ -10,7 +10,6 @@ import YouTube.entidades.Inscricao;
 import YouTube.entidades.PublicoAlvo;
 import YouTube.entidades.Usuario;
 import YouTube.entidades.Video;
-import YouTube.entidades.VideosFavoritos;
 
 public class Main {
 
@@ -18,11 +17,10 @@ public class Main {
 	public static List<Video> video = new ArrayList<Video>();
 	public static List<Canal> canal = new ArrayList<Canal>();
 	public static List<Inscricao> inscricao = new ArrayList<Inscricao>();
-	public static List<VideosFavoritos>videosfavoritos = new ArrayList<VideosFavoritos>();
+	
 
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
-		int opcao1 =0;
 		int opcao2 = 0;
 		int opcao3 = 0;
 		int opcao4 = 0;
@@ -40,11 +38,11 @@ public class Main {
 
 			System.out.println("\n\n BEM VINDO AO YOUTUBE ");	
 			System.out.println("\n================================= \n|\t\t\t\t|");
-			System.out.println("| ( 1 ) - MENU DO USUARIO       | \n|\t\t\t\t|");
-			System.out.println("| ( 2 ) - MENU DE VÍDEOS        | \n|\t\t\t\t| ");
-			System.out.println("| ( 3 ) - MENU DE CANAIS        | \n|\t\t\t\t| ");
-			System.out.println("| ( 4 ) - MENU DE INSCRICOES    | \n|\t\t\t\t| ");
-			System.out.println("| ( 5 ) - MENU DE FAVORITOS     | \n|\t\t\t\t| ");
+			System.out.println("| ( 1 ) - CADASTRAR-SE          | \n|\t\t\t\t|");
+			System.out.println("| ( 2 ) - MENU DO USUARIO       | \n|\t\t\t\t|");
+			System.out.println("| ( 3 ) - MENU DE VÍDEOS        | \n|\t\t\t\t| ");
+			System.out.println("| ( 4 ) - MENU DE CANAIS        | \n|\t\t\t\t| ");
+			System.out.println("| ( 5 ) - MENU DE INSCRICOES    | \n|\t\t\t\t| ");
 			System.out.println("| ( 0 ) - SAIR                  | \n|\t\t\t\t|");
 			System.out.println("=================================\n");
 
@@ -54,45 +52,50 @@ public class Main {
 			System.out.print("\n");
 
 			switch (opcao) {
+			
+			case 1:
+				Main.LimparTela();
+				Usuario.AdicionarUsuario();
+				System.out.printf("\nDados Armazenados com sucesso!! \n");
+				System.out.println("Pressione Enter Novamente...");
+				System.in.read();
+				break;
 
 			// ----------------------------------------- LOGIN DE USUARIO ----------------------------------------------
-			case 1:
-
-
+			case 2:
+				
+				String user = Usuario.VerificaUsuario();
+				if(user==null) {
+					System.out.println("Dados incorretos refaça a operação!");
+					System.in.read();
+					break;
+				}
 				do {
+					
 					Main.LimparTela();
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
 					System.out.println("\n=========================================\n|\t\t\t\t\t|");
-					System.out.println("| ( 1 ) - CADASTRAR - SE                |\n|\t\t\t\t\t|");
-					System.out.println("| ( 2 ) - LISTAR CADASTRO               |\n|\t\t\t\t\t|");
-					System.out.println("| ( 3 ) - REMOVER CADASTRO              |\n|\t\t\t\t\t|");
-					System.out.println("| ( 4 ) - ATUALIZAR CADASTRO            |\n|\t\t\t\t\t|");
+					System.out.println("| ( 1 ) - LISTAR CADASTRO               |\n|\t\t\t\t\t|");
+					System.out.println("| ( 2 ) - REMOVER CADASTRO              |\n|\t\t\t\t\t|");
+					System.out.println("| ( 3 ) - ATUALIZAR CADASTRO            |\n|\t\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                        |\n|\t\t\t\t\t|");
 					System.out.println("=========================================\n");
 
 					System.out.println(" Escolha uma das opções: ");
-					opcao1 = entrada.nextInt();
+					opcao2 = entrada.nextInt();
 					entrada.nextLine();
 					System.out.print("\n");
 
-					switch (opcao1) {
+					switch (opcao2) {
 
 					case 1:
-						Main.LimparTela();
-						Usuario.AdicionarUsuario();
-						System.out.printf("\nDados Armazenados com sucesso!! \n");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						break;
-
-					case 2:
 						Main.LimparTela();		
 						Usuario.ListarUsuario();					
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
 						break;
 
-					case 3:
+					case 2:
 						Main.LimparTela();
 						System.out.println("Em Desenvolvimento!!");
 						System.out.println("Pressione Enter Novamente...");
@@ -119,7 +122,7 @@ public class Main {
 						}*/
 						break;
 
-					case 4:
+					case 3:
 						Main.LimparTela();
 						System.out.println("Em Desenvolvimento!!");
 						System.out.println("Pressione Enter Novamente...");
@@ -198,11 +201,11 @@ public class Main {
 					}
 
 
-				}while(opcao1!=0);
+				}while(opcao2!=0);
 				break;
 				// --------------------------------------- VISUALIZAR VÍDEOS ----------------------------------------
 
-			case 2:
+			case 3:
 
 				do {
 					Main.LimparTela();
@@ -217,11 +220,11 @@ public class Main {
 					System.out.println("=================================\n");
 
 					System.out.println(" Escolha uma das opções: ");
-					opcao2 = entrada.nextInt();
+					opcao3 = entrada.nextInt();
 					entrada.nextLine();
 					System.out.print("\n");
 
-					switch (opcao2) {
+					switch (opcao3) {
 
 					case 1:
 						Main.LimparTela();
@@ -443,13 +446,13 @@ public class Main {
 
 					}
 
-				}while (opcao2 != 0);
+				}while (opcao3 != 0);
 
 				break;
 
 				// --------------------------------------- VISUALIZAR CANAIS ----------------------------------------
 
-			case 3:
+			case 4:
 				do {
 
 					for(int i = 0; i < 100; i++)
@@ -468,10 +471,10 @@ public class Main {
 					System.out.println("=========================================\n");
 
 					System.out.println(" Escolha uma das opções: ");
-					opcao3 = entrada.nextInt();
+					opcao4 = entrada.nextInt();
 					entrada.nextLine();
 					System.out.print("\n");
-					switch (opcao3) {
+					switch (opcao4) {
 
 					case 1:
 						Main.LimparTela();
@@ -689,7 +692,7 @@ public class Main {
 						break;
 
 					}
-				}while (opcao3 != 0);
+				}while (opcao4 != 0);
 
 				break;
 
@@ -697,7 +700,7 @@ public class Main {
 				// --------------------------------------- INSCRICOES ----------------------------------------				
 
 
-			case 4:
+			case 5:
 				do {
 					Main.LimparTela();
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
@@ -709,14 +712,13 @@ public class Main {
 					System.out.println("=================================\n");
 
 					System.out.println(" Escolha uma das opções: ");
-					opcao4 = entrada.nextInt();
+					opcao5 = entrada.nextInt();
 					entrada.nextLine();
 					System.out.print("\n");
-					Main.LimparTela();
-					switch (opcao4) {
+					switch (opcao5) {
 
 					case 1:
-						
+						Main.LimparTela();
 						int opc = 0;
 						int aux = 0;				
 
@@ -834,139 +836,10 @@ public class Main {
 						break;
 
 					}
-				}while (opcao4 != 0);
-
-				break;
-
-				// -------------------------------------- VÍDEOS FAVORITOS ------------------------------------------------					
-
-			case 5:
-				do {
-
-					for(int i = 0; i < 100; i++)
-					{
-						System.out.println("");
-					}
-					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
-					System.out.println("\n===================================\n|\t\t\t\t  |");
-					System.out.println("| ( 1 ) - ADICIONAR VÍDEO FAVORITO|\n|\t\t\t\t  |");
-					System.out.println("| ( 2 ) - LISTAR VÍDEO FAVORITO   |\n|\t\t\t\t  |");
-					System.out.println("| ( 3 ) - REMOVER VÍDEO FAVORITO  |\n|\t\t\t\t  |");
-					System.out.println("| ( 4 ) - ATUALIZAR VÍDEO FAVORITO|\n|\t\t\t\t  |");
-					System.out.println("| ( 0 ) - VOLTAR                  |\n|\t\t\t\t  |");
-					System.out.println("===================================\n");
-
-					System.out.println(" Escolha uma das opções: ");
-					opcao5 = entrada.nextInt();
-					entrada.nextLine();
-					System.out.print("\n");
-					switch (opcao5) {
-
-					case 1:
-						String addFavorito;
-						System.out.println("Digite o LINK do vídeo a ser adicionado aos favoritos:");
-						addFavorito = entrada.nextLine();
-						if(VideosFavoritos.AdicionaFavorito(addFavorito)==true) {
-							Main.LimparTela();
-							System.out.println("Vídeo adicionado aos Favoritos!");
-							System.in.read();
-						}else {
-							Main.LimparTela();
-							System.out.println("Vídeo não localizado!");
-							System.in.read();
-						}
-
-						break;
-
-					case 2:
-						Main.LimparTela();
-						System.out.println("\n=============================================================\n"); 
-						for(int i = 0;i<Main.videosfavoritos.size();i++){  
-							System.out.println("\nTítulo : " + videosfavoritos.get(i).getNome());
-							System.out.println("Link : " + videosfavoritos.get(i).getLink());
-							System.out.println("Data : " + videosfavoritos.get(i).getDate());
-							System.out.println("Canal : " + videosfavoritos.get(i).getCanal());
-							System.out.println("Descrição : " + videosfavoritos.get(i).getDescricao());
-							System.out.println("\n=============================================================\n"); 
-						}											
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						break;
-
-					case 3:
-						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						/*aux=0;
-						String remFavorito;
-
-						System.out.println("Digite o LINK do vídeo a ser removido dos favoritos:");
-						remFavorito = entrada.nextLine();
-
-						for(int i = 0; i<videos.size(); i++) {
-							if(videos.get(i).getLink().contentEquals(remFavorito)) {
-								videosfavoritos.remove(i);
-								aux++;
-								System.out.println("Vídeo localizado com Sucesso!");
-								System.in.read();
-								break;
-							}
-							if(aux == 0) {
-								System.out.println("Video não localizado tente novamente!");
-								System.in.read();
-							}
-
-						}*/
-						break;
-
-					case 4:
-						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						/*aux=0;
-						String upFavorito;
-
-
-
-						System.out.println("Digite o LINK do vídeo favorito a ser sobreescrito por outro:");
-						upFavorito = entrada.nextLine();
-
-						for(int i = 0; i<videosfavoritos.size(); i++) {
-							if(videosfavoritos.get(i).getLink().contentEquals(upFavorito)) {
-
-								System.out.println("Digite o LINK do vídeo favorito a ser adicionado:");
-								upFavorito = entrada.nextLine();
-
-								for(int indice = 0; indice<videos.size(); indice++) {
-									if(videos.get(indice).getLink().contentEquals(upFavorito)) {
-										favorito = Main.videos.get(indice);
-										videosfavoritos.add(i, (VideosFavoritos) favorito);
-										aux++;
-										System.out.println("Vídeo localizado com Sucesso!");
-										System.in.read();
-										break;
-									}		
-								}
-							}
-
-							break;
-						}
-						if(aux == 0) {
-							System.out.println("Video não localizado tente novamente!");
-							System.in.read();
-						}
-						 */
-						break;
-
-					case 0:					
-						break;
-
-					}
 				}while (opcao5 != 0);
 
 				break;
+
 
 				// -------------------------------------- SAIR DO PROGRAMA ------------------------------------------------					
 			case 0:

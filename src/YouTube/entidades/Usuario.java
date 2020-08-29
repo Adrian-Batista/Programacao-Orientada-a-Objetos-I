@@ -57,8 +57,8 @@ public class Usuario{
 		for(int i = 0; i<Main.usuario.size(); i++) {
 			if(Main.usuario.get(i).getNome().contentEquals(auxiliar)) {
 				System.out.println("Digite sua senha:");
-				String auiliar2 = entrada.nextLine();
-				if(Main.usuario.get(i).getSenha().contentEquals(auiliar2)) {
+				String auxiliar2 = entrada.nextLine();
+				if(Main.usuario.get(i).getSenha().contentEquals(auxiliar2)) {
 					return auxiliar;
 				}else {
 					return null;
