@@ -38,7 +38,6 @@ public class Inscricao{
 					inscritos.getNomeCanal().setNomecanal(auxiliar);
 					inscritos.getNomeUsuario().setNome(NomeUsuario);
 					inscritos.setNumeroInscritos(aux);
-					Main.canal.get(indice).getInscritos().getNomeUsuario().setNome(NomeUsuario);;
 					Main.canal.get(indice).getInscritos().setNumeroInscritos(aux);
 					Main.inscricao.add(inscritos);
 					Main.LimparTela();
