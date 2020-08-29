@@ -2,16 +2,16 @@ package YouTube.entidades;
 
 import YouTube.Main;
 
-public class Canais {
+public class Canal {
 
-	private Usuarios usuario;
+	private Usuario usuario;
 	private String nomecanal;
 	private String descricao;
 	private PublicoAlvo publico;
-	private Inscricoes inscritos;
+	private Inscricao inscritos;
 
 
-	public Canais(Usuarios usuario, String nomecanal, String descricao, PublicoAlvo publico, Inscricoes inscritos) {
+	public Canal(Usuario usuario, String nomecanal, String descricao, PublicoAlvo publico, Inscricao inscritos) {
 		super();
 		this.usuario = usuario;
 		this.nomecanal = nomecanal;
@@ -20,13 +20,13 @@ public class Canais {
 		this.inscritos = inscritos;
 	}
 
-	public Canais() {
+	public Canal() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public static int VerificarNomeCanal(String auxiliar) {
-		for (int indice = 0; indice < Main.canais.size(); indice++) {
-			if (Main.canais.get(indice).getNomecanal().contentEquals(auxiliar)) {
+		for (int indice = 0; indice < Main.canal.size(); indice++) {
+			if (Main.canal.get(indice).getNomecanal().contentEquals(auxiliar)) {
 				Main.LimparTela();
 				System.out.printf("Canal Localizado!! \n\n");
 				return 1;
@@ -37,8 +37,8 @@ public class Canais {
 		return 0;
 	}
 	public static boolean VerificarNomeCanal1(String auxiliar) {
-		for (int indice = 0; indice < Main.canais.size(); indice++) {
-			if (Main.canais.get(indice).getNomecanal().contentEquals(auxiliar)) {
+		for (int indice = 0; indice < Main.canal.size(); indice++) {
+			if (Main.canal.get(indice).getNomecanal().contentEquals(auxiliar)) {
 				Main.LimparTela();
 				System.out.printf("Canal já existente, escolha outro nome!! \n\n");
 				return true;
@@ -53,10 +53,10 @@ public class Canais {
 
 
 
-	public Usuarios getUsuario() {
+	public Usuario getUsuario() {
 		return usuario;
 	}
-	public void setUsuario(Usuarios usuario) {
+	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
 	}
 	public String getNomecanal() {
@@ -78,11 +78,11 @@ public class Canais {
 		this.publico = publico;
 	}
 
-	public Inscricoes getInscritos() {
+	public Inscricao getInscritos() {
 		return inscritos;
 	}
 
-	public void setInscritos(Inscricoes inscritos) {
+	public void setInscritos(Inscricao inscritos) {
 		this.inscritos = inscritos;
 	}
 

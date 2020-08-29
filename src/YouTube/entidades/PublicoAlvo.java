@@ -2,7 +2,7 @@ package YouTube.entidades;
 
 public class PublicoAlvo {
 
-	String opcao = "NULL";
+	private String opcao = "NULL";
 	private String opc1 = "Crianças";
 	private String opc2 = "Jovens";
 	private String opc3 = "Adultos";
@@ -21,23 +21,6 @@ public class PublicoAlvo {
 	}
 
 	public PublicoAlvo() {
-
-	}
-
-	public static String SelecionaPublicoAlvo(int escolha) {
-		PublicoAlvo publico = new PublicoAlvo();
-		if(escolha==1)
-			publico.setOpcao(publico.getOpc1());
-		if(escolha==2)
-			publico.setOpcao(publico.getOpc2());
-		if(escolha==3)
-			publico.setOpcao(publico.getOpc3());
-		if(escolha==4)
-			publico.setOpcao(publico.getOpc4());
-		if(escolha==5) {
-			publico.setOpcao(publico.getOpc5());
-		}
-		return publico.getOpcao();
 
 	}
 

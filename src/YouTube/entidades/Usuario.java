@@ -4,20 +4,20 @@ import java.util.Scanner;
 
 import YouTube.Main;
 
-public class Usuarios{
+public class Usuario{
 
 	private String nome;
 	private String email;
 	private String senha;
 
-	public Usuarios(String nome, String email, String senha) {
+	public Usuario(String nome, String email, String senha) {
 		super();
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
 	}
 
-	public Usuarios() {
+	public Usuario() {
 		super();
 
 	}
@@ -25,7 +25,7 @@ public class Usuarios{
 	static Scanner entrada = new Scanner(System.in);
 	public static void AdicionarUsuario() {
 
-		Usuarios usuario = new Usuarios();
+		Usuario usuario = new Usuario();
 
 		System.out.printf("Digite seu nome completo: ");
 		usuario.setNome(entrada.nextLine());
@@ -36,15 +36,15 @@ public class Usuarios{
 		System.out.printf("Digite uma senha: ");
 		usuario.setSenha(entrada.nextLine());
 
-		Main.usuarios.add(usuario);
+		Main.usuario.add(usuario);
 
 	}
 
 	public static void ListarUsuario() {
 		System.out.println("\n=============================================================\n"); 
-		for(int i = 0;i<Main.usuarios.size();i++){  
-			System.out.println("\nNome : " + Main.usuarios.get(i).getNome());
-			System.out.println("Email : " + Main.usuarios.get(i).getEmail());
+		for(int i = 0;i<Main.usuario.size();i++){  
+			System.out.println("\nNome : " + Main.usuario.get(i).getNome());
+			System.out.println("Email : " + Main.usuario.get(i).getEmail());
 
 			System.out.println("\n=============================================================\n");
 		}
@@ -54,11 +54,11 @@ public class Usuarios{
 
 		System.out.println("Digite seu nome completo: ");
 		String auxiliar = entrada.nextLine();
-		for(int i = 0; i<Main.usuarios.size(); i++) {
-			if(Main.usuarios.get(i).getNome().contentEquals(auxiliar)) {
+		for(int i = 0; i<Main.usuario.size(); i++) {
+			if(Main.usuario.get(i).getNome().contentEquals(auxiliar)) {
 				System.out.println("Digite sua senha:");
 				String auiliar2 = entrada.nextLine();
-				if(Main.usuarios.get(i).getSenha().contentEquals(auiliar2)) {
+				if(Main.usuario.get(i).getSenha().contentEquals(auiliar2)) {
 					return auxiliar;
 				}else {
 					return null;

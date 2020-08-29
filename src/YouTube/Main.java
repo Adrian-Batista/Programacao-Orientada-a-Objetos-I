@@ -5,19 +5,19 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import YouTube.entidades.Canais;
-import YouTube.entidades.Inscricoes;
+import YouTube.entidades.Canal;
+import YouTube.entidades.Inscricao;
 import YouTube.entidades.PublicoAlvo;
-import YouTube.entidades.Usuarios;
-import YouTube.entidades.Videos;
+import YouTube.entidades.Usuario;
+import YouTube.entidades.Video;
 import YouTube.entidades.VideosFavoritos;
 
 public class Main {
 
-	public static List<Usuarios> usuarios = new ArrayList<Usuarios>();
-	public static List<Videos> videos = new ArrayList<Videos>();
-	public static List<Canais> canais = new ArrayList<Canais>();
-	public static List<Inscricoes> inscricoes = new ArrayList<Inscricoes>();
+	public static List<Usuario> usuario = new ArrayList<Usuario>();
+	public static List<Video> video = new ArrayList<Video>();
+	public static List<Canal> canal = new ArrayList<Canal>();
+	public static List<Inscricao> inscricao = new ArrayList<Inscricao>();
 	public static List<VideosFavoritos>videosfavoritos = new ArrayList<VideosFavoritos>();
 
 	public static void main(String[] args) throws IOException {
@@ -79,7 +79,7 @@ public class Main {
 
 					case 1:
 						Main.LimparTela();
-						Usuarios.AdicionarUsuario();
+						Usuario.AdicionarUsuario();
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
@@ -87,7 +87,7 @@ public class Main {
 
 					case 2:
 						Main.LimparTela();		
-						Usuarios.ListarUsuario();					
+						Usuario.ListarUsuario();					
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
 						break;
@@ -226,9 +226,9 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 
-						Videos video = new Videos();
-						Canais C = new Canais();
-						video.setCanal(C);
+						Video videos = new Video();
+						Canal C = new Canal();
+						videos.setCanal(C);
 						int opc= 0;
 						int aux = 0;
 						int aux2 = 0;
@@ -252,8 +252,8 @@ public class Main {
 
 							case 1:
 								System.out.printf("Digite o nome do Canal a ser localizado:  \n");
-								video.getCanal().setNomecanal(entrada.nextLine());
-								aux2 = Canais.VerificarNomeCanal(video.getCanal().getNomecanal());
+								videos.getCanal().setNomecanal(entrada.nextLine());
+								aux2 = Canal.VerificarNomeCanal(videos.getCanal().getNomecanal());
 								break;
 
 							case 0:
@@ -270,20 +270,20 @@ public class Main {
 						Main.LimparTela();					
 						do {
 							System.out.printf("Digite o Tíulo do Vídeo: ");
-							video.setNome(entrada.nextLine());			
-						}while(Videos.VerificaTitulo(video.getNome()) == true);
+							videos.setNome(entrada.nextLine());			
+						}while(Video.VerificaTitulo(videos.getNome()) == true);
 
 						do {
 							System.out.printf("Digite o link de acesso: ");
-							video.setLink(entrada.nextLine());
-						}while(Videos.VerificaLink(video.getLink()) == true);
+							videos.setLink(entrada.nextLine());
+						}while(Video.VerificaLink(videos.getLink()) == true);
 
 						System.out.printf("Digite a data de publicação: ");
-						video.setDate(entrada.nextLine());					
+						videos.setDate(entrada.nextLine());					
 						System.out.printf("Digite uma descrição ao vídeo: ");
-						video.setDescricao(entrada.nextLine());
+						videos.setDescricao(entrada.nextLine());
 
-						videos.add(video);
+						video.add(videos);
 
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");
@@ -316,7 +316,7 @@ public class Main {
 
 							case 1:
 								Main.LimparTela();
-								Videos.ListarVideos(null);										
+								Video.ListarVideos(null);										
 								System.out.println("Pressione Enter Novamente...");
 								System.in.read();
 								break;
@@ -325,7 +325,7 @@ public class Main {
 								Main.LimparTela();
 								System.out.printf("Digite o nome do Canal:  \n");
 								String nomeCanal = entrada.nextLine();
-								Videos.ListarVideos(nomeCanal);
+								Video.ListarVideos(nomeCanal);
 								System.out.println("Pressione Enter Novamente...");
 								System.in.read();
 								break;
@@ -475,23 +475,23 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 
-						Canais canal = new Canais();
-						Usuarios U = new Usuarios();
+						Canal canais = new Canal();
+						Usuario U = new Usuario();
 						PublicoAlvo P = new PublicoAlvo();
-						Inscricoes I = new Inscricoes();
-						canal.setUsuario(U);
-						canal.setPublico(P);
-						canal.setInscritos(I);
+						Inscricao I = new Inscricao();
+						canais.setUsuario(U);
+						canais.setPublico(P);
+						canais.setInscritos(I);
 
 						do {
 							System.out.printf("Digite o nome do canal: ");
-							canal.setNomecanal(entrada.nextLine());
-						}while(Canais.VerificarNomeCanal1(canal.getNomecanal()) == true);
+							canais.setNomecanal(entrada.nextLine());
+						}while(Canal.VerificarNomeCanal1(canais.getNomecanal()) == true);
 						System.out.printf("Digite o seu nome: ");
-						canal.getUsuario().setNome(entrada.nextLine());
+						canais.getUsuario().setNome(entrada.nextLine());
 
 						System.out.printf("Digite uma descrição para este Canal: ");
-						canal.setDescricao(entrada.nextLine());
+						canais.setDescricao(entrada.nextLine());
 
 						int escolha = 0;
 						Main.LimparTela();
@@ -510,9 +510,21 @@ public class Main {
 							entrada.nextLine();
 
 						}while(escolha<1 || escolha>5);
-						canal.getPublico().setOpcao(PublicoAlvo.SelecionaPublicoAlvo(escolha));
-
-						canais.add(canal);
+						
+						PublicoAlvo publico = new PublicoAlvo();
+						if(escolha==1)
+							publico.setOpcao(publico.getOpc1());
+						if(escolha==2)
+							publico.setOpcao(publico.getOpc2());
+						if(escolha==3)
+							publico.setOpcao(publico.getOpc3());
+						if(escolha==4)
+							publico.setOpcao(publico.getOpc4());
+						if(escolha==5) 
+							publico.setOpcao(publico.getOpc5());
+						
+						canais.getPublico().setOpcao(publico.getOpcao());
+						canal.add(canais);
 
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");
@@ -522,12 +534,12 @@ public class Main {
 						Main.LimparTela();
 
 						System.out.println("\n=============================================================\n"); 
-						for(int i = 0;i<Main.canais.size();i++){  
-							System.out.println("\nNome Canal : " + canais.get(i).getNomecanal());
-							System.out.println("Autor : " + canais.get(i).getUsuario().getNome());
-							System.out.println("Descrição : " + canais.get(i).getDescricao());
-							System.out.println("Público Alvo : " + canais.get(i).getPublico().getOpcao());
-							System.out.println("Inscritos : " + canais.get(i).getInscritos().getNumeroInscritos());
+						for(int i = 0;i<Main.canal.size();i++){  
+							System.out.println("\nNome Canal : " + canal.get(i).getNomecanal());
+							System.out.println("Autor : " + canal.get(i).getUsuario().getNome());
+							System.out.println("Descrição : " + canal.get(i).getDescricao());
+							System.out.println("Público Alvo : " + canal.get(i).getPublico().getOpcao());
+							System.out.println("Inscritos : " + canal.get(i).getInscritos().getNumeroInscritos());
 							System.out.println("\n=============================================================\n"); 
 						}
 						System.out.println("Pressione Enter Novamente...");
@@ -708,7 +720,7 @@ public class Main {
 						case 1:
 							System.out.printf("Digite o nome do Canal a ser localizado:  \n");
 							String canalBusca = entrada.nextLine();
-							Inscricoes.RealizarInscricao(canalBusca);		
+							Inscricao.RealizarInscricao(canalBusca);		
 							break;
 						}
 						break;
@@ -784,8 +796,8 @@ public class Main {
 						aux=1;
 
 						System.out.println("\n=============================================================\n"); 
-						for(int i = 0;i<Main.inscricoes.size();i++){  
-							System.out.println("\n"+aux+" ) Canal : " + inscricoes.get(i).getNomeCanal().getNomecanal());
+						for(int i = 0;i<Main.inscricao.size();i++){  
+							System.out.println("\n"+aux+" ) Canal : " + inscricao.get(i).getNomeCanal().getNomecanal());
 
 							System.out.println("\n=============================================================\n");
 							aux++;

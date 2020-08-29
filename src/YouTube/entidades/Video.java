@@ -2,16 +2,16 @@ package YouTube.entidades;
 
 import YouTube.Main;
 
-public class Videos{
+public class Video{
 
 	private String nome;
 	private String link;
 	private String date;
-	private Canais canal;
+	private Canal canal;
 	private String descricao;
 
 
-	public Videos(String nome, String link, String date, Canais canal, String descricao) {
+	public Video(String nome, String link, String date, Canal canal, String descricao) {
 		super();
 		this.nome = nome;
 		this.link = link;
@@ -19,13 +19,13 @@ public class Videos{
 		this.canal = canal;
 		this.descricao = descricao;
 	}
-	public Videos() {
+	public Video() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public static boolean VerificaTitulo(String auxiliar) {
-		for (int indice = 0; indice < Main.videos.size(); indice++) {
-			if (Main.videos.get(indice).getNome().contentEquals(auxiliar)){
+		for (int indice = 0; indice < Main.video.size(); indice++) {
+			if (Main.video.get(indice).getNome().contentEquals(auxiliar)){
 				System.out.printf("\nO Título escolhido ja está em uso, selecione outro:\n\n ");
 				return true;
 			}		
@@ -34,8 +34,8 @@ public class Videos{
 	}
 
 	public static boolean VerificaLink(String auxiliar) {
-		for (int indice = 0; indice < Main.videos.size(); indice++) {
-			if (Main.videos.get(indice).getLink().contentEquals(auxiliar)){
+		for (int indice = 0; indice < Main.video.size(); indice++) {
+			if (Main.video.get(indice).getLink().contentEquals(auxiliar)){
 				System.out.printf("\nO Link escolhido ja está em uso, selecione outro:\n\n ");
 				return true;
 			}
@@ -47,24 +47,24 @@ public class Videos{
 		int cont=0;
 		if(auxiliar==null) {
 			System.out.println("\n=============================================================\n"); 
-			for(int i = 0;i<Main.videos.size();i++){  
-				System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
-				System.out.println("Link : " + Main.videos.get(i).getLink());
-				System.out.println("Data : " + Main.videos.get(i).getDate());
-				System.out.println("Canal : " + Main.videos.get(i).getCanal().getNomecanal());
-				System.out.println("Descrição : " + Main.videos.get(i).getDescricao());				
+			for(int i = 0;i<Main.video.size();i++){  
+				System.out.println("\nTítulo : " + Main.video.get(i).getNome());
+				System.out.println("Link : " + Main.video.get(i).getLink());
+				System.out.println("Data : " + Main.video.get(i).getDate());
+				System.out.println("Canal : " + Main.video.get(i).getCanal().getNomecanal());
+				System.out.println("Descrição : " + Main.video.get(i).getDescricao());				
 				System.out.println("\n=============================================================\n"); 
 			}
 		}else{
 			System.out.println("\n=============================================================\n"); 
-			for (int i = 0; i < Main.videos.size(); i++) {
-				if (Main.videos.get(i).getCanal().getNomecanal().contentEquals(auxiliar)) {
+			for (int i = 0; i < Main.video.size(); i++) {
+				if (Main.video.get(i).getCanal().getNomecanal().contentEquals(auxiliar)) {
 					cont++;
-					System.out.println("\nTítulo : " + Main.videos.get(i).getNome());
-					System.out.println("Link : " + Main.videos.get(i).getLink());
-					System.out.println("Data : " + Main.videos.get(i).getDate());
-					System.out.println("Canal : " + Main.videos.get(i).getCanal().getNomecanal());
-					System.out.println("Descrição : " + Main.videos.get(i).getDescricao());					
+					System.out.println("\nTítulo : " + Main.video.get(i).getNome());
+					System.out.println("Link : " + Main.video.get(i).getLink());
+					System.out.println("Data : " + Main.video.get(i).getDate());
+					System.out.println("Canal : " + Main.video.get(i).getCanal().getNomecanal());
+					System.out.println("Descrição : " + Main.video.get(i).getDescricao());					
 					System.out.println("\n=============================================================\n"); 
 				}	
 			}
@@ -110,12 +110,12 @@ public class Videos{
 	}
 
 
-	public Canais getCanal() {
+	public Canal getCanal() {
 		return canal;
 	}
 
 
-	public void setCanal(Canais canal) {
+	public void setCanal(Canal canal) {
 		this.canal = canal;
 	}
 

@@ -2,44 +2,45 @@ package YouTube.entidades;
 
 import YouTube.Main;
 
-public class Inscricoes{
+public class Inscricao{
 
-	private Canais nomeCanal;
-	private Usuarios nomeUsuario;
+	private Canal nomeCanal;
+	private Usuario nomeUsuario;
 	private int numeroInscritos =0;
 
 
-	public Inscricoes(Canais nomeCanal, Usuarios nomeUsuario, int numeroInscritos) {
+	public Inscricao(Canal nomeCanal, Usuario nomeUsuario, int numeroInscritos) {
 		super();
 		this.nomeCanal = nomeCanal;
 		this.nomeUsuario = nomeUsuario;
 		this.numeroInscritos = numeroInscritos;
 	}
 
-	public Inscricoes() {
+	public Inscricao() {
 		// TODO Auto-generated constructor stub
 	}
 
 	public static void RealizarInscricao(String auxiliar) {
-		for (int indice = 0; indice < Main.canais.size(); indice++) {
-			if (Main.canais.get(indice).getNomecanal().contentEquals(auxiliar)) {	
+		for (int indice = 0; indice < Main.canal.size(); indice++) {
+			if (Main.canal.get(indice).getNomecanal().contentEquals(auxiliar)) {	
 				System.out.println("Para se inscrever vamos lhe solicitar seus dados.");
 
-				String NomeUsuario = Usuarios.VerificaUsuario();
+				String NomeUsuario = Usuario.VerificaUsuario();
 
 				if(NomeUsuario != null) {
-					int aux = Main.canais.get(indice).getInscritos().getNumeroInscritos();
+					int aux = Main.canal.get(indice).getInscritos().getNumeroInscritos();
 					aux++;
-					Inscricoes inscritos = new Inscricoes();
-					Canais C = new Canais();
-					Usuarios U = new Usuarios();
+					Inscricao inscritos = new Inscricao();
+					Canal C = new Canal();
+					Usuario U = new Usuario();
 					inscritos.setNomeCanal(C);
 					inscritos.setNomeUsuario(U);
 					inscritos.getNomeCanal().setNomecanal(auxiliar);
 					inscritos.getNomeUsuario().setNome(NomeUsuario);
 					inscritos.setNumeroInscritos(aux);
-					Main.canais.get(indice).getInscritos().setNumeroInscritos(aux);
-					Main.inscricoes.add(inscritos);
+					Main.canal.get(indice).getInscritos().getNomeUsuario().setNome(NomeUsuario);;
+					Main.canal.get(indice).getInscritos().setNumeroInscritos(aux);
+					Main.inscricao.add(inscritos);
 					Main.LimparTela();
 					System.out.println("\nParabéns agora você é um inscrito do Canal "+ auxiliar+"\n\n");
 					break;
@@ -56,19 +57,19 @@ public class Inscricoes{
 	}
 	// -----------------------------------------------------------------------------
 
-	public Canais getNomeCanal() {
+	public Canal getNomeCanal() {
 		return nomeCanal;
 	}
 
-	public void setNomeCanal(Canais nomeCanal) {
+	public void setNomeCanal(Canal nomeCanal) {
 		this.nomeCanal = nomeCanal;
 	}
 
-	public Usuarios getNomeUsuario() {
+	public Usuario getNomeUsuario() {
 		return nomeUsuario;
 	}
 
-	public void setNomeUsuario(Usuarios nomeUsuario) {
+	public void setNomeUsuario(Usuario nomeUsuario) {
 		this.nomeUsuario = nomeUsuario;
 	}
 
