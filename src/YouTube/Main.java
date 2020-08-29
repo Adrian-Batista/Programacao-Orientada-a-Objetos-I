@@ -90,7 +90,7 @@ public class Main {
 
 					case 1:
 						Main.LimparTela();		
-						Usuario.ListarUsuario();					
+						Usuario.ListarUsuario(user);					
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
 						break;

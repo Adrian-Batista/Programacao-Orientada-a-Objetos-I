@@ -40,13 +40,15 @@ public class Usuario{
 
 	}
 
-	public static void ListarUsuario() {
+	public static void ListarUsuario(String auxiliar) {
 		System.out.println("\n=============================================================\n"); 
-		for(int i = 0;i<Main.usuario.size();i++){  
-			System.out.println("\nNome : " + Main.usuario.get(i).getNome());
-			System.out.println("Email : " + Main.usuario.get(i).getEmail());
+		for(int i = 0;i<Main.usuario.size();i++){
+			if(Main.usuario.get(i).getNome().contentEquals(auxiliar)) {
+				System.out.println("\nNome : " + Main.usuario.get(i).getNome());
+				System.out.println("Email : " + Main.usuario.get(i).getEmail());
 
-			System.out.println("\n=============================================================\n");
+				System.out.println("\n=============================================================\n");
+			}	
 		}
 	}
 
