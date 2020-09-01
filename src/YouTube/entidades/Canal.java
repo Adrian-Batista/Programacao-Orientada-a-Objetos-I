@@ -51,8 +51,6 @@ public class Canal {
 
 	// --------------------- GETTERS E SETTERS ----------------------------
 
-
-
 	public Usuario getUsuario() {
 		return usuario;
 	}

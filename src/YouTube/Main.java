@@ -848,6 +848,8 @@ public class Main {
 
 			default:
 				System.out.println("Opção Inválida!");
+				System.out.println("Pressione Enter.!");
+				System.in.read();
 
 			}	
 
