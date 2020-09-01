@@ -8,7 +8,7 @@ public class Inscricao{
 
 	private Canal nomeCanal;
 	private Usuario nomeUsuario;
-	private int numeroInscritos =0;
+	private int numeroInscritos = 0;
 
 
 	public Inscricao(Canal nomeCanal, Usuario nomeUsuario, int numeroInscritos) {
@@ -19,7 +19,7 @@ public class Inscricao{
 	}
 
 	public Inscricao() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	public static void RealizarInscricao(String auxiliar) throws IOException {
@@ -72,7 +72,7 @@ public class Inscricao{
 		Main.LimparTela();
 		System.out.println("Não Localizado!");
 	}
-	// -----------------------------------------------------------------------------
+	// ----------------------------------- GETTERS E SETTERS ------------------------------------------
 
 	public Canal getNomeCanal() {
 		return nomeCanal;
