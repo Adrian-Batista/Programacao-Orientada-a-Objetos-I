@@ -18,26 +18,20 @@ public class Usuario{
 	}
 
 	public Usuario() {
-		super();
-
+		
 	}
 
 	static Scanner entrada = new Scanner(System.in);
+	
 	public static void AdicionarUsuario() {
-
 		Usuario usuario = new Usuario();
-
 		System.out.printf("Digite seu nome completo: ");
 		usuario.setNome(entrada.nextLine());
-
 		System.out.printf("Digite seu e-mail: ");
 		usuario.setEmail(entrada.nextLine());
-
 		System.out.printf("Digite uma senha: ");
 		usuario.setSenha(entrada.nextLine());
-
 		Main.usuario.add(usuario);
-
 	}
 
 	public static void ListarUsuario(String auxiliar) {
@@ -46,14 +40,12 @@ public class Usuario{
 			if(Main.usuario.get(i).getNome().contentEquals(auxiliar)) {
 				System.out.println("\nNome : " + Main.usuario.get(i).getNome());
 				System.out.println("Email : " + Main.usuario.get(i).getEmail());
-
 				System.out.println("\n=============================================================\n");
 			}	
 		}
 	}
 
 	public static String VerificaUsuario() {
-
 		System.out.println("Digite seu nome completo: ");
 		String auxiliar = entrada.nextLine();
 		for(int i = 0; i<Main.usuario.size(); i++) {
