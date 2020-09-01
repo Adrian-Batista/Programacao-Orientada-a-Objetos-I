@@ -17,7 +17,7 @@ public class Main {
 	public static List<Video> video = new ArrayList<Video>();
 	public static List<Canal> canal = new ArrayList<Canal>();
 	public static List<Inscricao> inscricao = new ArrayList<Inscricao>();
-	
+
 
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
@@ -52,7 +52,7 @@ public class Main {
 			System.out.print("\n");
 
 			switch (opcao) {
-			
+
 			case 1:
 				Main.LimparTela();
 				Usuario.AdicionarUsuario();
@@ -61,9 +61,9 @@ public class Main {
 				System.in.read();
 				break;
 
-			// ----------------------------------------- LOGIN DE USUARIO ----------------------------------------------
+				// ----------------------------------------- LOGIN DE USUARIO ----------------------------------------------
 			case 2:
-				
+
 				String user = Usuario.VerificaUsuario();
 				if(user==null) {
 					System.out.println("Dados incorretos refaça a operação!");
@@ -71,7 +71,7 @@ public class Main {
 					break;
 				}
 				do {
-					
+
 					Main.LimparTela();
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
 					System.out.println("\n=========================================\n|\t\t\t\t\t|");
@@ -514,7 +514,7 @@ public class Main {
 							entrada.nextLine();
 
 						}while(escolha<1 || escolha>5);
-						
+
 						PublicoAlvo publico = new PublicoAlvo();
 						if(escolha==1)
 							publico.setOpcao(publico.getOpc1());
@@ -526,7 +526,7 @@ public class Main {
 							publico.setOpcao(publico.getOpc4());
 						if(escolha==5) 
 							publico.setOpcao(publico.getOpc5());
-						
+
 						canais.getPublico().setOpcao(publico.getOpcao());
 						canal.add(canais);
 
@@ -549,7 +549,7 @@ public class Main {
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
 						break;
-						
+
 					case 3:
 						int n =0;
 						System.out.println("Digite o Nome do Canal: ");
@@ -561,8 +561,8 @@ public class Main {
 								n++;
 								System.out.println(n+" ) Nome Inscrito: "+ Main.inscricao.get(i).getNomeUsuario().getNome());
 							}
-								
-								
+
+
 						}
 						System.out.println("\n=============================================================\n");
 						System.out.println("Pressione Enter Novamente...");
