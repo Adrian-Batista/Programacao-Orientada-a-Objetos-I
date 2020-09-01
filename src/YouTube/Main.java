@@ -256,7 +256,7 @@ public class Main {
 							case 1:
 								System.out.printf("Digite o nome do Canal a ser localizado:  \n");
 								videos.getCanal().setNomecanal(entrada.nextLine());
-								aux2 = Canal.VerificarNomeCanal(videos.getCanal().getNomecanal());
+								aux2 = Canal.VerificarCanalInt(videos.getCanal().getNomecanal());
 								break;
 
 							case 0:
@@ -490,7 +490,7 @@ public class Main {
 						do {
 							System.out.printf("Digite o nome do canal: ");
 							canais.setNomecanal(entrada.nextLine());
-						}while(Canal.VerificarNomeCanal1(canais.getNomecanal()) == true);
+						}while(Canal.VerificarCanalBoolean(canais.getNomecanal()) == true);
 						System.out.printf("Digite o seu nome: ");
 						canais.getUsuario().setNome(entrada.nextLine());
 

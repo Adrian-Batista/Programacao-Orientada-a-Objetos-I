@@ -21,10 +21,10 @@ public class Canal {
 	}
 
 	public Canal() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
-	public static int VerificarNomeCanal(String auxiliar) {
+	public static int VerificarCanalInt(String auxiliar) {
 		for (int indice = 0; indice < Main.canal.size(); indice++) {
 			if (Main.canal.get(indice).getNomecanal().contentEquals(auxiliar)) {
 				Main.LimparTela();
@@ -36,7 +36,7 @@ public class Canal {
 		System.out.printf("Canal não Localizado!! \n\n");
 		return 0;
 	}
-	public static boolean VerificarNomeCanal1(String auxiliar) {
+	public static boolean VerificarCanalBoolean(String auxiliar) {
 		for (int indice = 0; indice < Main.canal.size(); indice++) {
 			if (Main.canal.get(indice).getNomecanal().contentEquals(auxiliar)) {
 				Main.LimparTela();
