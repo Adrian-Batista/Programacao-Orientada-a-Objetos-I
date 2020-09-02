@@ -97,29 +97,20 @@ public class Main {
 
 					case 2:
 						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-
-						/*System.out.printf("Digite o nome do Usuario a ser removido:  \n");
-						String nomeRemove = entrada.nextLine();
-						int aux = 0;
-
-						for (int indice = 0; indice < Main.usuarios.size(); indice++) {
-							if (Main.usuarios.get(indice).getNome().contentEquals(nomeRemove)) {
-								aux++;
-								Main.usuarios.remove(indice);
+						String nomeRemove = Usuario.VerificaUsuario();
+						if(nomeRemove==null) {
+							System.out.println("Dados inválidos refaça a operação!");
+							System.in.read();
+							break;
+						}
+						for (int indice = 0; indice < usuario.size(); indice++) {
+							if (usuario.get(indice).getNome().contentEquals(nomeRemove)) {
+								Main.usuario.remove(indice);
 								System.out.printf("Usuário removido com Sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
 								System.in.read();
 							}	
 						}
-						if(aux==0) {
-							Main.LimparTela();
-							System.out.printf("Usuário não localizado tente novamente!! \n\n");
-							System.in.read();
-							return;
-						}*/
 						break;
 
 					case 3:
