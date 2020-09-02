@@ -62,6 +62,7 @@ public class Usuario{
 		return null;
 
 	}
+	
 	// -------------------------------- GETTERS E SETTERS ----------------------------
 
 	public String getNome() {

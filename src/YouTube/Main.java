@@ -115,76 +115,70 @@ public class Main {
 
 					case 3:
 						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						/*System.out.printf("Digite o nome do Usuario a ser Atualizado:  \n");
-						String nomeUpdate = entrada.nextLine();
-						String verificador;
-						int aux = 0;
-						int aux3 = 0;
-
-						for (int indice = 0; indice < Main.usuarios.size(); indice++) {
-							if (Main.usuarios.get(indice).getNome().contentEquals(nomeUpdate)) {
-								aux++;
-								Main.LimparTela();
-
-
-								do {
-									aux3=0;
-									System.out.printf("Digite o seu nome: ");
-									verificador = (entrada.nextLine());
-									for (int indice2 = 0; indice2 < Main.usuarios.size(); indice2++) {
-										if (Main.usuarios.get(indice2).getNome().contentEquals(verificador)){
-											aux3++;
-											System.out.printf("\nO nome escolhido ja está em uso, selecione outro:\n\n ");
-											break;
-										}
-									}
-									if(aux3==0) {
-										Main.usuarios.get(indice).setNome(verificador);
-									}
-
-								}while(aux3 != 0);
-
-								System.out.printf("Digite seu endereco: ");
-								verificador = (entrada.nextLine());
-								Main.usuarios.get(indice).setEndereco(verificador);
-
-								do {
-									aux3=0;
-
-									System.out.printf("Digite o seu email: ");
-									verificador = (entrada.nextLine());
-									for (int indice2 = 0; indice2 < Main.usuarios.size(); indice2++) {
-										if (Main.usuarios.get(indice2).getEmail().contentEquals(verificador)){
-											aux3++;
-											System.out.printf("\nO E-mail escolhido ja está em uso, selecione outro:\n\n ");
-											break;
-										}
-									}
-									if(aux3==0) {
-										Main.usuarios.get(indice).setEmail(verificador);
-									}
-								}while(aux3 != 0);
-
-								System.out.printf("Digite uma senha: ");
-								verificador = (entrada.nextLine());
-								Main.usuarios.get(indice).setSenha(verificador);
-
-								System.out.printf("Dados Armazenados com sucesso!! \n");
-								System.out.println("Pressione Enter Novamente...");
-								System.in.read();
-								break;
-							}	
-						}
-						if(aux==0) {
-							System.out.printf("Usuario não Localizado tente novamente!! \n");
-							System.out.println("Pressione Enter ...");
+						int aux=0;
+						String auxiliar=null;
+						String usuarioUpdate = Usuario.VerificaUsuario();
+						if(usuarioUpdate==null) {
+							System.out.println("Dados inválidos refaça a operação!");
 							System.in.read();
-							return;
-						}*/
-						break;
+							break;
+						}
+						for (int indice = 0; indice < usuario.size(); indice++) {
+							if (usuario.get(indice).getNome().contentEquals(usuarioUpdate)) {
+								Main.LimparTela();
+								System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
+								System.out.println("\n=========================================\n|\t\t\t\t\t|");
+								System.out.println("| ( 1 ) - ATUALIZAR NOME                |\n|\t\t\t\t\t|");
+								System.out.println("| ( 2 ) - ATUALIZAR E-MAIL              |\n|\t\t\t\t\t|");
+								System.out.println("| ( 3 ) - ATUALIZAR SENHA               |\n|\t\t\t\t\t|");
+								System.out.println("| ( 0 ) - VOLTAR                        |\n|\t\t\t\t\t|");
+								System.out.println("=========================================\n");
+
+								System.out.println(" Escolha uma das opções: ");
+								cont = entrada.nextInt();
+								entrada.nextLine();
+								System.out.print("\n");
+
+								switch(cont) {
+								case 1:
+									do {
+										aux=0;
+										System.out.println("Digite a atualização do Nome: ");
+										auxiliar = entrada.nextLine();
+										for (int indice2 = 0; indice2 < usuario.size(); indice2++) {
+											if (usuario.get(indice2).getNome().contentEquals(auxiliar)) {
+												Main.LimparTela();
+												System.out.println("Nome já existente escolha outro!\n\n");
+												aux++;
+												break;
+											}
+										}
+										if(aux==0) {
+											Main.LimparTela();
+											usuario.get(indice).setNome(auxiliar);
+											System.out.println("Dado Alterado com Sucesso!");
+											System.in.read();
+											break;
+										}
+									}while(aux!=0);
+									opcao2=0;
+									break;							
+
+								case 2:
+									break;
+
+								case 3:
+									break;
+
+								case 0:
+									break;
+								}
+
+								break;
+
+							}
+
+						}
 
 					case 0:					
 						break;
