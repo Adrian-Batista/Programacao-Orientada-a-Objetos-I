@@ -165,6 +165,27 @@ public class Main {
 									break;							
 
 								case 2:
+									do {
+										aux=0;
+										System.out.println("Digite a atualização do E-mail: ");
+										auxiliar = entrada.nextLine();
+										for (int indice2 = 0; indice2 < usuario.size(); indice2++) {
+											if (usuario.get(indice2).getEmail().contentEquals(auxiliar)) {
+												Main.LimparTela();
+												System.out.println("Nome já existente escolha outro!\n\n");
+												aux++;
+												break;
+											}
+										}
+										if(aux==0) {
+											Main.LimparTela();
+											usuario.get(indice).setEmail(auxiliar);
+											System.out.println("Dado Alterado com Sucesso!");
+											System.in.read();
+											break;
+										}
+									}while(aux!=0);
+									opcao2=0;
 									break;
 
 								case 3:
