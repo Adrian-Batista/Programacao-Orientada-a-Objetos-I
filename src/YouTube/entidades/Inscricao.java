@@ -18,9 +18,6 @@ public class Inscricao{
 		this.numeroInscritos = numeroInscritos;
 	}
 
-	public Inscricao() {
-		
-	}
 
 	public static void RealizarInscricao(String auxiliar) throws IOException {
 		for (int indice = 0; indice < Main.canal.size(); indice++) {
@@ -46,9 +43,9 @@ public class Inscricao{
 				if(NomeUsuario != null) {
 					int aux = Main.canal.get(indice).getInscritos().getNumeroInscritos();
 					aux++;
-					Inscricao inscritos = new Inscricao();
-					Canal C = new Canal();
-					Usuario U = new Usuario();
+					Inscricao inscritos = new Inscricao(null, null, 0);
+					Canal C = new Canal(null, null, null, null, null);
+					Usuario U = new Usuario(null, null, null);
 					inscritos.setNomeCanal(C);
 					inscritos.setNomeUsuario(U);
 					inscritos.getNomeCanal().setNomecanal(auxiliar);

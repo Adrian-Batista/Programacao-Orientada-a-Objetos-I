@@ -20,9 +20,6 @@ public class PublicoAlvo {
 		this.opc5 = opc5;
 	}
 
-	public PublicoAlvo() {
-
-	}
 
 	//------------------------------------------ GETTERS E SETTERS -------------------------------------------
 

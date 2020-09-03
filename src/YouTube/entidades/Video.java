@@ -19,9 +19,6 @@ public class Video{
 		this.canal = canal;
 		this.descricao = descricao;
 	}
-	public Video() {
-		// TODO Auto-generated constructor stub
-	}
 
 	public static boolean VerificaTitulo(String auxiliar) {
 		for (int indice = 0; indice < Main.video.size(); indice++) {

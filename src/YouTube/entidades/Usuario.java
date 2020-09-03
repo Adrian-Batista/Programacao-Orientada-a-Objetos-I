@@ -17,14 +17,10 @@ public class Usuario{
 		this.senha = senha;
 	}
 
-	public Usuario() {
-		
-	}
-
 	static Scanner entrada = new Scanner(System.in);
 	
 	public static void AdicionarUsuario() {
-		Usuario usuario = new Usuario();
+		Usuario usuario = new Usuario(null, null, null);
 		System.out.printf("Digite seu nome completo: ");
 		usuario.setNome(entrada.nextLine());
 		System.out.printf("Digite seu e-mail: ");

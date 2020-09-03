@@ -242,8 +242,8 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 
-						Video videos = new Video();
-						Canal C = new Canal();
+						Video videos = new Video(null, null, null, null, null);
+						Canal C = new Canal(null, null, null, null, null);
 						videos.setCanal(C);
 						int opc= 0;
 						int aux = 0;
@@ -492,10 +492,10 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 
-						Canal canais = new Canal();
-						Usuario U = new Usuario();
-						PublicoAlvo P = new PublicoAlvo();
-						Inscricao I = new Inscricao();
+						Canal canais = new Canal(null, null, null, null, null);
+						Usuario U = new Usuario(null, null, null);
+						PublicoAlvo P = new PublicoAlvo(null, null, null, null, null, null);
+						Inscricao I = new Inscricao(null, null, 0);
 						canais.setUsuario(U);
 						canais.setPublico(P);
 						canais.setInscritos(I);
@@ -528,7 +528,7 @@ public class Main {
 
 						}while(escolha<1 || escolha>5);
 
-						PublicoAlvo publico = new PublicoAlvo();
+						PublicoAlvo publico = new PublicoAlvo(null, null, null, null, null, null);
 						if(escolha==1)
 							publico.setOpcao(publico.getOpc1());
 						if(escolha==2)

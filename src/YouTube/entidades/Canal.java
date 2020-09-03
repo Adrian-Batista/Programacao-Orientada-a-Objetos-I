@@ -20,10 +20,6 @@ public class Canal {
 		this.inscritos = inscritos;
 	}
 
-	public Canal() {
-		
-	}
-
 	public static int VerificarCanalInt(String auxiliar) {
 		for (int indice = 0; indice < Main.canal.size(); indice++) {
 			if (Main.canal.get(indice).getNomecanal().contentEquals(auxiliar)) {
