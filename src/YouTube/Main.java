@@ -192,7 +192,7 @@ public class Main {
 									System.out.println("Digite a atualização da Senha: ");
 									auxiliar = entrada.nextLine();	
 									Main.LimparTela();
-									usuario.get(indice).setEmail(auxiliar);
+									usuario.get(indice).setSenha(auxiliar);
 									System.out.println("Dado Alterado com Sucesso!");
 									System.in.read();	
 									opcao2=0;
