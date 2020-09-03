@@ -172,7 +172,7 @@ public class Main {
 										for (int indice2 = 0; indice2 < usuario.size(); indice2++) {
 											if (usuario.get(indice2).getEmail().contentEquals(auxiliar)) {
 												Main.LimparTela();
-												System.out.println("Nome já existente escolha outro!\n\n");
+												System.out.println("E-mail já existente escolha outro!\n\n");
 												aux++;
 												break;
 											}
@@ -189,6 +189,13 @@ public class Main {
 									break;
 
 								case 3:
+									System.out.println("Digite a atualização da Senha: ");
+									auxiliar = entrada.nextLine();	
+									Main.LimparTela();
+									usuario.get(indice).setEmail(auxiliar);
+									System.out.println("Dado Alterado com Sucesso!");
+									System.in.read();	
+									opcao2=0;
 									break;
 
 								case 0:
