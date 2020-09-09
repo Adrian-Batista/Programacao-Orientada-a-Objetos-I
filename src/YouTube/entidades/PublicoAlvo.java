@@ -10,14 +10,9 @@ public class PublicoAlvo {
 	private String opc5 = "Todos";
 
 
-	public PublicoAlvo(String opcao, String opc1, String opc2, String opc3, String opc4, String opc5) {
+	public PublicoAlvo(String opcao) {
 		super();
 		this.opcao = opcao;
-		this.opc1 = opc1;
-		this.opc2 = opc2;
-		this.opc3 = opc3;
-		this.opc4 = opc4;
-		this.opc5 = opc5;
 	}
 
 

@@ -8,16 +8,16 @@ public class Canal {
 	private String nomecanal;
 	private String descricao;
 	private PublicoAlvo publico;
-	private Inscricao inscritos;
+	private Inscricao inscrito;
+	
 
-
-	public Canal(Usuario usuario, String nomecanal, String descricao, PublicoAlvo publico, Inscricao inscritos) {
+	public Canal(Usuario usuario, String nomecanal, String descricao, PublicoAlvo publico, Inscricao inscrito) {
 		super();
 		this.usuario = usuario;
 		this.nomecanal = nomecanal;
 		this.descricao = descricao;
 		this.publico = publico;
-		this.inscritos = inscritos;
+		this.inscrito = inscrito;
 	}
 
 	public static int VerificarCanalInt(String auxiliar) {
@@ -72,12 +72,12 @@ public class Canal {
 		this.publico = publico;
 	}
 
-	public Inscricao getInscritos() {
-		return inscritos;
+	public Inscricao getInscrito() {
+		return inscrito;
 	}
 
-	public void setInscritos(Inscricao inscritos) {
-		this.inscritos = inscritos;
+	public void setInscrito(Inscricao inscrito) {
+		this.inscrito = inscrito;
 	}
 
 

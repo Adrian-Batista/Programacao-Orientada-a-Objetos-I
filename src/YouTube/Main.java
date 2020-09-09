@@ -18,7 +18,6 @@ public class Main {
 	public static List<Canal> canal = new ArrayList<Canal>();
 	public static List<Inscricao> inscricao = new ArrayList<Inscricao>();
 
-
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
 		int opcao2 = 0;
@@ -476,10 +475,9 @@ public class Main {
 					System.out.println("\n=========================================\n|\t\t\t\t\t|");
 					System.out.println("| ( 1 ) - ADICIONAR CANAL               |\n|\t\t\t\t\t|");
 					System.out.println("| ( 2 ) - LISTAR CANAIS                 |\n|\t\t\t\t\t|");
-					System.out.println("| ( 3 ) - LISTAR INSCRIÇÕES DE UM CANAL |\n|\t\t\t\t\t|");
-					System.out.println("| ( 4 ) - ATUALIZAR CANAL               |\n|\t\t\t\t\t|");
-					System.out.println("| ( 5 ) - REMOVER CANAL                 |\n|\t\t\t\t\t|");
-					System.out.println("| ( 6 ) - ATUALIZAR PÚBLICO ALVO        |\n|\t\t\t\t\t|");
+					System.out.println("| ( 3 ) - ATUALIZAR CANAL               |\n|\t\t\t\t\t|");
+					System.out.println("| ( 4 ) - REMOVER CANAL                 |\n|\t\t\t\t\t|");
+					System.out.println("| ( 5 ) - ATUALIZAR PÚBLICO ALVO        |\n|\t\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                        |\n|\t\t\t\t\t|");
 					System.out.println("=========================================\n");
 
@@ -494,11 +492,11 @@ public class Main {
 
 						Canal canais = new Canal(null, null, null, null, null);
 						Usuario U = new Usuario(null, null, null);
-						PublicoAlvo P = new PublicoAlvo(null, null, null, null, null, null);
+						PublicoAlvo P = new PublicoAlvo(null);
 						Inscricao I = new Inscricao(null, null, 0);
 						canais.setUsuario(U);
 						canais.setPublico(P);
-						canais.setInscritos(I);
+						canais.setInscrito(I);
 
 						do {
 							System.out.printf("Digite o nome do canal: ");
@@ -528,7 +526,7 @@ public class Main {
 
 						}while(escolha<1 || escolha>5);
 
-						PublicoAlvo publico = new PublicoAlvo(null, null, null, null, null, null);
+						PublicoAlvo publico = new PublicoAlvo(null);
 						if(escolha==1)
 							publico.setOpcao(publico.getOpc1());
 						if(escolha==2)
@@ -556,7 +554,7 @@ public class Main {
 							System.out.println("Autor : " + canal.get(i).getUsuario().getNome());
 							System.out.println("Descrição : " + canal.get(i).getDescricao());
 							System.out.println("Público Alvo : " + canal.get(i).getPublico().getOpcao());
-							System.out.println("Inscritos : " + canal.get(i).getInscritos().getNumeroInscritos());
+							System.out.println("Inscritos : " + canal.get(i).getInscrito().getNumeroInscritos());
 							System.out.println("\n=============================================================\n"); 
 						}
 						System.out.println("Pressione Enter Novamente...");
@@ -564,28 +562,9 @@ public class Main {
 						break;
 
 					case 3:
-						int n =0;
-						System.out.println("Digite o Nome do Canal: ");
-						String auxiliar = entrada.nextLine();
-						System.out.println(" ) Lista de Inscritos do Canal: "+ auxiliar);
-						System.out.println("\n=============================================================\n");
-						for(int i = 0;i<Main.inscricao.size();i++){  
-							if(Main.inscricao.get(i).getNomeCanal().getNomecanal().contentEquals(auxiliar)) {
-								n++;
-								System.out.println(n+" ) Nome Inscrito: "+ Main.inscricao.get(i).getNomeUsuario().getNome());
-							}
-
-
-						}
-						System.out.println("\n=============================================================\n");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						break;
-
-					case 4:
 						System.out.println("Digite o nome do Canal a ser atualizado: ");
 						String nomeUpdate = entrada.nextLine();
-						auxiliar = null;
+						String auxiliar = null;
 						for(int i=0; i<canal.size();i++) {
 							if(canal.get(i).getNomecanal().contentEquals(nomeUpdate)) {
 								
@@ -617,7 +596,7 @@ public class Main {
 									entrada.nextLine();
 
 								}while(escolha<1 || escolha>5);
-								PublicoAlvo publicos = new PublicoAlvo(null, null, null, null, null, null);
+								PublicoAlvo publicos = new PublicoAlvo(null);
 
 								if(escolha==1)
 									publicos.setOpcao(publicos.getOpc1());
@@ -640,7 +619,7 @@ public class Main {
 						
 						break;
 
-					case 5:
+					case 4:
 						Main.LimparTela();
 						System.out.println("Em Desenvolvimento!!");
 						System.out.println("Pressione Enter Novamente...");
@@ -700,7 +679,7 @@ public class Main {
 						}*/
 						break;
 
-					case 6:
+					case 5:
 						Main.LimparTela();
 						System.out.println("Em Desenvolvimento!!");
 						System.out.println("Pressione Enter Novamente...");
@@ -724,12 +703,12 @@ public class Main {
 				do {
 					Main.LimparTela();
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
-					System.out.println("\n=================================\n|\t\t\t\t|");
-					System.out.println("| ( 1 ) - ADICIONAR INSCRICOES  |\n|\t\t\t\t|");
-					System.out.println("| ( 2 ) - REMOVER INSCRICOES    |\n|\t\t\t\t|");
-					System.out.println("| ( 3 ) - LISTAR INSCRICOES     |\n|\t\t\t\t|");
-					System.out.println("| ( 0 ) - VOLTAR                |\n|\t\t\t\t|");
-					System.out.println("=================================\n");
+					System.out.println("\n=========================================\n|\t\t\t\t\t|");
+					System.out.println("| ( 1 ) - ADICIONAR INSCRICOES          |\n|\t\t\t\t\t|");
+					System.out.println("| ( 2 ) - REMOVER INSCRICOES            |\n|\t\t\t\t\t|");
+					System.out.println("| ( 3 ) - LISTAR INSCRIÇÕES DE UM CANAL |\n|\t\t\t\t\t|");
+					System.out.println("| ( 0 ) - VOLTAR                        |\n|\t\t\t\t\t|");
+					System.out.println("=========================================\n");
 
 					System.out.println(" Escolha uma das opções: ");
 					opcao5 = entrada.nextInt();
@@ -833,23 +812,26 @@ public class Main {
 
 							}*/
 						break;
-
+						
 					case 3:
-						Main.LimparTela();
-						aux=1;
-
-						System.out.println("\n=============================================================\n"); 
+						
+						int n =0;
+						System.out.println("Digite o Nome do Canal: ");
+						String auxiliar = entrada.nextLine();
+						System.out.println(" ) Lista de Inscritos do Canal: "+ auxiliar);
+						System.out.println("\n=============================================================\n");
 						for(int i = 0;i<Main.inscricao.size();i++){  
-							System.out.println("\n"+aux+" ) Canal : " + inscricao.get(i).getNomeCanal().getNomecanal());
+							if(Main.inscricao.get(i).getDadosCanal().getNomecanal().contentEquals(auxiliar)) {
+								n++;
+								System.out.println(n+" ) Nome Inscrito: "+ Main.inscricao.get(i).getDadosUsuario().getNome());
+							}
 
-							System.out.println("\n=============================================================\n");
-							aux++;
+
 						}
-
-
+						System.out.println("\n=============================================================\n");
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
-
+						
 						break;
 
 					case 0:					
