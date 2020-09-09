@@ -583,54 +583,60 @@ public class Main {
 						break;
 
 					case 4:
-						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						/*System.out.printf("Digite o nome do Canal a ser Atualizado:  \n");
+						System.out.println("Digite o nome do Canal a ser atualizado: ");
 						String nomeUpdate = entrada.nextLine();
-						int aux = 0;
-
-
-						for (int indice = 0; indice < Main.canais.size(); indice++) {
-
-							if (Main.canais.get(indice).getNome().contentEquals(nomeUpdate)) {
-								aux++;
-								Main.LimparTela();
-
-								System.out.printf("Digite o Nome do Canal: ");
-								Main.canais.get(indice).setNome(entrada.nextLine());
-
-								System.out.printf("Digite o nome do autor: ");
-								Main.canais.get(indice).setAutor(entrada.nextLine());
+						auxiliar = null;
+						for(int i=0; i<canal.size();i++) {
+							if(canal.get(i).getNomecanal().contentEquals(nomeUpdate)) {
+								
+								do {
+									System.out.printf("Digite o nome do canal: ");
+									auxiliar = entrada.nextLine();
+								}while(Canal.VerificarCanalBoolean(auxiliar) == true);
+								canal.get(i).setNomecanal(auxiliar);
+								System.out.printf("Digite o seu nome: ");
+								canal.get(i).getUsuario().setNome(entrada.nextLine());
 
 								System.out.printf("Digite uma descrição para este Canal: ");
-								Main.canais.get(indice).setDescricao(entrada.nextLine());
+								canal.get(i).setDescricao(entrada.nextLine());
 
-								Main.canais.get(indice).setPublicoAlvo(PublicoAlvo.opcao);
-								PublicoAlvo.EscolherPublicoAlvo();
+								escolha = 0;
+								Main.LimparTela();
+								System.out.println("\n Usuario selecione o publico alvo dos seu Canal: " );
+								System.out.println("\n============================================");
+								System.out.println("|  1 - Crianças (abaixo de 12 anos)        | ");
+								System.out.println("|  2 - Jovens   (13 a 24 anos)             | ");
+								System.out.println("|  3 - Adultos  (25 a 50 anos)             | ");
+								System.out.println("|  4 - Idosos   (acima de 51 anos)         | ");
+								System.out.println("|  5 - Todos                               | ");
+								System.out.println("============================================\n");
 
+								do {
+									System.out.println(" Escolha uma das opções: ");
+									escolha = entrada.nextInt();
+									entrada.nextLine();
 
-								for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
-									aux++;
-									if (Main.videos.get(indice2).getNome().contentEquals(nomeUpdate)) {
-										Main.videos.get(indice2).setNome(Main.canais.get(indice).getNome());
-									}
-								}
+								}while(escolha<1 || escolha>5);
 
-								System.out.printf("Dados Armazenados com sucesso!! \n");
+								if(escolha==1)
+									publico.setOpcao(publico.getOpc1());
+								if(escolha==2)
+									publico.setOpcao(publico.getOpc2());
+								if(escolha==3)
+									publico.setOpcao(publico.getOpc3());
+								if(escolha==4)
+									publico.setOpcao(publico.getOpc4());
+								if(escolha==5) 
+									publico.setOpcao(publico.getOpc5());
+
+								canal.get(i).getPublico().setOpcao(publico.getOpcao());
+
+								System.out.printf("\nDados Armazenados com sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
-								System.in.read();
-								break;
+										break;
 							}
-
 						}
-						if(aux==Main.canais.size()) {
-							System.out.printf("Canal não Localizado tente novamente!! \n");
-							System.out.println("Pressione Enter ...");
-							System.in.read();
-							return;
-						}*/
+						
 						break;
 
 					case 5:
