@@ -617,19 +617,20 @@ public class Main {
 									entrada.nextLine();
 
 								}while(escolha<1 || escolha>5);
+								PublicoAlvo publicos = new PublicoAlvo(null, null, null, null, null, null);
 
 								if(escolha==1)
-									publico.setOpcao(publico.getOpc1());
+									publicos.setOpcao(publicos.getOpc1());
 								if(escolha==2)
-									publico.setOpcao(publico.getOpc2());
+									publicos.setOpcao(publicos.getOpc2());
 								if(escolha==3)
-									publico.setOpcao(publico.getOpc3());
+									publicos.setOpcao(publicos.getOpc3());
 								if(escolha==4)
-									publico.setOpcao(publico.getOpc4());
+									publicos.setOpcao(publicos.getOpc4());
 								if(escolha==5) 
-									publico.setOpcao(publico.getOpc5());
+									publicos.setOpcao(publicos.getOpc5());
 
-								canal.get(i).getPublico().setOpcao(publico.getOpcao());
+								canal.get(i).getPublico().setOpcao(publicos.getOpcao());
 
 								System.out.printf("\nDados Armazenados com sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
