@@ -2,27 +2,20 @@ package YouTube.entidades;
 
 import YouTube.Main;
 
-public class Canal {
-
-	private Usuario usuario;
-	private String nomecanal;
+public class Canal extends Perfil{
+	
 	private String descricao;
 	private PublicoAlvo publico;
 	private Inscricao inscrito;
-	
 
-	public Canal(Usuario usuario, String nomecanal, String descricao, PublicoAlvo publico, Inscricao inscrito) {
-		super();
-		this.usuario = usuario;
-		this.nomecanal = nomecanal;
+	public Canal(String nome, String email, String descricao, PublicoAlvo publico, Inscricao inscrito) {
+		super(nome, email);
 		this.descricao = descricao;
 		this.publico = publico;
 		this.inscrito = inscrito;
 	}
-	public Canal(Usuario usuario, String nomecanal, String descricao) {
-		super();
-		this.usuario = usuario;
-		this.nomecanal = nomecanal;
+	public Canal(String nome, String email, String descricao) {
+		super(nome, email);
 		this.descricao = descricao;
 		this.publico = null;
 		this.inscrito = null;

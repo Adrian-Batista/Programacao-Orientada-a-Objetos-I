@@ -416,7 +416,7 @@ public class Main {
 							Main.LimparTela();
 							System.out.printf("Vídeo não localizado tente novamente!! \n\n");
 							System.in.read();
-							return;
+							break;
 						}
 						break;
 

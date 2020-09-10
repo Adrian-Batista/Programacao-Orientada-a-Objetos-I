@@ -1,36 +1,56 @@
 package YouTube.entidades;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 import YouTube.Main;
 
-public class Usuario{
+public class Usuario extends Perfil{
 
-	private String nome;
-	private String email;
 	private String senha;
 
 	public Usuario(String nome, String email, String senha) {
-		super();
-		this.nome = nome;
-		this.email = email;
+		super(nome, email);
 		this.senha = senha;
 	}
-	public Usuario(String nome) {
-		super();
-		this.nome = nome;
-		this.email = null;
-		this.senha = null;
+	public Usuario(String nome, String email, int id, String senha) {
+		super(nome, email, id);
+		this.senha = senha;
 	}
 
 	static Scanner entrada = new Scanner(System.in);
 	
-	public static void AdicionarUsuario() {
+	public static void AdicionarUsuario() throws IOException {
+		int aux;
 		Usuario usuario = new Usuario(null, null, null);
-		System.out.printf("Digite seu nome completo: ");
-		usuario.setNome(entrada.nextLine());
-		System.out.printf("Digite seu e-mail: ");
-		usuario.setEmail(entrada.nextLine());
+		do {
+			aux=0;
+			System.out.printf("Digite seu nome completo: ");
+			usuario.setNome(entrada.nextLine());
+			for(int i=0; i<Main.usuario.size(); i++) {
+				if(Main.usuario.get(i).getNome().contentEquals(usuario.getNome())) {
+					aux++;
+					Main.LimparTela();
+					System.out.println("Nome ja existente escolha outro..\n");
+					break;
+				}
+			}
+		}while(aux!=0);
+		
+		do {
+			aux=0;
+			System.out.printf("Digite seu e-mail: ");
+			usuario.setEmail(entrada.nextLine());
+			for(int i=0; i<Main.usuario.size(); i++) {
+				if(Main.usuario.get(i).getEmail().contentEquals(usuario.getEmail())) {
+					aux++;
+					Main.LimparTela();
+					System.out.println("E-mail ja existente escolha outro..\n");
+					break;
+				}
+			}
+		}while(aux!=0);
+		
 		System.out.printf("Digite uma senha: ");
 		usuario.setSenha(entrada.nextLine());
 		Main.usuario.add(usuario);
