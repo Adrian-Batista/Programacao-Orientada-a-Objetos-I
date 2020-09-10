@@ -16,6 +16,12 @@ public class Usuario{
 		this.email = email;
 		this.senha = senha;
 	}
+	public Usuario(String nome) {
+		super();
+		this.nome = nome;
+		this.email = null;
+		this.senha = null;
+	}
 
 	static Scanner entrada = new Scanner(System.in);
 	

@@ -19,6 +19,14 @@ public class Canal {
 		this.publico = publico;
 		this.inscrito = inscrito;
 	}
+	public Canal(Usuario usuario, String nomecanal, String descricao) {
+		super();
+		this.usuario = usuario;
+		this.nomecanal = nomecanal;
+		this.descricao = descricao;
+		this.publico = null;
+		this.inscrito = null;
+	}
 
 	public static int VerificarCanalInt(String auxiliar) {
 		for (int indice = 0; indice < Main.canal.size(); indice++) {

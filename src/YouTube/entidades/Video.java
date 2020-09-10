@@ -9,8 +9,19 @@ public class Video{
 	private String date;
 	private Canal canal;
 	private String descricao;
+	private double preco;
 
 
+	public Video(String nome, String link, String date, Canal canal, String descricao, double preco) {
+		super();
+		this.nome = nome;
+		this.link = link;
+		this.date = date;
+		this.canal = canal;
+		this.descricao = descricao;
+		this.preco = preco;
+	}
+	
 	public Video(String nome, String link, String date, Canal canal, String descricao) {
 		super();
 		this.nome = nome;
@@ -18,6 +29,7 @@ public class Video{
 		this.date = date;
 		this.canal = canal;
 		this.descricao = descricao;
+		this.preco = 0;
 	}
 
 	public static boolean VerificaTitulo(String auxiliar) {
@@ -124,6 +136,14 @@ public class Video{
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
+	}
+
+	public double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(double preco) {
+		this.preco = preco;
 	}
 
 }
