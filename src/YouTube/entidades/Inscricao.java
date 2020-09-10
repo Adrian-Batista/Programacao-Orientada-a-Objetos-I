@@ -9,6 +9,7 @@ public class Inscricao{
 	private Canal dadosCanal;
 	private Usuario dadosUsuario;
 	private int numeroInscritos;
+	Usuario[] lista = new Usuario[50];
 
 	public Inscricao(Canal dadosCanal, Usuario dadosUsuario, int numeroInscritos) {
 		super();
@@ -23,38 +24,22 @@ public class Inscricao{
 				System.out.println("Para se inscrever vamos lhe solicitar seus dados.");
 
 				String NomeUsuario = Usuario.VerificaUsuario();
-				for(int aux1 = 0;aux1<Main.inscricao.size();aux1++) {
-					if(NomeUsuario==null) {
-						break;
-					}
-					if(Main.inscricao.get(aux1).getDadosCanal().getNomecanal().contentEquals(auxiliar)) {
-						for(int aux2=0; aux2<Main.inscricao.size(); aux2++) {
-							if(Main.inscricao.get(aux1).getDadosUsuario().getNome().contentEquals(NomeUsuario)) {
-								System.out.println("Ops, você já é um inscrito deste Canal!");
-								System.in.read();
-								return;
+
+				if(NomeUsuario != null) {
+					for(int i=0; i< Main.canal.size(); i++) {						
+						if(Main.canal.get(i).getNomecanal().contentEquals(auxiliar)) {
+							for(int j=0; j<50; j++) {
+								
+								if(Main.canal.get(i).getInscrito().getLista()[j].getNome()==null) {
+									Main.canal.get(i).getInscrito().getLista()[j].setNome(NomeUsuario);
+									Main.LimparTela();
+									System.out.println("\nParabéns agora você é um inscrito do Canal "+ auxiliar+"\n\n");
+									System.in.read();
+									break;
+								}
 							}
 						}
 					}
-				}
-
-				if(NomeUsuario != null) {
-					int aux = Main.canal.get(indice).getInscrito().getNumeroInscritos();
-					aux++;
-					Inscricao inscritos = new Inscricao(null, null, 0);
-					Canal C = new Canal(null, null, null, null, null);
-					Usuario U = new Usuario(null, null, null);
-					inscritos.setDadosCanal(C);
-					inscritos.setDadosUsuario(U);
-					inscritos.getDadosCanal().setNomecanal(auxiliar);
-					inscritos.getDadosUsuario().setNome(NomeUsuario);
-					inscritos.setNumeroInscritos(aux);
-					Main.canal.get(indice).getInscrito().setNumeroInscritos(aux);
-					Main.inscricao.add(inscritos);
-					Main.LimparTela();
-					System.out.println("\nParabéns agora você é um inscrito do Canal "+ auxiliar+"\n\n");
-					System.in.read();
-					break;
 				}
 				if(NomeUsuario ==null) {
 					Main.LimparTela();
@@ -91,6 +76,14 @@ public class Inscricao{
 
 	public void setNumeroInscritos(int numeroInscritos) {
 		this.numeroInscritos = numeroInscritos;
+	}
+
+	public Usuario[] getLista() {
+		return lista;
+	}
+
+	public void setLista(Usuario[] lista) {
+		this.lista = lista;
 	}
 	
 

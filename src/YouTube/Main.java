@@ -16,7 +16,6 @@ public class Main {
 	public static List<Usuario> usuario = new ArrayList<Usuario>();
 	public static List<Video> video = new ArrayList<Video>();
 	public static List<Canal> canal = new ArrayList<Canal>();
-	public static List<Inscricao> inscricao = new ArrayList<Inscricao>();
 
 	public static void main(String[] args) throws IOException {
 		int opcao = 0;
@@ -820,13 +819,13 @@ public class Main {
 						String auxiliar = entrada.nextLine();
 						System.out.println(" ) Lista de Inscritos do Canal: "+ auxiliar);
 						System.out.println("\n=============================================================\n");
-						for(int i = 0;i<Main.inscricao.size();i++){  
-							if(Main.inscricao.get(i).getDadosCanal().getNomecanal().contentEquals(auxiliar)) {
-								n++;
-								System.out.println(n+" ) Nome Inscrito: "+ Main.inscricao.get(i).getDadosUsuario().getNome());
+						for(int i = 0;i<Main.canal.size();i++){  
+							if(Main.canal.get(i).getNomecanal().contentEquals(auxiliar)) {
+								for(int j =0; j<50; j++) {
+									n++;
+									System.out.println(n+" ) Nome Inscrito: "+ Main.canal.get(i).getInscrito().getLista()[j].getNome());
+								}
 							}
-
-
 						}
 						System.out.println("\n=============================================================\n");
 						System.out.println("Pressione Enter Novamente...");
