@@ -249,7 +249,7 @@ public class Main {
 
 						do {
 							do {
-								System.out.printf("Para adicionar um novo vídeo é necessário um Canal.\n Voce ja tem um Canal ou deseja criar um? ");
+								System.out.printf("Para adicionar um novo vídeo é necessário um Canal.\n ");
 								System.out.println("\n============================================");
 								System.out.println("|  1 - Buscar Canal                       | ");
 								System.out.println("|  0 - Voltar                             | ");
@@ -312,7 +312,7 @@ public class Main {
 						do {
 							Main.LimparTela();
 							do {
-								System.out.printf("Para adicionar um novo vídeo é necessário um Canal.\n Voce ja tem um Canal ou deseja criar um? ");
+								System.out.printf("Para adicionar um novo vídeo é necessário um Canal.\n  ");
 								System.out.println("\n============================================");
 								System.out.println("|  1 - Listar todos os vídeos             | ");
 								System.out.println("|  2 - Listar por Canal                   | ");
@@ -428,17 +428,14 @@ public class Main {
 
 					case 4:
 						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						/*	System.out.printf("Digite o nome do Video a ser removido:  \n");
+						System.out.printf("Digite o nome do Video a ser removido:  \n");
 						String nomeRemove = entrada.nextLine();
-						int aux = 0;
+						aux = 0;
 
-						for (int indice = 0; indice < Main.videos.size(); indice++) {
-							if (Main.videos.get(indice).getNome().contentEquals(nomeRemove)) {
+						for (int indice = 0; indice < Main.video.size(); indice++) {
+							if (Main.video.get(indice).getNome().contentEquals(nomeRemove)) {
 								aux++;
-								Main.videos.remove(indice);
+								Main.video.remove(indice);
 								System.out.printf("Video removido com Sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
 								System.in.read();
@@ -449,7 +446,7 @@ public class Main {
 							System.out.printf("Vídeo não localizado tente novamente!! \n\n");
 							System.in.read();
 							return;
-						}*/
+						}
 						break;
 
 					case 0:					
