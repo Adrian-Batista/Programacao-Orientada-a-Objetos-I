@@ -381,7 +381,7 @@ public class Main {
 								System.out.printf("Digite uma descrição ao vídeo: ");
 								update.setDescricao(entrada.nextLine());
 
-								video.add(indice, update);
+								video.set(indice, update);
 
 								System.out.printf("\nDados Armazenados com sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
@@ -393,7 +393,7 @@ public class Main {
 							System.out.printf("Video não Localizado tente novamente!! \n");
 							System.out.println("Pressione Enter ...");
 							System.in.read();
-							return;
+							break;
 						}
 						break;
 
