@@ -354,65 +354,36 @@ public class Main {
 
 					case 3:
 						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						/*System.out.printf("Digite o nome do Video a ser Atualizado:  \n");
+						aux = 0;
+						
+						System.out.printf("Digite o nome do Video a ser Atualizado:  \n");
 						String nomeUpdate = entrada.nextLine();
-						String verificador;
-						int aux = 0;
-						int aux3 = 0;
-
-						for (int indice = 0; indice < Main.videos.size(); indice++) {
-							if (Main.videos.get(indice).getNome().contentEquals(nomeUpdate)) {
-								aux++;
+						
+						for (int indice = 0; indice < Main.video.size(); indice++) {
+							if (Main.video.get(indice).getNome().contentEquals(nomeUpdate)) {
+								aux++;	
 								Main.LimparTela();
-
-
+								Video update = new Video(null, null, null, null, null);
+								Canal canal = new Canal(null, null, null, null, null);
+								update.setCanal(canal);
 								do {
-									aux3=0;
 									System.out.printf("Digite o Tíulo do Vídeo: ");
-									verificador = (entrada.nextLine());
-									for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
-										if (Main.videos.get(indice2).getNome().contentEquals(verificador)){
-											aux3++;
-											System.out.printf("\nO Título escolhido ja está em uso, selecione outro:\n\n ");
-											break;
-										}
-									}
-									if(aux3==0) {
-										Main.videos.get(indice).setNome(verificador);
-									}
-
-								}while(aux3 != 0);
+									update.setNome(entrada.nextLine());			
+								}while(Video.VerificaTitulo(update.getNome()) == true);
 
 								do {
-									aux3=0;
-									System.out.printf("Digite o Link do Vídeo: ");
-									verificador = (entrada.nextLine());
-									for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
-										if (Main.videos.get(indice2).getLink().contentEquals(verificador)){
-											aux3++;
-											System.out.printf("\nO Link escolhido ja está em uso, selecione outro:\n\n ");
-											break;
-										}
-									}
-									if(aux3==0) {
-										Main.videos.get(indice).setLink(verificador);
-									}
-
-								}while(aux3 != 0);
+									System.out.printf("Digite o link de acesso: ");
+									update.setLink(entrada.nextLine());
+								}while(Video.VerificaLink(update.getLink()) == true);
 
 								System.out.printf("Digite a data de publicação: ");
-								Main.videos.get(indice).setDate(entrada.nextLine());
+								update.setDate(entrada.nextLine());					
+								System.out.printf("Digite uma descrição ao vídeo: ");
+								update.setDescricao(entrada.nextLine());
 
-								System.out.printf("Digite o gênero do seu vídeo: ");
-								Main.videos.get(indice).setDescricao(entrada.nextLine());
+								video.add(indice, update);
 
-								System.out.printf("Digite o valor que será cobrado pelo seu vídeo, caso for gratuito digite 0: ");
-								Main.videos.get(indice).setPrecoVideo(entrada.nextDouble());
-
-								System.out.printf("Dados Armazenados com sucesso!! \n");
+								System.out.printf("\nDados Armazenados com sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
 								System.in.read();
 								break;
@@ -423,7 +394,7 @@ public class Main {
 							System.out.println("Pressione Enter ...");
 							System.in.read();
 							return;
-						}*/
+						}
 						break;
 
 					case 4:
