@@ -24,12 +24,16 @@ public class Inscricao{
 				System.out.println("Para se inscrever vamos lhe solicitar seus dados.");
 
 				String NomeUsuario = Usuario.VerificaUsuario();
-
+				
 				if(NomeUsuario != null) {
 					for(int i=0; i< Main.canal.size(); i++) {						
 						if(Main.canal.get(i).getNomecanal().contentEquals(auxiliar)) {
 							for(int j=0; j<50; j++) {
-								
+								if(Main.canal.get(i).getInscrito().getLista()[j].getNome().contentEquals(NomeUsuario)) {
+									System.out.println("Ops, você já é um inscrito do Canal!");
+									System.in.read();
+									break;
+								}
 								if(Main.canal.get(i).getInscrito().getLista()[j].getNome()==null) {
 									Main.canal.get(i).getInscrito().getLista()[j].setNome(NomeUsuario);
 									Main.LimparTela();
