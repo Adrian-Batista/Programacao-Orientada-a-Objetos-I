@@ -266,8 +266,8 @@ public class Main {
 
 							case 1:
 								System.out.printf("Digite o nome do Canal a ser localizado:  \n");
-								videos.getCanal().setNomecanal(entrada.nextLine());
-								aux2 = Canal.VerificarCanalInt(videos.getCanal().getNomecanal());
+								videos.getCanal().setNome(entrada.nextLine());
+								aux2 = Canal.VerificarCanalInt(videos.getCanal().getNome());
 								break;
 
 							case 0:
@@ -458,20 +458,21 @@ public class Main {
 						Main.LimparTela();
 
 						Canal canais = new Canal(null, null, null, null, null);
-						Usuario U = new Usuario(null, null, null);
 						PublicoAlvo P = new PublicoAlvo(null);
 						Inscricao I = new Inscricao(null, null, 0);
-						canais.setUsuario(U);
 						canais.setPublico(P);
 						canais.setInscrito(I);
 
 						do {
 							System.out.printf("Digite o nome do canal: ");
-							canais.setNomecanal(entrada.nextLine());
-						}while(Canal.VerificarCanalBoolean(canais.getNomecanal()) == true);
-						System.out.printf("Digite o seu nome: ");
-						canais.getUsuario().setNome(entrada.nextLine());
-
+							canais.setNome(entrada.nextLine());
+						}while(Canal.VerificarCanalBoolean(canais.getNome()) == true);
+						
+						do {
+							System.out.printf("Digite um e-mail válido: ");
+							canais.setEmail(entrada.nextLine());
+						}while(Canal.VerificarEmailCanalBoolean(canais.getEmail()) == true);
+						
 						System.out.printf("Digite uma descrição para este Canal: ");
 						canais.setDescricao(entrada.nextLine());
 
@@ -517,8 +518,8 @@ public class Main {
 
 						System.out.println("\n=============================================================\n"); 
 						for(int i = 0;i<Main.canal.size();i++){  
-							System.out.println("\nNome Canal : " + canal.get(i).getNomecanal());
-							System.out.println("Autor : " + canal.get(i).getUsuario().getNome());
+							System.out.println("\nNome Canal : " + canal.get(i).getNome());
+							System.out.println("E-mail : " + canal.get(i).getEmail());
 							System.out.println("Descrição : " + canal.get(i).getDescricao());
 							System.out.println("Público Alvo : " + canal.get(i).getPublico().getOpcao());
 							System.out.println("Inscritos : " + canal.get(i).getInscrito().getNumeroInscritos());
@@ -533,16 +534,21 @@ public class Main {
 						String nomeUpdate = entrada.nextLine();
 						String auxiliar = null;
 						for(int i=0; i<canal.size();i++) {
-							if(canal.get(i).getNomecanal().contentEquals(nomeUpdate)) {
+							if(canal.get(i).getNome().contentEquals(nomeUpdate)) {
 								
 								do {
 									System.out.printf("Digite o nome do canal: ");
 									auxiliar = entrada.nextLine();
 								}while(Canal.VerificarCanalBoolean(auxiliar) == true);
-								canal.get(i).setNomecanal(auxiliar);
-								System.out.printf("Digite o seu nome: ");
-								canal.get(i).getUsuario().setNome(entrada.nextLine());
-
+								canal.get(i).setNome(auxiliar);
+								
+								
+								do {
+									System.out.printf("Digite um e-mail válido: ");
+									auxiliar = (entrada.nextLine());
+								}while(Canal.VerificarEmailCanalBoolean(auxiliar) == true);
+								canal.get(i).setEmail(auxiliar);
+								
 								System.out.printf("Digite uma descrição para este Canal: ");
 								canal.get(i).setDescricao(entrada.nextLine());
 
@@ -594,7 +600,7 @@ public class Main {
 						String nomeRemove = entrada.nextLine();
 
 						for (int indice = 0; indice < Main.canal.size(); indice++) {
-							if (Main.canal.get(indice).getNomecanal().contentEquals(nomeRemove)) {
+							if (Main.canal.get(indice).getNome().contentEquals(nomeRemove)) {
 
 								for (int indice2 = 0; indice2 < Main.video.size(); indice2++) {
 									if (Main.video.get(indice2).getNome().contentEquals(nomeRemove))
@@ -739,7 +745,7 @@ public class Main {
 									String canalBusca = entrada.nextLine();
 
 									for (int indice = 0; indice < Main.canal.size(); indice++) {
-										if (Main.canal.get(indice).getNomecanal().contentEquals(canalBusca)) {
+										if (Main.canal.get(indice).getNome().contentEquals(canalBusca)) {
 											aux2++;
 											String nomeUsuario = Usuario.VerificaUsuario();
 											for(int indice2=0; indice2<50; indice2++) {
@@ -773,7 +779,7 @@ public class Main {
 						System.out.println(" ) Lista de Inscritos do Canal: "+ nomeCanal);
 						System.out.println("\n=============================================================\n");
 						for(int i = 0;i<Main.canal.size();i++){  
-							if(Main.canal.get(i).getNomecanal().contentEquals(nomeCanal)) {
+							if(Main.canal.get(i).getNome().contentEquals(nomeCanal)) {
 								for(int j =0; j<50; j++) {
 									n++;
 									System.out.println(n+" ) Nome Inscrito: "+ Main.canal.get(i).getInscrito().getLista()[j].getNome());

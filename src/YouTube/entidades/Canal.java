@@ -23,7 +23,7 @@ public class Canal extends Perfil{
 
 	public static int VerificarCanalInt(String auxiliar) {
 		for (int indice = 0; indice < Main.canal.size(); indice++) {
-			if (Main.canal.get(indice).getNomecanal().contentEquals(auxiliar)) {
+			if (Main.canal.get(indice).getNome().contentEquals(auxiliar)) {
 				Main.LimparTela();
 				System.out.printf("Canal Localizado!! \n\n");
 				return 1;
@@ -35,7 +35,7 @@ public class Canal extends Perfil{
 	}
 	public static boolean VerificarCanalBoolean(String auxiliar) {
 		for (int indice = 0; indice < Main.canal.size(); indice++) {
-			if (Main.canal.get(indice).getNomecanal().contentEquals(auxiliar)) {
+			if (Main.canal.get(indice).getNome().contentEquals(auxiliar)) {
 				Main.LimparTela();
 				System.out.printf("Canal já existente, escolha outro nome!! \n\n");
 				return true;
@@ -45,21 +45,21 @@ public class Canal extends Perfil{
 		System.out.printf("Nome do Canal disponível!! \n\n");
 		return false;
 	}
+	public static boolean VerificarEmailCanalBoolean(String auxiliar) {
+		for (int indice = 0; indice < Main.canal.size(); indice++) {
+			if (Main.canal.get(indice).getEmail().contentEquals(auxiliar)) {
+				Main.LimparTela();
+				System.out.printf("E-mail já existente, escolha outro!! \n\n");
+				return true;
+			}
+		}
+		Main.LimparTela();
+		System.out.printf("E-mail disponível!! \n\n");
+		return false;
+	}
 
 	// --------------------- GETTERS E SETTERS ----------------------------
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-	public void setUsuario(Usuario usuario) {
-		this.usuario = usuario;
-	}
-	public String getNomecanal() {
-		return nomecanal;
-	}
-	public void setNomecanal(String nomecanal) {
-		this.nomecanal = nomecanal;
-	}
 	public String getDescricao() {
 		return descricao;
 	}

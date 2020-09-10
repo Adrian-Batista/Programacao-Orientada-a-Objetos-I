@@ -20,14 +20,14 @@ public class Inscricao{
 
 	public static void RealizarInscricao(String auxiliar) throws IOException {
 		for (int indice = 0; indice < Main.canal.size(); indice++) {
-			if (Main.canal.get(indice).getNomecanal().contentEquals(auxiliar)) {	
+			if (Main.canal.get(indice).getNome().contentEquals(auxiliar)) {	
 				System.out.println("Para se inscrever vamos lhe solicitar seus dados.");
 
 				String NomeUsuario = Usuario.VerificaUsuario();
 				
 				if(NomeUsuario != null) {
 					for(int i=0; i< Main.canal.size(); i++) {						
-						if(Main.canal.get(i).getNomecanal().contentEquals(auxiliar)) {
+						if(Main.canal.get(i).getNome().contentEquals(auxiliar)) {
 							for(int j=0; j<50; j++) {
 								if(Main.canal.get(i).getInscrito().getLista()[j].getNome().contentEquals(NomeUsuario)) {
 									System.out.println("Ops, você já é um inscrito do Canal!");

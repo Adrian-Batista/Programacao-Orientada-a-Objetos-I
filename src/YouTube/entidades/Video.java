@@ -60,19 +60,19 @@ public class Video{
 				System.out.println("\nTítulo : " + Main.video.get(i).getNome());
 				System.out.println("Link : " + Main.video.get(i).getLink());
 				System.out.println("Data : " + Main.video.get(i).getDate());
-				System.out.println("Canal : " + Main.video.get(i).getCanal().getNomecanal());
+				System.out.println("Canal : " + Main.video.get(i).getCanal().getNome());
 				System.out.println("Descrição : " + Main.video.get(i).getDescricao());				
 				System.out.println("\n=============================================================\n"); 
 			}
 		}else{
 			System.out.println("\n=============================================================\n"); 
 			for (int i = 0; i < Main.video.size(); i++) {
-				if (Main.video.get(i).getCanal().getNomecanal().contentEquals(auxiliar)) {
+				if (Main.video.get(i).getCanal().getNome().contentEquals(auxiliar)) {
 					cont++;
 					System.out.println("\nTítulo : " + Main.video.get(i).getNome());
 					System.out.println("Link : " + Main.video.get(i).getLink());
 					System.out.println("Data : " + Main.video.get(i).getDate());
-					System.out.println("Canal : " + Main.video.get(i).getCanal().getNomecanal());
+					System.out.println("Canal : " + Main.video.get(i).getCanal().getNome());
 					System.out.println("Descrição : " + Main.video.get(i).getDescricao());					
 					System.out.println("\n=============================================================\n"); 
 				}	
