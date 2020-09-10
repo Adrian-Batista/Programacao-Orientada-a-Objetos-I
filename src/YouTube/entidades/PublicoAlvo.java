@@ -2,7 +2,7 @@ package YouTube.entidades;
 
 public class PublicoAlvo {
 
-	private String opcao = "NULL";
+	private String opcao = null;
 	private String opc1 = "Crianças";
 	private String opc2 = "Jovens";
 	private String opc3 = "Adultos";

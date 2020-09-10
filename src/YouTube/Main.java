@@ -588,25 +588,21 @@ public class Main {
 
 					case 4:
 						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						/*Main.LimparTela();
-						int auxiliar = 0;
+						int contador = 0;
 						int aux = 0;
 						System.out.printf("Digite o nome do Canal a ser removido:  \n");
 						String nomeRemove = entrada.nextLine();
 
-						for (int indice = 0; indice < Main.canais.size(); indice++) {
-							if (Main.canais.get(indice).getNome().contentEquals(nomeRemove)) {
+						for (int indice = 0; indice < Main.canal.size(); indice++) {
+							if (Main.canal.get(indice).getNomecanal().contentEquals(nomeRemove)) {
 
-								for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
-									if (Main.videos.get(indice2).getNome().contentEquals(nomeRemove))
-										auxiliar++;
+								for (int indice2 = 0; indice2 < Main.video.size(); indice2++) {
+									if (Main.video.get(indice2).getNome().contentEquals(nomeRemove))
+										contador++;
 								}
 
 								do {
-									System.out.printf("O Canal " + nomeRemove +" possui " + auxiliar + " videos, deseja remove-los do Youtube?");
+									System.out.printf("O Canal " + nomeRemove +" possui " + contador + " videos, deseja remove-los do Youtube?");
 									System.out.println("\n============================================");
 									System.out.println("|  1 - Remover tudo                       | ");
 									System.out.println("|  2 - Voltar                             | ");
@@ -614,14 +610,14 @@ public class Main {
 									aux = entrada.nextInt();
 
 									if(aux==1) {
-										for (int indice2 = 0; indice2 < Main.videos.size(); indice2++) {
-											if (Main.videos.get(indice2).getNome().contentEquals(nomeRemove)) {
-												Main.videos.remove(indice2);
+										for (int indice2 = 0; indice2 < Main.video.size(); indice2++) {
+											if (Main.video.get(indice2).getNome().contentEquals(nomeRemove)) {
+												Main.video.remove(indice2);
 												indice2--;
 											}
 										}
 
-										Main.canais.remove(indice);
+										Main.canal.remove(indice);
 
 										Main.LimparTela();
 										System.out.printf("Canal removido com Sucesso!! \n");
@@ -630,7 +626,8 @@ public class Main {
 										break;
 									}
 									if(aux==2) {
-										return;
+										contador++;
+										break;
 									}
 
 								}while(aux !=1 || aux!=2);
@@ -638,12 +635,12 @@ public class Main {
 							}
 
 						}
-						if(auxiliar==0) {
+						if(contador==0) {
 							Main.LimparTela();
 							System.out.printf("Canal não localizado tente novamente!! \n");
 							System.in.read();
-							return;
-						}*/
+							break;
+						}
 						break;
 
 					case 5:
@@ -651,7 +648,6 @@ public class Main {
 						System.out.println("Em Desenvolvimento!!");
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
-						/*PublicoAlvo.AtualizarPublicoAlvo();*/
 						break;
 
 					case 0:					
@@ -716,15 +712,8 @@ public class Main {
 
 					case 2:
 						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						/*Main.LimparTela();
-						Inscricoes inscricao = new Inscricoes();
-						int opc = 0;
-						int aux = 0;
+						aux = 0;
 						int aux2 = 0;
-						int auxiliar = 0;
 
 
 						do {
@@ -749,18 +738,15 @@ public class Main {
 									System.out.printf("Digite o nome do Canal a ser localizado:  \n");
 									String canalBusca = entrada.nextLine();
 
-
-									for (int indice = 0; indice < Main.canais.size(); indice++) {
-										if (Main.canais.get(indice).getNome().contentEquals(canalBusca)) {
+									for (int indice = 0; indice < Main.canal.size(); indice++) {
+										if (Main.canal.get(indice).getNomecanal().contentEquals(canalBusca)) {
 											aux2++;
-											inscricao.setNomeCanalInscr(canalBusca);
-											Main.inscricoes.add(inscricao);
-											auxiliar = Main.canais.get(indice).getInscritos();
-											if(auxiliar>0) {
-												auxiliar--;	
+											String nomeUsuario = Usuario.VerificaUsuario();
+											for(int indice2=0; indice2<50; indice2++) {
+												if(Main.canal.get(indice).getInscrito().getLista()[indice2].getNome()==nomeUsuario) {
+													Main.canal.get(indice).getInscrito().getLista()[indice2]=null;
+												}
 											}
-											Main.canais.get(indice).setInscritos(auxiliar);
-
 											Main.LimparTela();
 											System.out.printf("Canal Localizado com Sucesso!! \n");
 											System.out.printf("Agora você não é mais inscrito deste Canal!! \n");
@@ -769,7 +755,6 @@ public class Main {
 											break;
 										}
 									}
-
 									if(aux2==0) {
 										Main.LimparTela();
 										System.out.printf("Canal não localizado tente novamente!! \n\n");
@@ -777,18 +762,18 @@ public class Main {
 										break;
 									}
 
-							}*/
+							}
 						break;
 						
 					case 3:
 						
 						int n =0;
 						System.out.println("Digite o Nome do Canal: ");
-						String auxiliar = entrada.nextLine();
-						System.out.println(" ) Lista de Inscritos do Canal: "+ auxiliar);
+						String nomeCanal = entrada.nextLine();
+						System.out.println(" ) Lista de Inscritos do Canal: "+ nomeCanal);
 						System.out.println("\n=============================================================\n");
 						for(int i = 0;i<Main.canal.size();i++){  
-							if(Main.canal.get(i).getNomecanal().contentEquals(auxiliar)) {
+							if(Main.canal.get(i).getNomecanal().contentEquals(nomeCanal)) {
 								for(int j =0; j<50; j++) {
 									n++;
 									System.out.println(n+" ) Nome Inscrito: "+ Main.canal.get(i).getInscrito().getLista()[j].getNome());
