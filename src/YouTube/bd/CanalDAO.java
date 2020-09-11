@@ -1,7 +1,6 @@
 package YouTube.bd;
 
 import java.util.List;
-
 import YouTube.entidades.Canal;
 
 public class CanalDAO implements InterfaceDAO<Canal>{
