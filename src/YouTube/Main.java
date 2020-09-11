@@ -458,7 +458,7 @@ public class Main {
 
 						Canal canais = new Canal(null, null, null, null, null);
 						PublicoAlvo P = new PublicoAlvo(null);
-						Inscricao I = new Inscricao(null, null, 0, null);
+						Inscricao I = new Inscricao(null);
 						canais.setPublico(P);
 						canais.setInscrito(I);
 
