@@ -5,6 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+//import steam.ihc.AlertaFX;
 
 public class UtilBD {
 	private static Connection conexao;
