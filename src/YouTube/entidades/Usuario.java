@@ -7,22 +7,18 @@ import YouTube.Main;
 
 public class Usuario extends Perfil{
 
-	private String senha;
-
-	public Usuario(String nome, String email, String senha) {
+	public Usuario(String nome, String email) {
 		super(nome, email);
-		this.senha = senha;
 	}
-	public Usuario(String nome, String email, int id, String senha) {
-		super(nome, email, id);
-		this.senha = senha;
+	public Usuario(String nome, String email, String senha) {
+		super(nome, email, senha);
 	}
 
 	static Scanner entrada = new Scanner(System.in);
 	
 	public static void AdicionarUsuario() throws IOException {
 		int aux;
-		Usuario usuario = new Usuario(null, null, null);
+		Perfil usuario = new Usuario(null, null, null);
 		do {
 			aux=0;
 			System.out.printf("Digite seu nome completo: ");
@@ -53,7 +49,7 @@ public class Usuario extends Perfil{
 		
 		System.out.printf("Digite uma senha: ");
 		usuario.setSenha(entrada.nextLine());
-		Main.usuario.add(usuario);
+		Main.usuario.add((Usuario) usuario);
 	}
 
 	public static void ListarUsuario(String auxiliar) {
@@ -82,7 +78,12 @@ public class Usuario extends Perfil{
 			}
 		}
 		return null;
-
+	}
+	
+	@Override
+	public void MetodoAbstrato() {
+		System.out.println("Método abstrato da classe Canal!");
+		
 	}
 	
 	// -------------------------------- GETTERS E SETTERS ----------------------------
@@ -105,15 +106,6 @@ public class Usuario extends Perfil{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
-	public String getSenha() {
-		return senha;
-	}
-
-
-	public void setSenha(String senha) {
-		this.senha = senha;
-	}		
+		
 
 }

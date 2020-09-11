@@ -57,6 +57,12 @@ public class Canal extends Perfil{
 		System.out.printf("E-mail disponível!! \n\n");
 		return false;
 	}
+	
+	@Override
+	public void MetodoAbstrato() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	// --------------------- GETTERS E SETTERS ----------------------------
 
@@ -80,6 +86,5 @@ public class Canal extends Perfil{
 	public void setInscrito(Inscricao inscrito) {
 		this.inscrito = inscrito;
 	}
-
 
 }

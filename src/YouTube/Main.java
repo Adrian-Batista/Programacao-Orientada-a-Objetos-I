@@ -78,7 +78,7 @@ public class Main {
 					System.out.println("| ( 3 ) - ATUALIZAR CADASTRO            |\n|\t\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                        |\n|\t\t\t\t\t|");
 					System.out.println("=========================================\n");
-
+					
 					System.out.println(" Escolha uma das opções: ");
 					opcao2 = entrada.nextInt();
 					entrada.nextLine();
@@ -444,7 +444,6 @@ public class Main {
 					System.out.println("| ( 2 ) - LISTAR CANAIS                 |\n|\t\t\t\t\t|");
 					System.out.println("| ( 3 ) - ATUALIZAR CANAL               |\n|\t\t\t\t\t|");
 					System.out.println("| ( 4 ) - REMOVER CANAL                 |\n|\t\t\t\t\t|");
-					System.out.println("| ( 5 ) - ATUALIZAR PÚBLICO ALVO        |\n|\t\t\t\t\t|");
 					System.out.println("| ( 0 ) - VOLTAR                        |\n|\t\t\t\t\t|");
 					System.out.println("=========================================\n");
 
@@ -649,12 +648,6 @@ public class Main {
 						}
 						break;
 
-					case 5:
-						Main.LimparTela();
-						System.out.println("Em Desenvolvimento!!");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
-						break;
 
 					case 0:					
 						break;
