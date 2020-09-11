@@ -11,11 +11,18 @@ public class Inscricao{
 	private int numeroInscritos;
 	Usuario[] lista = new Usuario[50];
 
-	public Inscricao(Canal dadosCanal, Usuario dadosUsuario, int numeroInscritos) {
+	public Inscricao(int numeroInscritos) {
+		super();
+		
+		this.numeroInscritos = numeroInscritos;
+	}
+	
+	public Inscricao(Canal dadosCanal, Usuario dadosUsuario, int numeroInscritos, Usuario[] lista) {
 		super();
 		this.dadosCanal = dadosCanal;
 		this.dadosUsuario = dadosUsuario;
 		this.numeroInscritos = numeroInscritos;
+		this.lista = lista;
 	}
 
 	public static void RealizarInscricao(String auxiliar) throws IOException {

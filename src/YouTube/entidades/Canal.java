@@ -60,7 +60,7 @@ public class Canal extends Perfil{
 	
 	@Override
 	public void MetodoAbstrato() {
-		// TODO Auto-generated method stub
+		System.out.println("Método abstrato da classe Canal!");
 		
 	}
 
