@@ -53,62 +53,62 @@ public class UtilBD {
 		try {
 			conexao = getConexao();
 			Statement stm = conexao.createStatement();
-			criarGenero(stm);
-			criarDesenvolvedora(stm);
-			criarJogo(stm);
-			criarGeneroJogo(stm);
-			criarJogador(stm);
+			criarInscricao(stm);
+			criarCanal(stm);
+			criarVideo(stm);
+			criarPublicoAlvo(stm);
+			criarUsuario(stm);
 			stm.close();
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não consegui criar o banco!");
 		}
 	}
 
-	private static void criarJogador(Statement stm) throws SQLException {
-		stm.executeUpdate("DROP TABLE IF EXISTS Jogador");
+	private static void criarUsuario(Statement stm) throws SQLException {
+		stm.executeUpdate("DROP TABLE IF EXISTS Usuario");
 		stm.executeUpdate(
-				"CREATE TABLE Jogador (Nome varchar(10) NOT NULL PRIMARY KEY, Email varchar(50) NOT NULL, Senha varchar(50) NOT NULL, Apelido varchar(30) NOT NULL);");
-		stm.executeUpdate("INSERT INTO Jogador VALUES ('admin','admin@gmail.com','admin','admin')");
+				"CREATE TABLE Usuario (Nome varchar(10) NOT NULL PRIMARY KEY, Email varchar(50) NOT NULL, Senha varchar(50) NOT NULL, Apelido varchar(30) NOT NULL);");
+		stm.executeUpdate("INSERT INTO Usuario VALUES ('admin','admin@gmail.com','admin','admin')");
 	}
 
-	private static void criarGeneroJogo(Statement stm) throws SQLException {
-		stm.executeUpdate("DROP TABLE IF EXISTS GeneroJogo");
-		stm.executeUpdate("CREATE TABLE GeneroJogo (NomeGenero varchar(10) NOT NULL," + "NomeJogo varchar(10) NOT NULL,"
-				+ "FOREIGN KEY (NomeGenero) REFERENCES Genero(Nome) ON DELETE CASCADE,"
-				+ "FOREIGN KEY (NomeJogo) REFERENCES Jogo(Nome) ON DELETE CASCADE,"
+	private static void criarPublicoAlvo(Statement stm) throws SQLException {
+		stm.executeUpdate("DROP TABLE IF EXISTS PublicoAlvo");
+		stm.executeUpdate("CREATE TABLE PublicoAlvo (NomeGenero varchar(10) NOT NULL," + "NomeJogo varchar(10) NOT NULL,"
+				+ "FOREIGN KEY (NomeGenero) REFERENCES Inscricao(Nome) ON DELETE CASCADE,"
+				+ "FOREIGN KEY (NomeJogo) REFERENCES Video(Nome) ON DELETE CASCADE,"
 				+ "CONSTRAINT PK_GENERO_JOGO PRIMARY KEY (NomeGenero,NomeJogo));");
-		stm.executeUpdate("INSERT INTO GeneroJogo VALUES ('FPS','Counter Strike')");
-		stm.executeUpdate("INSERT INTO GeneroJogo VALUES ('Ação','Counter Strike')");
-		stm.executeUpdate("INSERT INTO GeneroJogo VALUES ('Ação','GTA')");
-		stm.executeUpdate("INSERT INTO GeneroJogo VALUES ('Estratégia','Age of Empires')");
-		stm.executeUpdate("INSERT INTO GeneroJogo VALUES ('Ação','Age of Empires')");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('FPS','Counter Strike')");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Ação','Counter Strike')");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Ação','GTA')");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Estratégia','Age of Empires')");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Ação','Age of Empires')");
 	}
 
-	private static void criarJogo(Statement stm) throws SQLException {
-		stm.executeUpdate("DROP TABLE IF EXISTS Jogo");
-		stm.executeUpdate("CREATE TABLE Jogo (Nome varchar(10) NOT NULL PRIMARY KEY,"
-				+ "Preco double NOT NULL, Desenvolvedora varchar(10) NOT NULL,"
-				+ "FOREIGN KEY (Desenvolvedora) REFERENCES Desenvolvedora(Nome) ON DELETE CASCADE);");
-		stm.executeUpdate("INSERT INTO Jogo VALUES ('Counter Strike', 10, 'Valve')");
-		stm.executeUpdate("INSERT INTO Jogo VALUES ('GTA', 15, 'Rockstar')");
-		stm.executeUpdate("INSERT INTO Jogo VALUES ('Age of Empires', 20, 'Microsoft')");
+	private static void criarVideo(Statement stm) throws SQLException {
+		stm.executeUpdate("DROP TABLE IF EXISTS Video");
+		stm.executeUpdate("CREATE TABLE Video (Nome varchar(10) NOT NULL PRIMARY KEY,"
+				+ "Preco double NOT NULL, Canal varchar(10) NOT NULL,"
+				+ "FOREIGN KEY (Canal) REFERENCES Canal(Nome) ON DELETE CASCADE);");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Counter Strike', 10, 'Valve')");
+		stm.executeUpdate("INSERT INTO Video VALUES ('GTA', 15, 'Rockstar')");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Age of Empires', 20, 'Microsoft')");
 	}
 
-	private static void criarDesenvolvedora(Statement stm) throws SQLException {
-		stm.executeUpdate("DROP TABLE IF EXISTS Desenvolvedora");
-		stm.executeUpdate("CREATE TABLE Desenvolvedora (Nome varchar(10) NOT NULL PRIMARY KEY,"
+	private static void criarCanal(Statement stm) throws SQLException {
+		stm.executeUpdate("DROP TABLE IF EXISTS Canal");
+		stm.executeUpdate("CREATE TABLE Canal (Nome varchar(10) NOT NULL PRIMARY KEY,"
 				+ "Email varchar(10) NOT NULL, Senha varchar(50) NOT NULL);");
-		stm.executeUpdate("INSERT INTO Desenvolvedora VALUES ('Valve','contato@valve.com', 'valve')");
-		stm.executeUpdate("INSERT INTO Desenvolvedora VALUES ('Rockstar','contato@rockstar.com', 'rockstar')");
-		stm.executeUpdate("INSERT INTO Desenvolvedora VALUES ('Microsoft','contato@microsoft.com', 'microsoft')");
+		stm.executeUpdate("INSERT INTO Canal VALUES ('Valve','contato@valve.com', 'valve')");
+		stm.executeUpdate("INSERT INTO Canal VALUES ('Rockstar','contato@rockstar.com', 'rockstar')");
+		stm.executeUpdate("INSERT INTO Canal VALUES ('Microsoft','contato@microsoft.com', 'microsoft')");
 	}
 
-	private static void criarGenero(Statement stm) throws SQLException {
-		stm.executeUpdate("DROP TABLE IF EXISTS Genero");
-		stm.executeUpdate("CREATE TABLE Genero (Nome varchar(10) NOT NULL PRIMARY KEY);");
-		stm.executeUpdate("INSERT INTO Genero VALUES ('Ação')");
-		stm.executeUpdate("INSERT INTO Genero VALUES ('Estratégia')");
-		stm.executeUpdate("INSERT INTO Genero VALUES ('FPS')");
+	private static void criarInscricao(Statement stm) throws SQLException {
+		stm.executeUpdate("DROP TABLE IF EXISTS Inscricao");
+		stm.executeUpdate("CREATE TABLE Inscricao (Nome varchar(10) NOT NULL PRIMARY KEY);");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Ação')");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Estratégia')");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('FPS')");
 	}
 
 	public static void alterarBD(String sql) throws SQLException {
