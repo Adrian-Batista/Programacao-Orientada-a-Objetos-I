@@ -67,48 +67,48 @@ public class UtilBD {
 	private static void criarUsuario(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS Usuario");
 		stm.executeUpdate(
-				"CREATE TABLE Usuario (Nome varchar(10) NOT NULL PRIMARY KEY, Email varchar(50) NOT NULL, Senha varchar(50) NOT NULL, Apelido varchar(30) NOT NULL);");
-		stm.executeUpdate("INSERT INTO Usuario VALUES ('admin','admin@gmail.com','admin','admin')");
+				"CREATE TABLE Usuario (Nome varchar(10) NOT NULL PRIMARY KEY, Email varchar(30) NOT NULL, Senha varchar(50) NOT NULL);");
+		stm.executeUpdate("INSERT INTO Usuario VALUES ('usuario','usuario.teste@gmail.com','123')");
+		stm.executeUpdate("INSERT INTO Usuario VALUES ('usuario2','usuario2.teste@gmail.com','321')");
 	}
 
 	private static void criarPublicoAlvo(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS PublicoAlvo");
-		stm.executeUpdate("CREATE TABLE PublicoAlvo (NomeGenero varchar(10) NOT NULL," + "NomeJogo varchar(10) NOT NULL,"
-				+ "FOREIGN KEY (NomeGenero) REFERENCES Inscricao(Nome) ON DELETE CASCADE,"
-				+ "FOREIGN KEY (NomeJogo) REFERENCES Video(Nome) ON DELETE CASCADE,"
-				+ "CONSTRAINT PK_GENERO_JOGO PRIMARY KEY (NomeGenero,NomeJogo));");
-		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('FPS','Counter Strike')");
-		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Ação','Counter Strike')");
-		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Ação','GTA')");
-		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Estratégia','Age of Empires')");
-		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Ação','Age of Empires')");
+		stm.executeUpdate("CREATE TABLE PublicoAlvo (TipoPublico varchar(10) NOT NULL," + "NomeCanal varchar(10) NOT NULL,"
+				+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE;");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal','Todos')");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal 2','Jovens')");
 	}
 
 	private static void criarVideo(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS Video");
-		stm.executeUpdate("CREATE TABLE Video (Nome varchar(10) NOT NULL PRIMARY KEY,"
-				+ "Preco double NOT NULL, Canal varchar(10) NOT NULL,"
+		stm.executeUpdate("CREATE TABLE Video (Nome varchar(20) NOT NULL PRIMARY KEY,"
+				+ "Link varchar(30) NOT NULL, Date varchar(10) NOT NULL, Canal varchar(10) NOT NULL, Descricao varchar(100) NOT NULL, Preco double NOT NULL,"
 				+ "FOREIGN KEY (Canal) REFERENCES Canal(Nome) ON DELETE CASCADE);");
-		stm.executeUpdate("INSERT INTO Video VALUES ('Counter Strike', 10, 'Valve')");
-		stm.executeUpdate("INSERT INTO Video VALUES ('GTA', 15, 'Rockstar')");
-		stm.executeUpdate("INSERT INTO Video VALUES ('Age of Empires', 20, 'Microsoft')");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 1', https:, '11/09/2020', 'Canal', 'Seja bem vindo ao vídeo 1')");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 2', https:/, '11/09/2020'), 'Canal', 'Seja bem vindo ao vídeo 2'");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 3', https://, '12/09/2020', 'Canal', 'Seja bem vindo ao vídeo 3')");
 	}
 
 	private static void criarCanal(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS Canal");
 		stm.executeUpdate("CREATE TABLE Canal (Nome varchar(10) NOT NULL PRIMARY KEY,"
-				+ "Email varchar(10) NOT NULL, Senha varchar(50) NOT NULL);");
-		stm.executeUpdate("INSERT INTO Canal VALUES ('Valve','contato@valve.com', 'valve')");
-		stm.executeUpdate("INSERT INTO Canal VALUES ('Rockstar','contato@rockstar.com', 'rockstar')");
-		stm.executeUpdate("INSERT INTO Canal VALUES ('Microsoft','contato@microsoft.com', 'microsoft')");
+				+ "Email varchar(30) NOT NULL, Descricao varchar(100) NOT NULL, PublicoAlvo varchar(10) NOT NULL, Inscricao int NOT NULL,"
+				+ "FOREIGN KEY (PublicoAlvo) REFERENCES PublicoAlvo(Nome) ON DELETE CASCADE;");
+		stm.executeUpdate("INSERT INTO Canal VALUES ('Canal','canal.teste@gmail.com', 'Seja bem vindo ao Canal', 'Todos', '1')");
+		stm.executeUpdate("INSERT INTO Canal VALUES ('Canal 2','canal2.teste@gmail.com', 'Seja bem vindo ao Canal 2', 'Jovens', '2')");
+		
 	}
 
 	private static void criarInscricao(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS Inscricao");
-		stm.executeUpdate("CREATE TABLE Inscricao (Nome varchar(10) NOT NULL PRIMARY KEY);");
-		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Ação')");
-		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Estratégia')");
-		stm.executeUpdate("INSERT INTO Inscricao VALUES ('FPS')");
+		stm.executeUpdate("CREATE TABLE Inscricao (Canal varchar(10) NOT NULL PRIMARY KEY),"
+				+ "Nome varchar(10) NOT NULL,"
+				+ "FOREIGN KEY (Canal) REFERENCES Canal(Nome) ON DELETE CASCADE,"
+				+ "FOREIGN KEY (Nome) REFERENCES Usuario(Nome) ON DELETE CASCADE;");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal', 'usuario')");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2', 'usuario')");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2'), 'usuario2' ");
 	}
 
 	public static void alterarBD(String sql) throws SQLException {
