@@ -14,7 +14,6 @@ public class Inscricao{
 	public Inscricao(Usuario[] lista) {
 		super();
 		this.lista = lista;
-		;
 	}
 	
 	public Inscricao(Canal dadosCanal, Usuario dadosUsuario, int numeroInscritos) {

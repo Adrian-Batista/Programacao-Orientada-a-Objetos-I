@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import YouTube.bd.UtilBD;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Inscricao;
 import YouTube.entidades.PublicoAlvo;
@@ -18,6 +19,7 @@ public class Main {
 	public static List<Canal> canal = new ArrayList<Canal>();
 
 	public static void main(String[] args) throws IOException {
+		UtilBD.getConexao();
 		int opcao = 0;
 		int opcao2 = 0;
 		int opcao3 = 0;
