@@ -10,6 +10,7 @@ import java.sql.Statement;
 public class UtilBD {
 	private static Connection conexao;
 
+	@SuppressWarnings("exports")
 	public static Connection getConexao() {
 		try {
 
@@ -21,6 +22,7 @@ public class UtilBD {
 
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não consegui abrir a conexão com o banco!");
+			System.out.println("Não consegui abrir a conexão com o banco!");
 		}
 
 		return conexao;
@@ -32,8 +34,10 @@ public class UtilBD {
 			conexao = DriverManager.getConnection("jdbc:sqlite:banco.sqlite");
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não consegui abrir a conexão com o banco!");
+			System.out.println("Não consegui abrir a conexão com o banco!");
 		} catch (ClassNotFoundException e2) {
 			//AlertaFX.erro("A biblioteca do SQLite não está funcionando corretamente!");
+			System.out.println("A biblioteca do SQLite não está funcionando corretamente!");
 		}
 	}
 
@@ -46,6 +50,7 @@ public class UtilBD {
 				conexao.close();
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não consegui fechar a conexão com o banco!");
+			System.out.println("Não consegui fechar a conexão com o banco!");
 		}
 	}
 
@@ -61,6 +66,7 @@ public class UtilBD {
 			stm.close();
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não consegui criar o banco!");
+			System.out.println("Não consegui criar o banco!");
 		}
 	}
 
@@ -119,12 +125,13 @@ public class UtilBD {
 		stm.close();
 	}
 
+	@SuppressWarnings("exports")
 	public static ResultSet consultarBD(String sql) throws SQLException {
 		Connection bd = UtilBD.getConexao();
 		Statement stm = bd.createStatement();
 		ResultSet retorno = stm.executeQuery(sql);
 		System.out.println("Executei: " + sql);
-//		stm.close();
+		stm.close();
 		return retorno;
 	}
 }
