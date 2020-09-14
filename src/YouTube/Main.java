@@ -8,6 +8,7 @@ import java.util.Scanner;
 import YouTube.bd.UtilBD;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Inscricao;
+import YouTube.entidades.Perfil;
 import YouTube.entidades.PublicoAlvo;
 import YouTube.entidades.Usuario;
 import YouTube.entidades.Video;
@@ -19,8 +20,11 @@ public class Main {
 	public static List<Canal> canal = new ArrayList<Canal>();
 
 	public static void main(String[] args) throws IOException {
-		UtilBD . initBD ();
-		UtilBD.fecharConexao();
+		UtilBD utilBD = new UtilBD();
+		utilBD.getConexao();
+		utilBD.initBD();
+		utilBD.fecharConexao();
+		
 		int opcao = 0;
 		int opcao2 = 0;
 		int opcao3 = 0;
@@ -56,7 +60,8 @@ public class Main {
 
 			case 1:
 				Main.LimparTela();
-				Usuario.AdicionarUsuario();
+				Perfil criaUsuario = new Usuario(null, null, null);
+				Usuario.AdicionarUsuario(criaUsuario);
 				System.out.printf("\nDados Armazenados com sucesso!! \n");
 				System.out.println("Pressione Enter Novamente...");
 				System.in.read();
@@ -459,11 +464,11 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 
-						Canal canais = new Canal(null, null, null, null, null);
+						Perfil canais = new Canal(null, null, null, null, null);
 						PublicoAlvo P = new PublicoAlvo(null);
 						Inscricao I = new Inscricao(null);
-						canais.setPublico(P);
-						canais.setInscrito(I);
+						((Canal) canais).setPublico(P);
+						((Canal) canais).setInscrito(I);
 
 						do {
 							System.out.printf("Digite o nome do canal: ");
@@ -476,7 +481,7 @@ public class Main {
 						}while(Canal.VerificarEmailCanalBoolean(canais.getEmail()) == true);
 						
 						System.out.printf("Digite uma descrição para este Canal: ");
-						canais.setDescricao(entrada.nextLine());
+						((Canal) canais).setDescricao(entrada.nextLine());
 
 						int escolha = 0;
 						Main.LimparTela();
@@ -508,8 +513,8 @@ public class Main {
 						if(escolha==5) 
 							publico.setOpcao(publico.getOpc5());
 
-						canais.getPublico().setOpcao(publico.getOpcao());
-						canal.add(canais);
+						((Canal) canais).getPublico().setOpcao(publico.getOpcao());
+						canal.add((Canal) canais);
 
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");

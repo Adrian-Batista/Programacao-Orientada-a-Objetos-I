@@ -16,15 +16,15 @@ public class Usuario extends Perfil{
 
 	static Scanner entrada = new Scanner(System.in);
 	
-	public static void AdicionarUsuario() throws IOException {
+	public static void AdicionarUsuario(Perfil criaUsuario) throws IOException {
 		int aux;
-		Perfil usuario = new Usuario(null, null, null);
+		
 		do {
 			aux=0;
 			System.out.printf("Digite seu nome completo: ");
-			usuario.setNome(entrada.nextLine());
+			criaUsuario.setNome(entrada.nextLine());
 			for(int i=0; i<Main.usuario.size(); i++) {
-				if(Main.usuario.get(i).getNome().contentEquals(usuario.getNome())) {
+				if(Main.usuario.get(i).getNome().contentEquals(criaUsuario.getNome())) {
 					aux++;
 					Main.LimparTela();
 					System.out.println("Nome ja existente escolha outro..\n");
@@ -36,9 +36,9 @@ public class Usuario extends Perfil{
 		do {
 			aux=0;
 			System.out.printf("Digite seu e-mail: ");
-			usuario.setEmail(entrada.nextLine());
+			criaUsuario.setEmail(entrada.nextLine());
 			for(int i=0; i<Main.usuario.size(); i++) {
-				if(Main.usuario.get(i).getEmail().contentEquals(usuario.getEmail())) {
+				if(Main.usuario.get(i).getEmail().contentEquals(criaUsuario.getEmail())) {
 					aux++;
 					Main.LimparTela();
 					System.out.println("E-mail ja existente escolha outro..\n");
@@ -48,8 +48,8 @@ public class Usuario extends Perfil{
 		}while(aux!=0);
 		
 		System.out.printf("Digite uma senha: ");
-		usuario.setSenha(entrada.nextLine());
-		Main.usuario.add((Usuario) usuario);
+		criaUsuario.setSenha(entrada.nextLine());
+		Main.usuario.add((Usuario) criaUsuario);
 	}
 
 	public static void ListarUsuario(String auxiliar) {

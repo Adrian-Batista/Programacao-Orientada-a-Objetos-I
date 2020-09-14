@@ -63,6 +63,7 @@ public class UtilBD {
 			criarVideo(stm);
 			criarPublicoAlvo(stm);
 			criarUsuario(stm);
+			stm.executeUpdate("PRAGMA foreign_keys=ON");
 			stm.close();
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não consegui criar o banco!");
