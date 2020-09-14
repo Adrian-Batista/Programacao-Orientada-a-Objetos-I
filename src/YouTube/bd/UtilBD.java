@@ -58,7 +58,7 @@ public class UtilBD {
 		try {
 			conexao = getConexao();
 			Statement stm = conexao.createStatement();
-			//criarInscricao(stm);
+			criarInscricao(stm);
 			criarCanal(stm);
 			criarVideo(stm);
 			criarPublicoAlvo(stm);
@@ -129,13 +129,16 @@ public class UtilBD {
 
 	private static void criarInscricao(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS Inscricao");
-		stm.executeUpdate("CREATE TABLE Inscricao (Canal varchar(10) NOT NULL PRIMARY KEY),"
-				+ "Nome varchar(10) NOT NULL,"
-				+ "FOREIGN KEY (Canal) REFERENCES Canal(Nome) ON DELETE CASCADE,"
-				+ "FOREIGN KEY (Nome) REFERENCES Usuario(Nome) ON DELETE CASCADE;");
+		stm.executeUpdate("CREATE TABLE Inscricao ("
+				+ "NomeCanal VARCHAR(10) NOT NULL,"
+				+ "NomeUsuario VARCHAR(10) NOT NULL,"
+				+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE,"
+				+ "FOREIGN KEY (NomeUsuario) REFERENCES Usuario(Nome) ON DELETE CASCADE"
+				+ ");"
+		);
 		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal', 'usuario')");
 		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2', 'usuario')");
-		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2'), 'usuario2' ");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2', 'usuario2')");
 	}
 
 	public static void alterarBD(String sql) throws SQLException {
