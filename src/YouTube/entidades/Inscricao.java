@@ -6,20 +6,18 @@ import YouTube.Main;
 
 public class Inscricao{
 
-	private Canal dadosCanal;
-	private Usuario dadosUsuario;
 	private int numeroInscritos;
 	Usuario[] lista = new Usuario[50];
 
-	public Inscricao(Usuario[] lista) {
+	public Inscricao(Usuario[] lista, int numeroInscritos) {
 		super();
 		this.lista = lista;
+		this.numeroInscritos = numeroInscritos;
 	}
 	
-	public Inscricao(Canal dadosCanal, Usuario dadosUsuario, int numeroInscritos) {
+	public Inscricao(int numeroInscritos) {
 		super();
-		this.dadosCanal = dadosCanal;
-		this.dadosUsuario = dadosUsuario;
+		this.lista = null;
 		this.numeroInscritos = numeroInscritos;
 	}
 
@@ -63,21 +61,6 @@ public class Inscricao{
 	}
 	// ----------------------------------- GETTERS E SETTERS ------------------------------------------
 
-	public Canal getDadosCanal() {
-		return dadosCanal;
-	}
-
-	public void setDadosCanal(Canal dadosCanal) {
-		this.dadosCanal = dadosCanal;
-	}
-
-	public Usuario getDadosUsuario() {
-		return dadosUsuario;
-	}
-
-	public void setDadosUsuario(Usuario dadosUsuario) {
-		this.dadosUsuario = dadosUsuario;
-	}
 
 	public int getNumeroInscritos() {
 		return numeroInscritos;

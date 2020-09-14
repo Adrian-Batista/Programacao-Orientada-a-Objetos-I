@@ -20,10 +20,8 @@ public class Main {
 	public static List<Canal> canal = new ArrayList<Canal>();
 
 	public static void main(String[] args) throws IOException {
-		UtilBD utilBD = new UtilBD();
-		utilBD.getConexao();
-		utilBD.initBD();
-		utilBD.fecharConexao();
+		UtilBD.initBD();
+		UtilBD.fecharConexao();
 		
 		int opcao = 0;
 		int opcao2 = 0;
@@ -466,7 +464,7 @@ public class Main {
 
 						Perfil canais = new Canal(null, null, null, null, null);
 						PublicoAlvo P = new PublicoAlvo(null);
-						Inscricao I = new Inscricao(null);
+						Inscricao I = new Inscricao(null, 0);
 						((Canal) canais).setPublico(P);
 						((Canal) canais).setInscrito(I);
 
