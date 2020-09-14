@@ -58,9 +58,9 @@ public class UtilBD {
 		try {
 			conexao = getConexao();
 			Statement stm = conexao.createStatement();
-			criarInscricao(stm);
-			criarCanal(stm);
-			criarVideo(stm);
+			//criarInscricao(stm);
+			//criarCanal(stm);
+			//criarVideo(stm);
 			criarPublicoAlvo(stm);
 			criarUsuario(stm);
 			stm.executeUpdate("PRAGMA foreign_keys=ON");
@@ -71,20 +71,26 @@ public class UtilBD {
 		}
 	}
 
-	private static void criarUsuario(Statement stm) throws SQLException {
+	private static void criarUsuario(Statement stm) throws SQLException {		
 		stm.executeUpdate("DROP TABLE IF EXISTS Usuario");
-		stm.executeUpdate(
-				"CREATE TABLE Usuario (Nome varchar(10) NOT NULL PRIMARY KEY, Email varchar(30) NOT NULL, Senha varchar(50) NOT NULL);");
-		stm.executeUpdate("INSERT INTO Usuario VALUES ('usuario','usuario.teste@gmail.com','123')");
-		stm.executeUpdate("INSERT INTO Usuario VALUES ('usuario2','usuario2.teste@gmail.com','321')");
-	}
+		stm.executeUpdate("CREATE TABLE Usuario ("
+			+ "Nome VARCHAR(10) PRIMARY KEY NOT NULL,"
+			+ "Email VARCHAR(30) NOT NULL,"
+			+ "senha VARCHAR(20) NOT NULL"
+			+ ");"
+		);
+		stm.executeUpdate("INSERT INTO Usuario VALUES ('usuario','usuario.teste@gmail.com','123');");
+		stm.executeUpdate("INSERT INTO Usuario VALUES ('usuario2','usuario2.teste@gmail.com','321');");
+}	
 
 	private static void criarPublicoAlvo(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS PublicoAlvo");
 		stm.executeUpdate("CREATE TABLE PublicoAlvo (TipoPublico varchar(10) NOT NULL," + "NomeCanal varchar(10) NOT NULL,"
 				+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE;");
 		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal','Todos')");
-		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal 2','Jovens')");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal 2','Jovens')"
+				
+	);
 	}
 
 	private static void criarVideo(Statement stm) throws SQLException {
