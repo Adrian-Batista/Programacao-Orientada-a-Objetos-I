@@ -60,7 +60,7 @@ public class UtilBD {
 			Statement stm = conexao.createStatement();
 			//criarInscricao(stm);
 			//criarCanal(stm);
-			//criarVideo(stm);
+			criarVideo(stm);
 			criarPublicoAlvo(stm);
 			criarUsuario(stm);
 			stm.executeUpdate("PRAGMA foreign_keys=ON");
@@ -97,12 +97,18 @@ public class UtilBD {
 
 	private static void criarVideo(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS Video");
-		stm.executeUpdate("CREATE TABLE Video (Nome varchar(20) NOT NULL PRIMARY KEY,"
-				+ "Link varchar(30) NOT NULL, Date varchar(10) NOT NULL, Canal varchar(10) NOT NULL, Descricao varchar(100) NOT NULL, Preco double NOT NULL,"
-				+ "FOREIGN KEY (Canal) REFERENCES Canal(Nome) ON DELETE CASCADE);");
-		stm.executeUpdate("INSERT INTO Video VALUES ('Video 1', https:, '11/09/2020', 'Canal', 'Seja bem vindo ao vídeo 1')");
-		stm.executeUpdate("INSERT INTO Video VALUES ('Video 2', https:/, '11/09/2020'), 'Canal', 'Seja bem vindo ao vídeo 2'");
-		stm.executeUpdate("INSERT INTO Video VALUES ('Video 3', https://, '12/09/2020', 'Canal', 'Seja bem vindo ao vídeo 3')");
+		stm.executeUpdate("CREATE TABLE Video ("
+				+ "Nome VARCHAR(20) PRIMARY KEY NOT NULL,"
+				+ "Link VARCHAR(30) NOT NULL,"
+				+ "Date VARCHAR(10) NOT NULL,"
+				+ "NomeCanal VARCHAR(10) NOT NULL,"
+				+ "Descricao VARCAHAR(100) NOT NULL"
+				+ ");"
+				
+		);
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 1', 'https:', '11/09/2020', 'Canal', 'Seja bem vindo ao vídeo 1');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 2', 'https:/', '11/09/2020', 'Canal', 'Seja bem vindo ao vídeo 2');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 3', 'https://', '12/09/2020', 'Canal', 'Seja bem vindo ao vídeo 3');");
 	}
 
 	private static void criarCanal(Statement stm) throws SQLException {
