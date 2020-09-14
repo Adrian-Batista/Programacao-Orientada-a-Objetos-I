@@ -85,12 +85,14 @@ public class UtilBD {
 
 	private static void criarPublicoAlvo(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS PublicoAlvo");
-		stm.executeUpdate("CREATE TABLE PublicoAlvo (TipoPublico varchar(10) NOT NULL," + "NomeCanal varchar(10) NOT NULL,"
-				+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE;");
+		stm.executeUpdate("CREATE TABLE PublicoAlvo ("
+				+ "NomeCanal VARCHAR(10) NOT NULL,"
+				+ "TipoPublico VARCHAR(10) NOT NULL,"
+				+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE"
+				+ ");"
+		);
 		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal','Todos')");
-		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal 2','Jovens')"
-				
-	);
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal 2','Jovens')");
 	}
 
 	private static void criarVideo(Statement stm) throws SQLException {
