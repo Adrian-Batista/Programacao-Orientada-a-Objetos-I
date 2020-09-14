@@ -59,7 +59,7 @@ public class UtilBD {
 			conexao = getConexao();
 			Statement stm = conexao.createStatement();
 			//criarInscricao(stm);
-			//criarCanal(stm);
+			criarCanal(stm);
 			criarVideo(stm);
 			criarPublicoAlvo(stm);
 			criarUsuario(stm);
@@ -113,9 +113,15 @@ public class UtilBD {
 
 	private static void criarCanal(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS Canal");
-		stm.executeUpdate("CREATE TABLE Canal (Nome varchar(10) NOT NULL PRIMARY KEY,"
-				+ "Email varchar(30) NOT NULL, Descricao varchar(100) NOT NULL, PublicoAlvo varchar(10) NOT NULL, Inscricao int NOT NULL,"
-				+ "FOREIGN KEY (PublicoAlvo) REFERENCES PublicoAlvo(Nome) ON DELETE CASCADE;");
+		stm.executeUpdate("CREATE TABLE Canal ("
+				+ "Nome VARCHAR(10) NOT NULL PRIMARY KEY,"
+				+ "Email VARCHAR(30) NOT NULL,"
+				+ "Descricao VARCHAR(100) NOT NULL,"
+				+ "PublicoAlvo VARCHAR(10) NOT NULL,"
+				+ "Inscricao INTERGER NOT NULL,"
+				+ "FOREIGN KEY (PublicoAlvo) REFERENCES PublicoAlvo(Nome) ON DELETE CASCADE"
+				+ ");"
+		);
 		stm.executeUpdate("INSERT INTO Canal VALUES ('Canal','canal.teste@gmail.com', 'Seja bem vindo ao Canal', 'Todos', '1')");
 		stm.executeUpdate("INSERT INTO Canal VALUES ('Canal 2','canal2.teste@gmail.com', 'Seja bem vindo ao Canal 2', 'Jovens', '2')");
 		
