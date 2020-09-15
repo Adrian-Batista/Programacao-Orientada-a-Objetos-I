@@ -62,7 +62,6 @@ public class Main {
 				Main.LimparTela();
 				Perfil criaUsuario = new Usuario(null, null, null);
 				
-				
 				do {
 					aux=0;
 					System.out.printf("Digite seu nome completo: ");
@@ -496,11 +495,12 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 
-						Perfil canais = new Canal(null, null, null, null, null);
+						Canal canais = new Canal(null, null, null, null, null);
 						PublicoAlvo P = new PublicoAlvo(null);
 						Inscricao I = new Inscricao(null, 0);
-						((Canal) canais).setPublico(P);
-						((Canal) canais).setInscrito(I);
+						I.setLista(Inscricao.CarregaVetor());
+						(canais).setPublico(P);
+						(canais).setInscrito(I);
 
 						do {
 							System.out.printf("Digite o nome do canal: ");
@@ -545,8 +545,8 @@ public class Main {
 						if(escolha==5) 
 							publico.setOpcao(publico.getOpc5());
 
-						((Canal) canais).getPublico().setOpcao(publico.getOpcao());
-						canal.add((Canal) canais);
+						(canais).getPublico().setOpcao(publico.getOpcao());
+						canal.add(canais);
 
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");
@@ -561,7 +561,7 @@ public class Main {
 							System.out.println("E-mail : " + canal.get(i).getEmail());
 							System.out.println("Descrição : " + canal.get(i).getDescricao());
 							System.out.println("Público Alvo : " + canal.get(i).getPublico().getOpcao());
-							System.out.println("Inscritos : " + canal.get(i).getInscrito().getNumeroInscritos());
+							System.out.println("Inscritos : " + canal.get(i).getInscrito().getLista().length);
 							System.out.println("\n=============================================================\n"); 
 						}
 						System.out.println("Pressione Enter Novamente...");
@@ -580,7 +580,6 @@ public class Main {
 									auxiliar = entrada.nextLine();
 								}while(Canal.VerificarCanalBoolean(auxiliar) == true);
 								canal.get(i).setNome(auxiliar);
-								
 								
 								do {
 									System.out.printf("Digite um e-mail válido: ");
@@ -743,9 +742,41 @@ public class Main {
 
 						case 1:
 							System.out.printf("Digite o nome do Canal a ser localizado:  \n");
-							String canalBusca = entrada.nextLine();
-							Inscricao.RealizarInscricao(canalBusca);		
-							break;
+							String auxiliar = entrada.nextLine();
+							for (int indice = 0; indice < Main.canal.size(); indice++) {
+								if (Main.canal.get(indice).getNome().contentEquals(auxiliar)) {	
+									System.out.println("Para se inscrever vamos lhe solicitar seus dados.");
+
+									String NomeUsuario = Usuario.VerificaUsuario();
+									
+									if(NomeUsuario != null) {
+										for(int i=0; i< Main.canal.size(); i++) {
+											if(Main.canal.get(i).getNome().contentEquals(auxiliar)) {
+												for(int j =0; j<canal.get(i).getInscrito().getLista().length;j++) {
+													if(canal.get(i).getInscrito().getLista()[j].getNome()==null) {
+														canal.get(i).getInscrito().getLista()[j].setNome(NomeUsuario);
+														System.out.println("Dados armazenados com sucesso!");
+														System.in.read();
+														break;
+													}
+												}
+											}
+										}
+									}
+									if(NomeUsuario ==null) {
+										Main.LimparTela();
+										System.out.printf("Dados Incorretos refaça a operação!! \n\n");
+										System.in.read();
+										break;
+									}
+								}else {
+									Main.LimparTela();
+									System.out.println("Não Localizado!");
+									System.in.read();
+									break;
+								}
+							}
+							
 						}
 						break;
 
@@ -781,17 +812,16 @@ public class Main {
 										if (Main.canal.get(indice).getNome().contentEquals(canalBusca)) {
 											aux2++;
 											String nomeUsuario = Usuario.VerificaUsuario();
-											for(int indice2=0; indice2<50; indice2++) {
-												if(Main.canal.get(indice).getInscrito().getLista()[indice2].getNome()==nomeUsuario) {
-													Main.canal.get(indice).getInscrito().getLista()[indice2]=null;
+											for(int i= 0; i < canal.get(indice).getInscrito().getLista().length; i++) {
+												if(canal.get(indice).getInscrito().getLista()[i].getNome().equals(nomeUsuario)) {
+													canal.get(indice).getInscrito().getLista()[i].setNome(null);
+													System.out.println("Dados removidos!");
+													System.in.read();
+													break;
 												}
+												
 											}
-											Main.LimparTela();
-											System.out.printf("Canal Localizado com Sucesso!! \n");
-											System.out.printf("Agora você não é mais inscrito deste Canal!! \n");
-											System.out.println("Pressione Enter Novamente...\n\n");
-											System.in.read();
-											break;
+											
 										}
 									}
 									if(aux2==0) {
@@ -813,8 +843,11 @@ public class Main {
 						System.out.println("\n=============================================================\n");
 						for(int i = 0;i<Main.canal.size();i++){  
 							if(Main.canal.get(i).getNome().contentEquals(nomeCanal)) {
-								for(int j =0; j<50; j++) {
+								for(int j =0; j<canal.get(i).getInscrito().getLista().length; j++) {
 									n++;
+									if(Main.canal.get(i).getInscrito().getLista()[j].getNome()==null) {
+										break;
+									}
 									System.out.println(n+" ) Nome Inscrito: "+ Main.canal.get(i).getInscrito().getLista()[j].getNome());
 								}
 							}

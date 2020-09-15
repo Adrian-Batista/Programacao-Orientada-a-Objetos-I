@@ -42,13 +42,13 @@ public class Usuario extends Perfil{
 		}
 		return null;
 	}
-	
+
 	@Override
 	public void MetodoAbstrato() {
 		System.out.println("Método abstrato da classe Canal!");
-		
+
 	}
-	
+
 	// -------------------------------- GETTERS E SETTERS ----------------------------
 
 	public String getNome() {
@@ -69,6 +69,6 @@ public class Usuario extends Perfil{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-		
+
 
 }

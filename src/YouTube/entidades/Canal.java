@@ -83,8 +83,8 @@ public class Canal extends Perfil{
 		return inscrito;
 	}
 
-	public void setInscrito(Inscricao inscrito) {
-		this.inscrito = inscrito;
+	public void setInscrito(Inscricao inscricao) {
+		this.inscrito = inscricao;
 	}
 
 }

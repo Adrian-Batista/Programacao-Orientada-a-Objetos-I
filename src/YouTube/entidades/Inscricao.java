@@ -1,14 +1,12 @@
 package YouTube.entidades;
 
-import java.io.IOException;
-
-import YouTube.Main;
-
 public class Inscricao{
 
 	private int numeroInscritos;
 	Usuario[] lista = new Usuario[50];
-
+	
+	
+	
 	public Inscricao(Usuario[] lista, int numeroInscritos) {
 		super();
 		this.lista = lista;
@@ -20,44 +18,13 @@ public class Inscricao{
 		this.lista = null;
 		this.numeroInscritos = numeroInscritos;
 	}
-
-	public static void RealizarInscricao(String auxiliar) throws IOException {
-		for (int indice = 0; indice < Main.canal.size(); indice++) {
-			if (Main.canal.get(indice).getNome().contentEquals(auxiliar)) {	
-				System.out.println("Para se inscrever vamos lhe solicitar seus dados.");
-
-				String NomeUsuario = Usuario.VerificaUsuario();
-				
-				if(NomeUsuario != null) {
-					for(int i=0; i< Main.canal.size(); i++) {						
-						if(Main.canal.get(i).getNome().contentEquals(auxiliar)) {
-							for(int j=0; j<50; j++) {
-								if(Main.canal.get(i).getInscrito().getLista()[j].getNome().contentEquals(NomeUsuario)) {
-									System.out.println("Ops, você já é um inscrito do Canal!");
-									System.in.read();
-									break;
-								}
-								if(Main.canal.get(i).getInscrito().getLista()[j].getNome()==null) {
-									Main.canal.get(i).getInscrito().getLista()[j].setNome(NomeUsuario);
-									Main.LimparTela();
-									System.out.println("\nParabéns agora você é um inscrito do Canal "+ auxiliar+"\n\n");
-									System.in.read();
-									break;
-								}
-							}
-						}
-					}
-				}
-				if(NomeUsuario ==null) {
-					Main.LimparTela();
-					System.out.printf("Dados Incorretos refaça a operação!! \n\n");
-					System.in.read();
-					break;
-				}
-			}
+	
+	public static Usuario[] CarregaVetor() {
+		Usuario[] lista = new Usuario[50];
+		for(int i =0; i<lista.length; i++) {
+			lista[i] = new Usuario(null, null, null);
 		}
-		Main.LimparTela();
-		System.out.println("Não Localizado!");
+		return lista;
 	}
 	// ----------------------------------- GETTERS E SETTERS ------------------------------------------
 
