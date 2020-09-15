@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import YouTube.bd.UsuarioDAO;
+import YouTube.bd.UtilBD;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Inscricao;
 import YouTube.entidades.Perfil;
@@ -19,8 +21,8 @@ public class Main {
 	public static List<Canal> canal = new ArrayList<Canal>();
 
 	public static void main(String[] args) throws IOException {
-		//UtilBD.initBD();
-		//UtilBD.fecharConexao();
+		UtilBD.initBD();
+		
 		
 		int opcao = 0;
 		int opcao2 = 0;
@@ -92,6 +94,8 @@ public class Main {
 				System.out.printf("Digite uma senha: ");
 				criaUsuario.setSenha(entrada.nextLine());
 				Main.usuario.add((Usuario) criaUsuario);
+				//UsuarioDAO objeto = new UsuarioDAO(); ----Parte do Banco de Dados
+				//objeto.adicionar((Usuario) criaUsuario);
 				System.out.printf("\nDados Armazenados com sucesso!! \n");
 				System.out.println("Pressione Enter Novamente...");
 				System.in.read();
@@ -902,6 +906,7 @@ public class Main {
 
 		} while (opcao != 0);
 		entrada.close();
+		UtilBD.fecharConexao();
 
 	}
 
