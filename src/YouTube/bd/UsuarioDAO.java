@@ -12,7 +12,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 
 	public void adicionar(Usuario referencia) {
 		try {
-			String sql = "INSERT INTO Jogador VALUES ('" + referencia.getNome() + "','" + referencia.getEmail() + "','"
+			String sql = "INSERT INTO Usuario VALUES ('" + referencia.getNome() + "','" + referencia.getEmail() + "','"
 					+ referencia.getSenha() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
@@ -23,7 +23,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 
 	public void remover(Usuario referencia) {
 		try {
-			String sql = "DELETE FROM Jogador WHERE nome = '" + referencia.getNome() + "'";
+			String sql = "DELETE FROM Usuario WHERE nome = '" + referencia.getNome() + "'";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível remover o jogador do banco!");
@@ -34,7 +34,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 	public List<Usuario> todos() {
 		List<Usuario> retorno = new ArrayList<Usuario>();
 		try {
-			String sql = "SELECT Nome, Email, Senha, Apelido FROM Jogador";
+			String sql = "SELECT Nome, Email, Senha FROM Usuario";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
 			while (resultSet.next()) {
 				String nome = resultSet.getString("Nome");
@@ -53,7 +53,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 	public Usuario get(String nome) {
 		Usuario retorno = null;
 		try {
-			String sql = "SELECT Email, Senha, Apelido FROM Jogador WHERE Nome = '" + nome + "'";
+			String sql = "SELECT Email, Senha FROM Usuario WHERE Nome = '" + nome + "'";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
 			while (resultSet.next()) {
 				String email = resultSet.getString("Email");
