@@ -29,6 +29,8 @@ public class Main {
 		int opcao4 = 0;
 		int opcao5 = 0;
 		int cont = 0;
+		
+		int aux = 0;
 
 		Scanner entrada = new Scanner(System.in);
 
@@ -59,7 +61,39 @@ public class Main {
 			case 1:
 				Main.LimparTela();
 				Perfil criaUsuario = new Usuario(null, null, null);
-				Usuario.AdicionarUsuario(criaUsuario);
+				
+				
+				do {
+					aux=0;
+					System.out.printf("Digite seu nome completo: ");
+					criaUsuario.setNome(entrada.nextLine());
+					for(int i=0; i<Main.usuario.size(); i++) {
+						if(Main.usuario.get(i).getNome().contentEquals(criaUsuario.getNome())) {
+							aux++;
+							Main.LimparTela();
+							System.out.println("Nome ja existente escolha outro..\n");
+							break;
+						}
+					}
+				}while(aux!=0);
+				
+				do {
+					aux=0;
+					System.out.printf("Digite seu e-mail: ");
+					criaUsuario.setEmail(entrada.nextLine());
+					for(int i=0; i<Main.usuario.size(); i++) {
+						if(Main.usuario.get(i).getEmail().contentEquals(criaUsuario.getEmail())) {
+							aux++;
+							Main.LimparTela();
+							System.out.println("E-mail ja existente escolha outro..\n");
+							break;
+						}
+					}
+				}while(aux!=0);
+				
+				System.out.printf("Digite uma senha: ");
+				criaUsuario.setSenha(entrada.nextLine());
+				Main.usuario.add((Usuario) criaUsuario);
 				System.out.printf("\nDados Armazenados com sucesso!! \n");
 				System.out.println("Pressione Enter Novamente...");
 				System.in.read();
@@ -119,7 +153,7 @@ public class Main {
 
 					case 3:
 						Main.LimparTela();
-						int aux=0;
+						aux=0;
 						String auxiliar=null;
 						String usuarioUpdate = Usuario.VerificaUsuario();
 						if(usuarioUpdate==null) {
@@ -250,7 +284,7 @@ public class Main {
 						Canal C = new Canal(null, null, null, null, null);
 						videos.setCanal(C);
 						int opc= 0;
-						int aux = 0;
+						aux = 0;
 						int aux2 = 0;
 
 						do {
@@ -600,7 +634,7 @@ public class Main {
 					case 4:
 						Main.LimparTela();
 						int contador = 0;
-						int aux = 0;
+						aux = 0;
 						System.out.printf("Digite o nome do Canal a ser removido:  \n");
 						String nomeRemove = entrada.nextLine();
 
@@ -687,7 +721,7 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 						int opc = 0;
-						int aux = 0;				
+						aux = 0;				
 
 						do {
 							System.out.printf("Para se inscrever em um canal: ");
