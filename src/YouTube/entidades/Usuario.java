@@ -1,6 +1,5 @@
 package YouTube.entidades;
 
-import java.io.IOException;
 import java.util.Scanner;
 
 import YouTube.Main;
@@ -15,42 +14,6 @@ public class Usuario extends Perfil{
 	}
 
 	static Scanner entrada = new Scanner(System.in);
-	
-	public static void AdicionarUsuario(Perfil criaUsuario) throws IOException {
-		int aux;
-		
-		do {
-			aux=0;
-			System.out.printf("Digite seu nome completo: ");
-			criaUsuario.setNome(entrada.nextLine());
-			for(int i=0; i<Main.usuario.size(); i++) {
-				if(Main.usuario.get(i).getNome().contentEquals(criaUsuario.getNome())) {
-					aux++;
-					Main.LimparTela();
-					System.out.println("Nome ja existente escolha outro..\n");
-					break;
-				}
-			}
-		}while(aux!=0);
-		
-		do {
-			aux=0;
-			System.out.printf("Digite seu e-mail: ");
-			criaUsuario.setEmail(entrada.nextLine());
-			for(int i=0; i<Main.usuario.size(); i++) {
-				if(Main.usuario.get(i).getEmail().contentEquals(criaUsuario.getEmail())) {
-					aux++;
-					Main.LimparTela();
-					System.out.println("E-mail ja existente escolha outro..\n");
-					break;
-				}
-			}
-		}while(aux!=0);
-		
-		System.out.printf("Digite uma senha: ");
-		criaUsuario.setSenha(entrada.nextLine());
-		Main.usuario.add((Usuario) criaUsuario);
-	}
 
 	public static void ListarUsuario(String auxiliar) {
 		System.out.println("\n=============================================================\n"); 

@@ -21,7 +21,7 @@ public class Video{
 		this.descricao = descricao;
 		this.preco = preco;
 	}
-	
+
 	public Video(String nome, String link, String date, Canal canal, String descricao) {
 		super();
 		this.nome = nome;
