@@ -513,7 +513,7 @@ public class Main {
 						}while(Canal.VerificarEmailCanalBoolean(canais.getEmail()) == true);
 						
 						System.out.printf("Digite uma descrição para este Canal: ");
-						((Canal) canais).setDescricao(entrada.nextLine());
+						(canais).setDescricao(entrada.nextLine());
 
 						int escolha = 0;
 						Main.LimparTela();
