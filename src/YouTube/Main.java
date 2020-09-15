@@ -335,6 +335,9 @@ public class Main {
 						videos.setDate(entrada.nextLine());					
 						System.out.printf("Digite uma descrição ao vídeo: ");
 						videos.setDescricao(entrada.nextLine());
+						
+						System.out.println("Digite o valor a ser cobrado pelo vídeo, se for gratuito digite ZERO.");
+						videos.setPreco(entrada.nextDouble());
 
 						video.add(videos);
 
@@ -419,6 +422,9 @@ public class Main {
 								update.setDate(entrada.nextLine());					
 								System.out.printf("Digite uma descrição ao vídeo: ");
 								update.setDescricao(entrada.nextLine());
+								
+								System.out.println("Digite o valor a ser cobrado pelo vídeo, se for gratuito digite ZERO.");
+								update.setPreco(entrada.nextDouble());
 
 								video.set(indice, update);
 

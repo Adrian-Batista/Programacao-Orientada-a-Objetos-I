@@ -61,7 +61,8 @@ public class Video{
 				System.out.println("Link : " + Main.video.get(i).getLink());
 				System.out.println("Data : " + Main.video.get(i).getDate());
 				System.out.println("Canal : " + Main.video.get(i).getCanal().getNome());
-				System.out.println("Descrição : " + Main.video.get(i).getDescricao());				
+				System.out.println("Descrição : " + Main.video.get(i).getDescricao());
+				System.out.println("Preço : " + Main.video.get(i).getPreco());
 				System.out.println("\n=============================================================\n"); 
 			}
 		}else{
@@ -73,7 +74,7 @@ public class Video{
 					System.out.println("Link : " + Main.video.get(i).getLink());
 					System.out.println("Data : " + Main.video.get(i).getDate());
 					System.out.println("Canal : " + Main.video.get(i).getCanal().getNome());
-					System.out.println("Descrição : " + Main.video.get(i).getDescricao());					
+					System.out.println("Preço : " + Main.video.get(i).getPreco());					
 					System.out.println("\n=============================================================\n"); 
 				}	
 			}
