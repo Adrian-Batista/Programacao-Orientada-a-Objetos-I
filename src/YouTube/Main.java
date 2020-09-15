@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import YouTube.bd.UtilBD;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Inscricao;
 import YouTube.entidades.Perfil;
@@ -20,8 +19,8 @@ public class Main {
 	public static List<Canal> canal = new ArrayList<Canal>();
 
 	public static void main(String[] args) throws IOException {
-		UtilBD.initBD();
-		UtilBD.fecharConexao();
+		//UtilBD.initBD();
+		//UtilBD.fecharConexao();
 		
 		int opcao = 0;
 		int opcao2 = 0;
@@ -244,6 +243,7 @@ public class Main {
 							}
 
 						}
+						break;
 
 					case 0:					
 						break;
@@ -396,6 +396,8 @@ public class Main {
 
 					case 3:
 						Main.LimparTela();
+						System.out.println("Em desenvolvimento!");
+						System.in.read();
 						aux = 0;
 						
 						System.out.printf("Digite o nome do Video a ser Atualizado:  \n");
@@ -575,6 +577,8 @@ public class Main {
 						break;
 
 					case 3:
+						System.out.println("Em desenvolvimento!");
+						System.in.read();
 						System.out.println("Digite o nome do Canal a ser atualizado: ");
 						String nomeUpdate = entrada.nextLine();
 						String auxiliar = null;
@@ -633,7 +637,6 @@ public class Main {
 										break;
 							}
 						}
-						
 						break;
 
 					case 4:
