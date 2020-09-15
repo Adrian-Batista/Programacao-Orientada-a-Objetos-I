@@ -16,7 +16,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 					+ referencia.getSenha() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível inserir o jogador no banco!");
+			//AlertaFX.erro("Não foi possível inserir o Usuario no banco!");
 			System.out.println("Não foi possível inserir o jogador no banco!");
 		}
 	}
@@ -26,7 +26,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 			String sql = "DELETE FROM Usuario WHERE nome = '" + referencia.getNome() + "'";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível remover o jogador do banco!");
+			//AlertaFX.erro("Não foi possível remover o Usuario do banco!");
 			System.out.println("Não foi possível remover o jogador do banco!");
 		}
 	}
@@ -44,13 +44,13 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 			}
 			resultSet.getStatement().close();
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível consultar todos os jogadores do banco!");
-			System.out.println("Não foi possível consultar todos os jogadores do banco!");
+			//AlertaFX.erro("Não foi possível consultar todos os Usuarios do banco!");
+			System.out.println("Não foi possível consultar todos os Usuarios do banco!");
 		}
 		return retorno;
 	}
 
-	public Usuario get(String nome) {
+	public static Usuario get(String nome) {
 		Usuario retorno = null;
 		try {
 			String sql = "SELECT Email, Senha FROM Usuario WHERE Nome = '" + nome + "'";
@@ -63,8 +63,8 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 			// PRECISO FECHAR O STATEMENT SÓ DEPOIS!
 			resultSet.getStatement().close();
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível consultar um jogador do banco!");
-			System.out.println("Não foi possível consultar um jogador do banco!");
+			//AlertaFX.erro("Não foi possível consultar um Usuario do banco!");
+			System.out.println("Não foi possível consultar um Usuario do banco!");
 		}
 		return retorno;
 	}

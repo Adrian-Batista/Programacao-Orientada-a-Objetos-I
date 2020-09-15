@@ -56,12 +56,15 @@ public class Main {
 			opcao = entrada.nextInt();
 			entrada.nextLine();
 			System.out.print("\n");
-
+			
+			UsuarioDAO objeto = new UsuarioDAO();
+			
 			switch (opcao) {
 
 			case 1:
 				Main.LimparTela();
 				Perfil criaUsuario = new Usuario(null, null, null);
+				
 				
 				do {
 					aux=0;
@@ -94,8 +97,7 @@ public class Main {
 				System.out.printf("Digite uma senha: ");
 				criaUsuario.setSenha(entrada.nextLine());
 				Main.usuario.add((Usuario) criaUsuario);
-				//UsuarioDAO objeto = new UsuarioDAO(); ----Parte do Banco de Dados
-				//objeto.adicionar((Usuario) criaUsuario);
+				objeto.adicionar((Usuario) criaUsuario);// -- comando que adiciona Usuario no Banco de Dados.
 				System.out.printf("\nDados Armazenados com sucesso!! \n");
 				System.out.println("Pressione Enter Novamente...");
 				System.in.read();
@@ -129,10 +131,15 @@ public class Main {
 					switch (opcao2) {
 
 					case 1:
-						Main.LimparTela();		
-						Usuario.ListarUsuario(user);					
+						Main.LimparTela();
+						/*Usuario listaUsuario = new Usuario(null, null, null);
+						listaUsuario = UsuarioDAO.get(user);
+						System.out.println("\n=============================================================\n"); 
+						System.out.println("\nNome : " + listaUsuario.getNome());
+						System.out.println("Email : " + listaUsuario.getEmail());
+						System.out.println("\n=============================================================\n");
 						System.out.println("Pressione Enter Novamente...");
-						System.in.read();
+						System.in.read();*/
 						break;
 
 					case 2:
@@ -146,6 +153,7 @@ public class Main {
 						for (int indice = 0; indice < usuario.size(); indice++) {
 							if (usuario.get(indice).getNome().contentEquals(nomeRemove)) {
 								Main.usuario.remove(indice);
+								objeto.remover(usuario.get(indice)); // -- Removendo Usuario do Banco de Dados!
 								System.out.printf("Usuário removido com Sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
 								System.in.read();

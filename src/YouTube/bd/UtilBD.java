@@ -76,7 +76,7 @@ public class UtilBD {
 		stm.executeUpdate("CREATE TABLE Usuario ("
 			+ "Nome VARCHAR(10) PRIMARY KEY NOT NULL,"
 			+ "Email VARCHAR(30) NOT NULL,"
-			+ "senha VARCHAR(20) NOT NULL"
+			+ "Senha VARCHAR(20) NOT NULL"
 			+ ");"
 		);
 		stm.executeUpdate("INSERT INTO Usuario VALUES ('usuario','usuario.teste@gmail.com','123');");
