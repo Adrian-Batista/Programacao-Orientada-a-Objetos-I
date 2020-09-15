@@ -561,7 +561,7 @@ public class Main {
 							System.out.println("E-mail : " + canal.get(i).getEmail());
 							System.out.println("Descrição : " + canal.get(i).getDescricao());
 							System.out.println("Público Alvo : " + canal.get(i).getPublico().getOpcao());
-							System.out.println("Inscritos : " + canal.get(i).getInscrito().getLista().length);
+							System.out.println("Inscritos : " + canal.get(i).getInscrito().getNumeroInscritos());
 							System.out.println("\n=============================================================\n"); 
 						}
 						System.out.println("Pressione Enter Novamente...");
@@ -702,6 +702,7 @@ public class Main {
 
 			case 5:
 				do {
+					int quant = 0;
 					Main.LimparTela();
 					System.out.println("\n Caro Usuario selecione uma das opções abaixo: " );
 					System.out.println("\n=========================================\n|\t\t\t\t\t|");
@@ -755,6 +756,9 @@ public class Main {
 												for(int j =0; j<canal.get(i).getInscrito().getLista().length;j++) {
 													if(canal.get(i).getInscrito().getLista()[j].getNome()==null) {
 														canal.get(i).getInscrito().getLista()[j].setNome(NomeUsuario);
+														quant = canal.get(i).getInscrito().getNumeroInscritos();
+														quant++;
+														canal.get(i).getInscrito().setNumeroInscritos(quant);
 														System.out.println("Dados armazenados com sucesso!");
 														System.in.read();
 														break;
@@ -815,6 +819,9 @@ public class Main {
 											for(int i= 0; i < canal.get(indice).getInscrito().getLista().length; i++) {
 												if(canal.get(indice).getInscrito().getLista()[i].getNome().equals(nomeUsuario)) {
 													canal.get(indice).getInscrito().getLista()[i].setNome(null);
+													quant = canal.get(indice).getInscrito().getNumeroInscritos();
+													quant--;
+													canal.get(indice).getInscrito().setNumeroInscritos(quant);
 													System.out.println("Dados removidos!");
 													System.in.read();
 													break;
@@ -844,13 +851,18 @@ public class Main {
 						for(int i = 0;i<Main.canal.size();i++){  
 							if(Main.canal.get(i).getNome().contentEquals(nomeCanal)) {
 								for(int j =0; j<canal.get(i).getInscrito().getLista().length; j++) {
-									n++;
 									if(Main.canal.get(i).getInscrito().getLista()[j].getNome()==null) {
 										break;
 									}
+									n++;
 									System.out.println(n+" ) Nome Inscrito: "+ Main.canal.get(i).getInscrito().getLista()[j].getNome());
 								}
 							}
+						}
+						if(n==0) {
+							System.out.println("Canal não Localizado!");
+							System.in.read();
+							break;
 						}
 						System.out.println("\n=============================================================\n");
 						System.out.println("Pressione Enter Novamente...");
