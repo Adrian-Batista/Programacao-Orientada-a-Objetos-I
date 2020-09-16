@@ -23,4 +23,10 @@ public class VideoDAO implements InterfaceDAO<Video> {
 		return null;
 	}
 
+	@Override
+	public void atualizar(Video referencia) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

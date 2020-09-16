@@ -24,4 +24,10 @@ public class PublicoAlvoDAO implements InterfaceDAO<PublicoAlvo> {
 		return null;
 	}
 
+	@Override
+	public void atualizar(PublicoAlvo referencia) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

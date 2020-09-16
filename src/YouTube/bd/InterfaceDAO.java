@@ -23,6 +23,8 @@ public interface InterfaceDAO<T> {
 	 * entidades.
 	 */
 	public void adicionar(T referencia);
+	
+	public void atualizar(T referencia);
 
 	public void remover(T referencia);
 

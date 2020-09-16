@@ -10,10 +10,10 @@ import YouTube.entidades.Usuario;
 
 public class UsuarioDAO implements InterfaceDAO<Usuario> {
 
-	public void adicionar(Usuario referencia) {
+	public void adicionar(Usuario usuario) {
 		try {
-			String sql = "INSERT INTO Usuario VALUES ('" + referencia.getNome() + "','" + referencia.getEmail() + "','"
-					+ referencia.getSenha() + "')";
+			String sql = "INSERT INTO Usuario VALUES ('" + usuario.getNome() + "','" + usuario.getEmail() + "','"
+					+ usuario.getSenha() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível inserir o Usuario no banco!");
@@ -21,9 +21,9 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 		}
 	}
 
-	public void remover(Usuario referencia) {
+	public void remover(Usuario usuario) {
 		try {
-			String sql = "DELETE FROM Usuario WHERE nome = '" + referencia.getNome() + "'";
+			String sql = "DELETE FROM Usuario WHERE nome = '" + usuario.getNome() + "'";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível remover o Usuario do banco!");
@@ -50,8 +50,8 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 		return retorno;
 	}
 
-	public static Usuario get(String nome) {
-		Usuario retorno = null;
+	public Usuario get(String nome) {
+		Usuario retorno = new Usuario(null, null, null);
 		try {
 			String sql = "SELECT Email, Senha FROM Usuario WHERE Nome = '" + nome + "'";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
@@ -59,6 +59,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 				String email = resultSet.getString("Email");
 				String senha = resultSet.getString("Senha");
 				retorno = new Usuario(nome, email, senha);
+				
 			}
 			// PRECISO FECHAR O STATEMENT SÓ DEPOIS!
 			resultSet.getStatement().close();
@@ -67,6 +68,20 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 			System.out.println("Não foi possível consultar um Usuario do banco!");
 		}
 		return retorno;
+	}
+
+	public void atualizar(Usuario usuario) {
+		try {
+			String sql = "UPDATE Usuario SET"
+					+ "Email = " + usuario.getEmail() +"',"
+					+ "Senha = " + usuario.getSenha() +""
+					+" WHERE Nome = '" + usuario.getNome() + "'";
+			UtilBD.alterarBD(sql);
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível atualizar o jogo no banco!");
+			System.out.println("Não foi possível atualizar o jogo no banco!");
+		}
+		
 	}
 
 }

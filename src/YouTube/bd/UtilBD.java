@@ -117,9 +117,9 @@ public class UtilBD {
 				+ "Nome VARCHAR(10) NOT NULL PRIMARY KEY,"
 				+ "Email VARCHAR(30) NOT NULL,"
 				+ "Descricao VARCHAR(100) NOT NULL,"
-				+ "PublicoAlvo VARCHAR(10) NOT NULL,"
-				+ "Inscricao INTERGER NOT NULL,"
-				+ "FOREIGN KEY (PublicoAlvo) REFERENCES PublicoAlvo(Nome) ON DELETE CASCADE"
+				+ "Publico VARCHAR(10) NOT NULL,"
+				+ "Inscricao INTERGER NOT NULL"
+				//+ "FOREIGN KEY (Publico) REFERENCES PublicoAlvo(TipoPublico) ON DELETE CASCADE"
 				+ ");"
 		);
 		stm.executeUpdate("INSERT INTO Canal VALUES ('Canal','canal.teste@gmail.com', 'Seja bem vindo ao Canal', 'Todos', '1')");
@@ -145,17 +145,16 @@ public class UtilBD {
 		Connection bd = UtilBD.getConexao();
 		Statement stm = bd.createStatement();
 		stm.executeUpdate(sql);
-		System.out.println("Executei: " + sql);
+		//System.out.println("Executei: " + sql);
 		stm.close();
 	}
-
+	
 	@SuppressWarnings("exports")
 	public static ResultSet consultarBD(String sql) throws SQLException {
 		Connection bd = UtilBD.getConexao();
 		Statement stm = bd.createStatement();
 		ResultSet retorno = stm.executeQuery(sql);
-		System.out.println("Executei: " + sql);
-		stm.close();
+		//System.out.println("Executei: " + sql);
 		return retorno;
 	}
 }

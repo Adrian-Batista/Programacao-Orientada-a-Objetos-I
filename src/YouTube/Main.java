@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
+import YouTube.bd.CanalDAO;
+import YouTube.bd.InscricaoDAO;
 import YouTube.bd.UsuarioDAO;
 import YouTube.bd.UtilBD;
 import YouTube.entidades.Canal;
@@ -21,8 +23,8 @@ public class Main {
 	public static List<Canal> canal = new ArrayList<Canal>();
 
 	public static void main(String[] args) throws IOException {
-		UtilBD.initBD();
 		
+		UtilBD.initBD();
 		
 		int opcao = 0;
 		int opcao2 = 0;
@@ -30,9 +32,15 @@ public class Main {
 		int opcao4 = 0;
 		int opcao5 = 0;
 		int cont = 0;
-		
 		int aux = 0;
-
+		
+		UsuarioDAO objUsuario = new UsuarioDAO();
+		CanalDAO objCanal = new CanalDAO();
+		InscricaoDAO objInscricao = new InscricaoDAO();
+		
+		usuario = objUsuario.todos();
+		canal = objCanal.todos();
+		
 		Scanner entrada = new Scanner(System.in);
 
 		do {
@@ -57,7 +65,7 @@ public class Main {
 			entrada.nextLine();
 			System.out.print("\n");
 			
-			UsuarioDAO objeto = new UsuarioDAO();
+			
 			
 			switch (opcao) {
 
@@ -97,7 +105,10 @@ public class Main {
 				System.out.printf("Digite uma senha: ");
 				criaUsuario.setSenha(entrada.nextLine());
 				Main.usuario.add((Usuario) criaUsuario);
-				objeto.adicionar((Usuario) criaUsuario);// -- comando que adiciona Usuario no Banco de Dados.
+				
+				objUsuario.adicionar((Usuario) criaUsuario);// -- comando que adiciona Usuario no Banco de Dados.
+				usuario = objUsuario.todos();
+				
 				System.out.printf("\nDados Armazenados com sucesso!! \n");
 				System.out.println("Pressione Enter Novamente...");
 				System.in.read();
@@ -130,19 +141,21 @@ public class Main {
 
 					switch (opcao2) {
 
-					case 1:
+					case 1:  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LISTAR CADASTRO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						Main.LimparTela();
-						/*Usuario listaUsuario = new Usuario(null, null, null);
-						listaUsuario = UsuarioDAO.get(user);
 						System.out.println("\n=============================================================\n"); 
-						System.out.println("\nNome : " + listaUsuario.getNome());
-						System.out.println("Email : " + listaUsuario.getEmail());
-						System.out.println("\n=============================================================\n");
-						System.out.println("Pressione Enter Novamente...");
-						System.in.read();*/
+						for(int i = 0;i<Main.usuario.size();i++){
+							if(Main.usuario.get(i).getNome().contentEquals(user)) {
+								System.out.println("\nNome : " + Main.usuario.get(i).getNome());
+								System.out.println("Email : " + Main.usuario.get(i).getEmail());
+								System.out.println("\n=============================================================\n");
+							}	
+						}	
+						System.out.println("\nPressione Enter Novamente...");
+						System.in.read();
 						break;
 
-					case 2:
+					case 2:  // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ REMOVER CADASTRO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						Main.LimparTela();
 						String nomeRemove = Usuario.VerificaUsuario();
 						if(nomeRemove==null) {
@@ -152,8 +165,9 @@ public class Main {
 						}
 						for (int indice = 0; indice < usuario.size(); indice++) {
 							if (usuario.get(indice).getNome().contentEquals(nomeRemove)) {
+								objUsuario.remover(usuario.get(indice)); // -- Removendo Usuario do Banco de Dados!
 								Main.usuario.remove(indice);
-								objeto.remover(usuario.get(indice)); // -- Removendo Usuario do Banco de Dados!
+								usuario = objUsuario.todos();
 								System.out.printf("Usuário removido com Sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
 								System.in.read();
@@ -161,7 +175,7 @@ public class Main {
 						}
 						break;
 
-					case 3:
+					case 3: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ATUALIZAR CADASTRO ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						Main.LimparTela();
 						aux=0;
 						String auxiliar=null;
@@ -488,7 +502,7 @@ public class Main {
 
 				break;
 
-				// --------------------------------------- VISUALIZAR CANAIS ----------------------------------------
+				// --------------------------------------- MENU CANAIS ----------------------------------------
 
 			case 4:
 				do {
@@ -512,7 +526,7 @@ public class Main {
 					System.out.print("\n");
 					switch (opcao4) {
 
-					case 1:
+					case 1: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ADICIONAR CANAL ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						Main.LimparTela();
 
 						Canal canais = new Canal(null, null, null, null, null);
@@ -567,16 +581,17 @@ public class Main {
 
 						(canais).getPublico().setOpcao(publico.getOpcao());
 						canal.add(canais);
-
+						
+						objCanal.adicionar(canais); // -- Comando que adiciona Canal no Banco de DADOS
+						canal = objCanal.todos();
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");
 						break;
 
-					case 2:
+					case 2: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LISTAR CANAIS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						Main.LimparTela();
-
 						System.out.println("\n=============================================================\n"); 
-						for(int i = 0;i<Main.canal.size();i++){  
+						for(int i = 0;i<canal.size();i++){  
 							System.out.println("\nNome Canal : " + canal.get(i).getNome());
 							System.out.println("E-mail : " + canal.get(i).getEmail());
 							System.out.println("Descrição : " + canal.get(i).getDescricao());
@@ -588,9 +603,7 @@ public class Main {
 						System.in.read();
 						break;
 
-					case 3:
-						System.out.println("Em desenvolvimento!");
-						System.in.read();
+					case 3: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ATUALIZAR CANAL ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						System.out.println("Digite o nome do Canal a ser atualizado: ");
 						String nomeUpdate = entrada.nextLine();
 						String auxiliar = null;
@@ -651,7 +664,7 @@ public class Main {
 						}
 						break;
 
-					case 4:
+					case 4: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ REMOVER CANAIS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						Main.LimparTela();
 						int contador = 0;
 						aux = 0;
@@ -681,8 +694,10 @@ public class Main {
 												indice2--;
 											}
 										}
-
+										
+										objCanal.remover(Main.canal.get(indice)); // -- remove o Canal do Banco de DADOS
 										Main.canal.remove(indice);
+										canal = objCanal.todos();
 
 										Main.LimparTela();
 										System.out.printf("Canal removido com Sucesso!! \n");
@@ -739,7 +754,7 @@ public class Main {
 					System.out.print("\n");
 					switch (opcao5) {
 
-					case 1:
+					case 1: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ ADICIONAR INSCRIÇÕES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						Main.LimparTela();
 						int opc = 0;
 						aux = 0;				
@@ -780,6 +795,7 @@ public class Main {
 														quant = canal.get(i).getInscrito().getNumeroInscritos();
 														quant++;
 														canal.get(i).getInscrito().setNumeroInscritos(quant);
+														objInscricao.adicionar(canal.get(indice)); // - adicionando dados na Tabela Inscricao 
 														System.out.println("Dados armazenados com sucesso!");
 														System.in.read();
 														break;
@@ -805,7 +821,7 @@ public class Main {
 						}
 						break;
 
-					case 2:
+					case 2: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ REMOVER INSCRIÇÕES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						Main.LimparTela();
 						aux = 0;
 						int aux2 = 0;
@@ -843,6 +859,8 @@ public class Main {
 													quant = canal.get(indice).getInscrito().getNumeroInscritos();
 													quant--;
 													canal.get(indice).getInscrito().setNumeroInscritos(quant);
+													//objInscricao.remover(canal.get(indice));
+													//canal = objCanal.todos();
 													System.out.println("Dados removidos!");
 													System.in.read();
 													break;
@@ -862,7 +880,7 @@ public class Main {
 							}
 						break;
 						
-					case 3:
+					case 3: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LISTAR INSCRIÇÕES ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						
 						int n =0;
 						System.out.println("Digite o Nome do Canal: ");

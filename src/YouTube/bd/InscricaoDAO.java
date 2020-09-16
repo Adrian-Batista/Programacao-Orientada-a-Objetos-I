@@ -1,26 +1,71 @@
 package YouTube.bd;
 
+import java.sql.SQLException;
 import java.util.List;
-import YouTube.entidades.Inscricao;
 
-public class InscricaoDAO implements InterfaceDAO<Inscricao>{
+import YouTube.entidades.Canal;
+
+public class InscricaoDAO implements InterfaceDAO<Canal>{
 
 	@Override
-	public void adicionar(Inscricao referencia) {
-		// TODO Auto-generated method stub
+	public void adicionar(Canal inscricao) {
+		try {
+			for(int j =0; j<inscricao.getInscrito().getLista().length; j++) {
+				if(inscricao.getInscrito().getLista()[j].getNome()==null) {
+					break;
+				}
+				String sql = "INSERT INTO Inscricao VALUES ('" + inscricao.getNome() + "','" + inscricao.getInscrito().getLista()[j].getNome() + "')";
+				UtilBD.alterarBD(sql);
+			}
+			
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível inserir a inscricao no banco!");
+			System.out.println("Não foi possível inserir a inscricao no banco!");
+		}
+	}
+
+	@Override
+	public void remover(Canal inscricao) {
+		try {
+			for(int j =0; j<inscricao.getInscrito().getLista().length; j++) {
+				if(inscricao.getInscrito().getLista()[j].getNome()==null) {
+					break;
+				}
+			String sql = "DELETE FROM Inscricao WHERE NomeCanal = '" + inscricao.getNome() + "'";
+			UtilBD.alterarBD(sql);
+			}
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível remover a inscricao do banco!");
+			System.out.println("Não foi possível remover a Inscricao no banco!");
+		}
 		
 	}
 
 	@Override
-	public void remover(Inscricao referencia) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public List<Inscricao> todos() {
-		// TODO Auto-generated method stub
+	public List<Canal> todos() {
+		// Já existente na classe Canal
 		return null;
+	}
+
+	@Override
+	public void atualizar(Canal referencia) {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public void removerInscricao(Canal inscricao, String nomeuser) {
+		try {
+			for(int j =0; j<inscricao.getInscrito().getLista().length; j++) {
+				if(inscricao.getInscrito().getLista()[j].getNome()==null) {
+					break;
+				}
+			String sql = "DELETE FROM Inscricao WHERE NomeCanal = '" + inscricao.getNome() + "'";
+			UtilBD.alterarBD(sql);
+			}
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível remover a inscricao do banco!");
+			System.out.println("Não foi possível remover a Inscricao no banco!");
+		}
 	}
 
 }
