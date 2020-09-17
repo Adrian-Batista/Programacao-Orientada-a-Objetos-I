@@ -48,6 +48,7 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 	@Override
 	public List<Canal> todos() {
 		List<Canal> retorno = new ArrayList<Canal>();
+		int cont = 0;
 		try {
 			String sql = "SELECT NomeCanal, NomeUsuario FROM Inscricao";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
@@ -62,6 +63,7 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 				for(int i =0; i<objeto.getInscrito().getLista().length; i++) {
 					if(objeto.getInscrito().getLista()[i].getNome()==null) {
 						objeto.getInscrito().getLista()[i].setNome(resultSet.getString("NomeUsuario"));
+						objeto.getInscrito().setNumeroInscritos(cont++);
 						break;
 					}
 				}
@@ -79,6 +81,9 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 		try {
 			String sql = "INSERT INTO Inscricao VALUES ('" + canal.getNome() + "','" + auxiliar + "')";
 			UtilBD.alterarBD(sql);
+			sql = "UPDATE Canal SET Inscricao = '" + canal.getInscrito().getNumeroInscritos() + "' WHERE Nome = '"
+					+ canal.getNome() + "'";
+			UtilBD.alterarBD(sql);
 
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível inserir a inscricao no banco!");
@@ -91,6 +96,10 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 			String sql = "DELETE FROM Inscricao WHERE "
 					+ "NomeCanal = '" + inscricao.getNome() + "' AND NomeUsuario = '" + nomeuser + "';";
 			UtilBD.alterarBD(sql);
+			sql = "UPDATE Canal SET Inscricao = '" + inscricao.getInscrito().getNumeroInscritos() + "' WHERE Nome = '"
+					+ inscricao.getNome() + "'";
+			UtilBD.alterarBD(sql);
+			
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível remover a inscricao do banco!");
 			System.out.println("Não foi possível remover a Inscricao no banco!");
