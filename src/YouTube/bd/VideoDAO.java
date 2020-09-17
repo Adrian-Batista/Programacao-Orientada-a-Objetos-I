@@ -35,7 +35,7 @@ public class VideoDAO implements InterfaceDAO<Video> {
 			//AlertaFX.erro("Não foi possível remover o Video do banco!");
 			System.out.println("Não foi possível remover o Video do banco!");
 		}
-		
+
 	}
 
 	@Override
@@ -79,7 +79,7 @@ public class VideoDAO implements InterfaceDAO<Video> {
 			//AlertaFX.erro("Não foi possível atualizar o Video do banco!");
 			System.out.println("Não foi possível atualizar o Video do banco!");
 		}
-		
+
 	}
 
 }

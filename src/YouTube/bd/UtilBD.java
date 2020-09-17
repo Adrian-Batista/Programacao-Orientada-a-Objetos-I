@@ -93,8 +93,8 @@ public class UtilBD {
 				//+ "FOREIGN KEY (TipoPublico) REFERENCES Canal(Publico) ON DELETE CASCADE"
 				+ ");"
 		);
-		//stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal','Todos')");
-		//stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal 2','Jovens')");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal','Todos')");
+		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal 2','Jovens')");
 	}
 
 	private static void criarVideo(Statement stm) throws SQLException {
@@ -139,9 +139,9 @@ public class UtilBD {
 				//+ "FOREIGN KEY (NomeUsuario) REFERENCES Usuario(Nome) ON DELETE CASCADE"
 				+ ");"
 		);
-		//stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal', 'usuario')");
-		//stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2', 'usuario')");
-		//stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2', 'usuario2')");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal', 'usuario')");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2', 'usuario')");
+		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2', 'usuario2')");
 	}
 
 	public static void alterarBD(String sql) throws SQLException {

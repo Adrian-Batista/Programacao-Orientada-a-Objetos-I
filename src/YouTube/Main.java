@@ -44,10 +44,8 @@ public class Main {
 		
 		usuario = objUsuario.todos();
 		canal = objCanal.todos();
+		canal = objInscricao.todos();
 		video = objVideo.todos();
-		for(int test =0; test<canal.size(); test++) {
-			objPublico.adicionar(canal.get(test));
-		}
 		
 		Scanner entrada = new Scanner(System.in);
 

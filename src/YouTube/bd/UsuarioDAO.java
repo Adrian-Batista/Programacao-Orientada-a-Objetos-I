@@ -63,7 +63,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 				String email = resultSet.getString("Email");
 				String senha = resultSet.getString("Senha");
 				retorno = new Usuario(id, nome, email, senha);
-				
+
 			}
 			// PRECISO FECHAR O STATEMENT SÓ DEPOIS!
 			resultSet.getStatement().close();
@@ -83,7 +83,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 			System.out.println("Não foi possível atualizar o usuario no banco!");
 		}
 	}
-	
+
 	public void atualizarEmail(Usuario usuario) {
 		try {
 			String sql = "UPDATE Usuario SET Email = '" + usuario.getEmail() + "' WHERE Nome = '" + usuario.getNome() + "'";
@@ -93,7 +93,7 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 			System.out.println("Não foi possível atualizar o usuario no banco!");
 		}
 	}
-	
+
 	public void atualizarSenha(Usuario usuario) {
 		try {
 			String sql = "UPDATE Usuario SET Senha = '" + usuario.getSenha() + "' WHERE Nome = '" + usuario.getNome() + "'";

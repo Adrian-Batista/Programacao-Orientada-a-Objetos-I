@@ -11,7 +11,7 @@ import YouTube.entidades.PublicoAlvo;
 
 public class PublicoAlvoDAO implements InterfaceDAO<Canal> {
 
-	
+
 
 	@Override
 	public void adicionar(Canal canal) {
@@ -33,20 +33,6 @@ public class PublicoAlvoDAO implements InterfaceDAO<Canal> {
 			//AlertaFX.erro("Não foi possível remover o Publico no banco!");
 			System.out.println("Não foi possível remover o Publico no banco!");
 		}
-	}
-	
-	public void atualizar(Canal canal, String auxiliar) {
-		try {
-			String sql = "UPDATE PublicoAlvo SET "
-					+ "NomeCanal = '" + canal.getNome() + "', "
-					+ "TipoPublico = '" + canal.getPublico().getOpcao() + "' "
-					+ "WHERE NomeCanal = '" + auxiliar + "';";
-			UtilBD.alterarBD(sql);
-		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível atualizar o Video do banco!");
-			System.out.println("Não foi possível atualizar o Video do banco!");
-		}
-		
 	}
 
 	@Override
@@ -72,6 +58,20 @@ public class PublicoAlvoDAO implements InterfaceDAO<Canal> {
 			System.out.println("Não foi possível consultar todos os Publicos do banco!");
 		}
 		return retorno;
+	}
+
+	public void atualizar(Canal canal, String auxiliar) {
+		try {
+			String sql = "UPDATE PublicoAlvo SET "
+					+ "NomeCanal = '" + canal.getNome() + "', "
+					+ "TipoPublico = '" + canal.getPublico().getOpcao() + "' "
+					+ "WHERE NomeCanal = '" + auxiliar + "';";
+			UtilBD.alterarBD(sql);
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível atualizar o Video do banco!");
+			System.out.println("Não foi possível atualizar o Video do banco!");
+		}
+
 	}
 
 }

@@ -63,7 +63,7 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 		}
 		return retorno;
 	}
-	
+
 	public void atualizar(Canal canal, String auxiliar) {
 		try {
 			String sql = "UPDATE Canal SET "
@@ -78,7 +78,7 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 			//AlertaFX.erro("Não foi possível atualizar o Canal do banco!");
 			System.out.println("Não foi possível atualizar o Canal do banco!");
 		}
-		
+
 	}
 
 }
