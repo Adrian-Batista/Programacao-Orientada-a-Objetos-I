@@ -11,14 +11,14 @@ import YouTube.entidades.Video;
 public class VideoDAO implements InterfaceDAO<Video> {
 
 	@Override
-	public void adicionar(Video referencia) {
+	public void adicionar(Video video) {
 		try {
-			String sql = "INSERT INTO Video VALUES ('" + referencia.getNome() + "','" 
-					+ referencia.getLink() + "','" 
-					+ referencia.getDate() + "','" 
-					+ referencia.getPreco() + "','"
-					+ referencia.getCanal().getNome() + "','"
-					+ referencia.getDescricao() + "')";
+			String sql = "INSERT INTO Video VALUES ('" + video.getNome() + "','" 
+					+ video.getLink() + "','" 
+					+ video.getDate() + "','" 
+					+ video.getPreco() + "','"
+					+ video.getCanal().getNome() + "','"
+					+ video.getDescricao() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível inserir o Usuario no banco!");

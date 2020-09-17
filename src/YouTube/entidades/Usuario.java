@@ -9,8 +9,8 @@ public class Usuario extends Perfil{
 	public Usuario(String nome, String email) {
 		super(nome, email);
 	}
-	public Usuario(String nome, String email, String senha) {
-		super(nome, email, senha);
+	public Usuario(int id, String nome, String email, String senha) {
+		super(id, nome, email, senha);
 	}
 
 	static Scanner entrada = new Scanner(System.in);

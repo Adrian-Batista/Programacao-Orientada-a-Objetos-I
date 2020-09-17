@@ -86,5 +86,6 @@ public class Canal extends Perfil{
 	public void setInscrito(Inscricao inscricao) {
 		this.inscrito = inscricao;
 	}
+	
 
 }

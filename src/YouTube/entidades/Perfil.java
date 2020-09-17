@@ -1,13 +1,15 @@
 package YouTube.entidades;
 
 public abstract class Perfil {
+	protected int id;
 	protected String nome;
 	protected String email;
 	private String senha;
 	
 	
-	public Perfil(String nome, String email, String senha) {
+	public Perfil(int id, String nome, String email, String senha) {
 		super();
+		this.id = id;
 		this.nome = nome;
 		this.email = email;
 		this.senha = senha;
@@ -21,6 +23,13 @@ public abstract class Perfil {
 		
 	public abstract void MetodoAbstrato();
 	
+	
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
 	public String getNome() {
 		return nome;
 	}

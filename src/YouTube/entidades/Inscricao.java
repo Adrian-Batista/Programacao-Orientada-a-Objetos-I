@@ -22,7 +22,7 @@ public class Inscricao{
 	public static Usuario[] CarregaVetor() {
 		Usuario[] lista = new Usuario[50];
 		for(int i =0; i<lista.length; i++) {
-			lista[i] = new Usuario(null, null, null);
+			lista[i] = new Usuario(0, null, null, null);
 		}
 		return lista;
 	}

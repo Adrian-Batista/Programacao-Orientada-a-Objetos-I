@@ -13,24 +13,26 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 
 	public void adicionar(Canal canal) {
 		try {
-			String sql = "INSERT INTO Canal VALUES ('" + canal.getNome() + "','"
+			String sql = "INSERT INTO Canal VALUES ('" 
+					+ canal.getNome() + "','"
 					+ canal.getEmail() + "','"
 					+ canal.getDescricao() + "','"
 					+ canal.getPublico().getOpcao() + "','"
 					+ canal.getInscrito().getNumeroInscritos() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível inserir a desenvolvedora no banco!");
-			System.out.println("Não foi possível inserir a desenvolvedora no banco!");
+			//AlertaFX.erro("Não foi possível inserir o Canal no banco!");
+			System.out.println("Não foi possível inserir o Canal no banco!");
 		}
 	}
 
 	public void remover(Canal canal) {
 		try {
-			String sql = "DELETE FROM Canal WHERE nome = '" + canal.getNome() + "'";
+			String sql = "DELETE FROM Canal WHERE Nome = '" + canal.getNome() + "';" ;
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível remover o Canal do banco!");
+			System.out.println("Não foi possível remover o Canal do banco!");
 		}
 
 	}
@@ -41,7 +43,7 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 			String sql = "SELECT * FROM Canal";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
 			while (resultSet.next()) {
-				Canal objeto = new Canal(null, null, null, null, null);
+				Canal objeto = new Canal( null, null, null, null, null);
 				PublicoAlvo P = new PublicoAlvo(null);
 				Inscricao I = new Inscricao(null, 0);
 				I.setLista(Inscricao.CarregaVetor());
@@ -57,29 +59,25 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 			resultSet.getStatement().close();
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível consultar todas os Canais do banco!");
-		}
-		return retorno;
-	}
-
-	public Canal get(String nome) {
-		Canal retorno = null;
-		try {
-			String sql = "SELECT Email, Senha FROM Canalw WHERE Nome = '" + nome + "'";
-			ResultSet resultSet = UtilBD.consultarBD(sql);
-			while (resultSet.next()) {
-				//String email = resultSet.getString("Email");
-				//String senha = resultSet.getString("Senha");
-				//retorno = new Canal(nome, email, senha, senha, 0);
-			}
-			resultSet.getStatement().close();
-		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível consultar um Canal do banco!");
+			System.out.println("Não foi possível consultar todas os Canais do banco!");
 		}
 		return retorno;
 	}
 	
-	public void atualizar(Canal referencia) {
-		// TODO Auto-generated method stub
+	public void atualizar(Canal canal, String auxiliar) {
+		try {
+			String sql = "UPDATE Canal SET "
+					+ "Nome = '" + canal.getNome() + "', "
+					+ "Email = '" + canal.getEmail() + "', "
+					+ "Descricao = '" + canal.getDescricao() + "', "
+					+ "Publico = '" + canal.getPublico().getOpcao() + "', "
+					+ "Inscricao = '" + canal.getInscrito().getNumeroInscritos() + "' "
+					+ "WHERE Nome = '" + auxiliar + "';";
+			UtilBD.alterarBD(sql);
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível atualizar o Canal do banco!");
+			System.out.println("Não foi possível atualizar o Canal do banco!");
+		}
 		
 	}
 

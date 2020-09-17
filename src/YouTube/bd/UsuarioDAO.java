@@ -12,35 +12,38 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 
 	public void adicionar(Usuario usuario) {
 		try {
-			String sql = "INSERT INTO Usuario VALUES ('" + usuario.getNome() + "','" + usuario.getEmail() + "','"
+			String sql = "INSERT INTO Usuario (Nome, Email, Senha) VALUES ('" 
+					+ usuario.getNome() + "','" 
+					+ usuario.getEmail() + "','"
 					+ usuario.getSenha() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível inserir o Usuario no banco!");
-			System.out.println("Não foi possível inserir o jogador no banco!");
+			System.out.println("Não foi possível inserir o Usuario no banco!");
 		}
 	}
 
 	public void remover(Usuario usuario) {
 		try {
-			String sql = "DELETE FROM Usuario WHERE nome = '" + usuario.getNome() + "'";
+			String sql = "DELETE FROM Usuario WHERE Nome = '" + usuario.getNome() + "';";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível remover o Usuario do banco!");
-			System.out.println("Não foi possível remover o jogador do banco!");
+			//AlertaFX.erro("Não foi possível remover o Usuario no banco!");
+			System.out.println("Não foi possível remover o Usuario no banco!");
 		}
 	}
 
 	public List<Usuario> todos() {
 		List<Usuario> retorno = new ArrayList<Usuario>();
 		try {
-			String sql = "SELECT Nome, Email, Senha FROM Usuario";
+			String sql = "SELECT id, Nome, Email, Senha FROM Usuario";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
 			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
 				String nome = resultSet.getString("Nome");
 				String email = resultSet.getString("Email");
 				String senha = resultSet.getString("Senha");
-				retorno.add(new Usuario(nome, email, senha));
+				retorno.add(new Usuario(id, nome, email, senha));
 			}
 			resultSet.getStatement().close();
 		} catch (SQLException e) {
@@ -51,14 +54,15 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 	}
 
 	public Usuario get(String nome) {
-		Usuario retorno = new Usuario(null, null, null);
+		Usuario retorno = new Usuario(0, null, null, null);
 		try {
-			String sql = "SELECT Email, Senha FROM Usuario WHERE Nome = '" + nome + "'";
+			String sql = "SELECT Id, Email, Senha FROM Usuario WHERE Nome = '" + nome + "'";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
 			while (resultSet.next()) {
+				int id = resultSet.getInt("id");
 				String email = resultSet.getString("Email");
 				String senha = resultSet.getString("Senha");
-				retorno = new Usuario(nome, email, senha);
+				retorno = new Usuario(id, nome, email, senha);
 				
 			}
 			// PRECISO FECHAR O STATEMENT SÓ DEPOIS!
@@ -70,9 +74,9 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 		return retorno;
 	}
 
-	public void atualizarNome(Usuario usuario, String nome) {
+	public void atualizarNome(Usuario usuario) {
 		try {
-			String sql = "UPDATE Usuario SET Nome = '" + nome + "' WHERE Nome = '" + usuario.getNome() + "'";
+			String sql = "UPDATE Usuario SET Nome = '" + usuario.getNome() + "' WHERE Email = '" + usuario.getEmail() + "'";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível atualizar o usuario no banco!");

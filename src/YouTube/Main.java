@@ -76,7 +76,7 @@ public class Main {
 
 			case 1:
 				Main.LimparTela();
-				Perfil criaUsuario = new Usuario(null, null, null);
+				Perfil criaUsuario = new Usuario(0, null, null, null);
 				
 				
 				do {
@@ -109,8 +109,8 @@ public class Main {
 				
 				System.out.printf("Digite uma senha: ");
 				criaUsuario.setSenha(entrada.nextLine());
-				Main.usuario.add((Usuario) criaUsuario);
 				
+				Main.usuario.add((Usuario) criaUsuario);
 				objUsuario.adicionar((Usuario) criaUsuario);// -- comando que adiciona Usuario no Banco de Dados.
 				usuario = objUsuario.todos();
 				
@@ -151,7 +151,8 @@ public class Main {
 						System.out.println("\n=============================================================\n"); 
 						for(int i = 0;i<Main.usuario.size();i++){
 							if(Main.usuario.get(i).getNome().contentEquals(user)) {
-								System.out.println("\nNome : " + Main.usuario.get(i).getNome());
+								System.out.println("\nId : " + Main.usuario.get(i).getId());
+								System.out.println("Nome : " + Main.usuario.get(i).getNome());
 								System.out.println("Email : " + Main.usuario.get(i).getEmail());
 								System.out.println("\n=============================================================\n");
 							}	
@@ -223,7 +224,7 @@ public class Main {
 										if(aux==0) {
 											Main.LimparTela();
 											usuario.get(indice).setNome(auxiliar);
-											objUsuario.atualizarNome(usuario.get(indice), auxiliar); // -- Comando que atualiza o Nome
+											objUsuario.atualizarNome(usuario.get(indice)); // -- Comando que atualiza o Nome
 											System.out.println("Dado Alterado com Sucesso!");
 											System.in.read();
 											break;
@@ -588,7 +589,8 @@ public class Main {
 							publico.setOpcao(publico.getOpc4());
 						if(escolha==5) 
 							publico.setOpcao(publico.getOpc5());
-
+						
+						canais.setId(canal.size()+1);
 						(canais).getPublico().setOpcao(publico.getOpcao());
 						canal.add(canais);
 						
@@ -603,7 +605,7 @@ public class Main {
 					case 2: // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~ LISTAR CANAIS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 						Main.LimparTela();
 						System.out.println("\n=============================================================\n"); 
-						for(int i = 0;i<canal.size();i++){  
+						for(int i = 0;i<canal.size();i++){
 							System.out.println("\nNome Canal : " + canal.get(i).getNome());
 							System.out.println("E-mail : " + canal.get(i).getEmail());
 							System.out.println("Descrição : " + canal.get(i).getDescricao());
@@ -668,6 +670,8 @@ public class Main {
 									publicos.setOpcao(publicos.getOpc5());
 
 								canal.get(i).getPublico().setOpcao(publicos.getOpcao());
+								
+								objCanal.atualizar(canal.get(i), nomeUpdate);
 								
 								System.out.printf("\nDados Armazenados com sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
