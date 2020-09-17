@@ -31,7 +31,7 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 				if(inscricao.getInscrito().getLista()[j].getNome()==null) {
 					break;
 				}
-			String sql = "DELETE FROM Inscricao WHERE NomeCanal = '" + inscricao.getNome() + "'";
+			String sql = "DELETE FROM Inscricao WHERE NomeCanal = '" + inscricao.getNome() + "', NomeUsuario = '" + inscricao.getInscrito().getLista()[j].getNome() + "' ";
 			UtilBD.alterarBD(sql);
 			}
 		} catch (SQLException e) {
@@ -43,11 +43,10 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 
 	@Override
 	public List<Canal> todos() {
-		// Já existente na classe Canal
+		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void atualizar(Canal referencia) {
 		// TODO Auto-generated method stub
 		
@@ -55,13 +54,8 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 	
 	public void removerInscricao(Canal inscricao, String nomeuser) {
 		try {
-			for(int j =0; j<inscricao.getInscrito().getLista().length; j++) {
-				if(inscricao.getInscrito().getLista()[j].getNome()==null) {
-					break;
-				}
-			String sql = "DELETE FROM Inscricao WHERE NomeCanal = '" + inscricao.getNome() + "'";
+			String sql = "DELETE FROM Inscricao WHERE NomeCanal = '" + inscricao.getNome() + "', NomeUsuario = '" + nomeuser + "' ";
 			UtilBD.alterarBD(sql);
-			}
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível remover a inscricao do banco!");
 			System.out.println("Não foi possível remover a Inscricao no banco!");

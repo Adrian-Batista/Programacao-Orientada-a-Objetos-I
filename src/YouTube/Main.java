@@ -7,8 +7,10 @@ import java.util.Scanner;
 
 import YouTube.bd.CanalDAO;
 import YouTube.bd.InscricaoDAO;
+import YouTube.bd.PublicoAlvoDAO;
 import YouTube.bd.UsuarioDAO;
 import YouTube.bd.UtilBD;
+import YouTube.bd.VideoDAO;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Inscricao;
 import YouTube.entidades.Perfil;
@@ -37,9 +39,12 @@ public class Main {
 		UsuarioDAO objUsuario = new UsuarioDAO();
 		CanalDAO objCanal = new CanalDAO();
 		InscricaoDAO objInscricao = new InscricaoDAO();
+		PublicoAlvoDAO objPublico = new PublicoAlvoDAO();
+		VideoDAO objVideo = new VideoDAO();
 		
 		usuario = objUsuario.todos();
 		canal = objCanal.todos();
+		video = objVideo.todos();
 		
 		Scanner entrada = new Scanner(System.in);
 
@@ -218,6 +223,7 @@ public class Main {
 										if(aux==0) {
 											Main.LimparTela();
 											usuario.get(indice).setNome(auxiliar);
+											objUsuario.atualizarNome(usuario.get(indice), auxiliar); // -- Comando que atualiza o Nome
 											System.out.println("Dado Alterado com Sucesso!");
 											System.in.read();
 											break;
@@ -242,6 +248,7 @@ public class Main {
 										if(aux==0) {
 											Main.LimparTela();
 											usuario.get(indice).setEmail(auxiliar);
+											objUsuario.atualizarEmail(usuario.get(indice)); // -- Comando que atualiza o Email
 											System.out.println("Dado Alterado com Sucesso!");
 											System.in.read();
 											break;
@@ -255,6 +262,7 @@ public class Main {
 									auxiliar = entrada.nextLine();	
 									Main.LimparTela();
 									usuario.get(indice).setSenha(auxiliar);
+									objUsuario.atualizarSenha(usuario.get(indice)); // -- Comando que atualiza o Senha
 									System.out.println("Dado Alterado com Sucesso!");
 									System.in.read();	
 									opcao2=0;
@@ -366,6 +374,7 @@ public class Main {
 						videos.setPreco(entrada.nextDouble());
 
 						video.add(videos);
+						objVideo.adicionar(videos); // -- Comando que adiciona Video no Banco de Dados Video
 
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");
@@ -479,6 +488,7 @@ public class Main {
 						for (int indice = 0; indice < Main.video.size(); indice++) {
 							if (Main.video.get(indice).getNome().contentEquals(nomeRemove)) {
 								aux++;
+								objVideo.remover(Main.video.get(indice)); // -- Comando que remove o Video do Banco de Videos
 								Main.video.remove(indice);
 								System.out.printf("Video removido com Sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
@@ -582,8 +592,10 @@ public class Main {
 						(canais).getPublico().setOpcao(publico.getOpcao());
 						canal.add(canais);
 						
-						objCanal.adicionar(canais); // -- Comando que adiciona Canal no Banco de DADOS
+						objCanal.adicionar(canais); // -- Comando que adiciona Canal no Banco de Canais
+						objPublico.adicionar(canais); // -- Comando que adiciona Publico no Banco de PublicoAlvo
 						canal = objCanal.todos();
+						
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");
 						break;
@@ -656,7 +668,7 @@ public class Main {
 									publicos.setOpcao(publicos.getOpc5());
 
 								canal.get(i).getPublico().setOpcao(publicos.getOpcao());
-
+								
 								System.out.printf("\nDados Armazenados com sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
 										break;
@@ -695,7 +707,8 @@ public class Main {
 											}
 										}
 										
-										objCanal.remover(Main.canal.get(indice)); // -- remove o Canal do Banco de DADOS
+										objCanal.remover(Main.canal.get(indice)); // -- remove o Canal do Banco de Canal
+										objPublico.remover(Main.canal.get(indice)); // -- remove o Publico do Banco de Publicos
 										Main.canal.remove(indice);
 										canal = objCanal.todos();
 
@@ -859,8 +872,8 @@ public class Main {
 													quant = canal.get(indice).getInscrito().getNumeroInscritos();
 													quant--;
 													canal.get(indice).getInscrito().setNumeroInscritos(quant);
-													//objInscricao.remover(canal.get(indice));
-													//canal = objCanal.todos();
+													objInscricao.removerInscricao(canal.get(indice), nomeUsuario);
+													canal = objCanal.todos();
 													System.out.println("Dados removidos!");
 													System.in.read();
 													break;

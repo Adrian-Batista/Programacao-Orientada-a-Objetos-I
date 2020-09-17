@@ -77,8 +77,7 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 		}
 		return retorno;
 	}
-
-	@Override
+	
 	public void atualizar(Canal referencia) {
 		// TODO Auto-generated method stub
 		

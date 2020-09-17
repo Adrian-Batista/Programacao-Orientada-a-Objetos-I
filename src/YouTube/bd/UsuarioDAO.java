@@ -70,18 +70,34 @@ public class UsuarioDAO implements InterfaceDAO<Usuario> {
 		return retorno;
 	}
 
-	public void atualizar(Usuario usuario) {
+	public void atualizarNome(Usuario usuario, String nome) {
 		try {
-			String sql = "UPDATE Usuario SET"
-					+ "Email = " + usuario.getEmail() +"',"
-					+ "Senha = " + usuario.getSenha() +""
-					+" WHERE Nome = '" + usuario.getNome() + "'";
+			String sql = "UPDATE Usuario SET Nome = '" + nome + "' WHERE Nome = '" + usuario.getNome() + "'";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível atualizar o jogo no banco!");
-			System.out.println("Não foi possível atualizar o jogo no banco!");
+			//AlertaFX.erro("Não foi possível atualizar o usuario no banco!");
+			System.out.println("Não foi possível atualizar o usuario no banco!");
 		}
-		
+	}
+	
+	public void atualizarEmail(Usuario usuario) {
+		try {
+			String sql = "UPDATE Usuario SET Email = '" + usuario.getEmail() + "' WHERE Nome = '" + usuario.getNome() + "'";
+			UtilBD.alterarBD(sql);
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível atualizar o usuario no banco!");
+			System.out.println("Não foi possível atualizar o usuario no banco!");
+		}
+	}
+	
+	public void atualizarSenha(Usuario usuario) {
+		try {
+			String sql = "UPDATE Usuario SET Senha = '" + usuario.getSenha() + "' WHERE Nome = '" + usuario.getNome() + "'";
+			UtilBD.alterarBD(sql);
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível atualizar o usuario no banco!");
+			System.out.println("Não foi possível atualizar o usuario no banco!");
+		}
 	}
 
 }

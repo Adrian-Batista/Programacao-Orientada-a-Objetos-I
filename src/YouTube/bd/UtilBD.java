@@ -101,14 +101,15 @@ public class UtilBD {
 				+ "Nome VARCHAR(20) PRIMARY KEY NOT NULL,"
 				+ "Link VARCHAR(30) NOT NULL,"
 				+ "Date VARCHAR(10) NOT NULL,"
+				+ "Preco INTERGER NOT NULL,"
 				+ "NomeCanal VARCHAR(10) NOT NULL,"
 				+ "Descricao VARCAHAR(100) NOT NULL"
 				+ ");"
 				
 		);
-		stm.executeUpdate("INSERT INTO Video VALUES ('Video 1', 'https:', '11/09/2020', 'Canal', 'Seja bem vindo ao vídeo 1');");
-		stm.executeUpdate("INSERT INTO Video VALUES ('Video 2', 'https:/', '11/09/2020', 'Canal', 'Seja bem vindo ao vídeo 2');");
-		stm.executeUpdate("INSERT INTO Video VALUES ('Video 3', 'https://', '12/09/2020', 'Canal', 'Seja bem vindo ao vídeo 3');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 1', 'https:', '11/09/2020','15.8', 'Canal', 'Seja bem vindo ao vídeo 1');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 2', 'https:/', '11/09/2020', '10', 'Canal', 'Seja bem vindo ao vídeo 2');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 3', 'https://', '12/09/2020', '0', 'Canal', 'Seja bem vindo ao vídeo 3');");
 	}
 
 	private static void criarCanal(Statement stm) throws SQLException {
