@@ -45,6 +45,9 @@ public class Main {
 		usuario = objUsuario.todos();
 		canal = objCanal.todos();
 		video = objVideo.todos();
+		for(int test =0; test<canal.size(); test++) {
+			objPublico.adicionar(canal.get(test));
+		}
 		
 		Scanner entrada = new Scanner(System.in);
 
@@ -376,7 +379,7 @@ public class Main {
 
 						video.add(videos);
 						objVideo.adicionar(videos); // -- Comando que adiciona Video no Banco de Dados Video
-
+						
 						System.out.printf("\nDados Armazenados com sucesso!! \n");
 						System.out.println("Pressione Enter Novamente...");
 						System.in.read();
@@ -432,10 +435,7 @@ public class Main {
 
 					case 3:
 						Main.LimparTela();
-						System.out.println("Em desenvolvimento!");
-						System.in.read();
 						aux = 0;
-						
 						System.out.printf("Digite o nome do Video a ser Atualizado:  \n");
 						String nomeUpdate = entrada.nextLine();
 						
@@ -463,9 +463,12 @@ public class Main {
 								
 								System.out.println("Digite o valor a ser cobrado pelo vídeo, se for gratuito digite ZERO.");
 								update.setPreco(entrada.nextDouble());
+								
+								update.getCanal().setNome(video.get(indice).getCanal().getNome());
 
 								video.set(indice, update);
-
+								objVideo.atualizar(video.get(indice), nomeUpdate);
+								
 								System.out.printf("\nDados Armazenados com sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");
 								System.in.read();
@@ -671,7 +674,8 @@ public class Main {
 
 								canal.get(i).getPublico().setOpcao(publicos.getOpcao());
 								
-								objCanal.atualizar(canal.get(i), nomeUpdate);
+								objCanal.atualizar(canal.get(i), nomeUpdate); // -- Comando que atualiza Canal no Banco de Canais
+								objPublico.atualizar(canal.get(i), nomeUpdate); // -- Comando que atualiza Publico no Banco de PublicoAlvo
 								
 								System.out.printf("\nDados Armazenados com sucesso!! \n");
 								System.out.println("Pressione Enter Novamente...");

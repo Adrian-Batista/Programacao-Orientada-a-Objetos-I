@@ -58,10 +58,10 @@ public class UtilBD {
 		try {
 			conexao = getConexao();
 			Statement stm = conexao.createStatement();
-			//criarInscricao(stm);
+			criarInscricao(stm);
 			criarCanal(stm);
 			criarVideo(stm);
-			//criarPublicoAlvo(stm);
+			criarPublicoAlvo(stm);
 			criarUsuario(stm);
 			stm.executeUpdate("PRAGMA foreign_keys=ON");
 			stm.close();
@@ -88,8 +88,9 @@ public class UtilBD {
 		stm.executeUpdate("DROP TABLE IF EXISTS PublicoAlvo");
 		stm.executeUpdate("CREATE TABLE PublicoAlvo ("
 				+ "NomeCanal VARCHAR(10) NOT NULL,"
-				+ "TipoPublico VARCHAR(10) NOT NULL,"
-				+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE"
+				+ "TipoPublico VARCHAR(10) NOT NULL"
+				//+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE,"
+				//+ "FOREIGN KEY (TipoPublico) REFERENCES Canal(Publico) ON DELETE CASCADE"
 				+ ");"
 		);
 		//stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal','Todos')");
@@ -104,20 +105,20 @@ public class UtilBD {
 				+ "Date VARCHAR(10) NOT NULL,"
 				+ "Preco INTEGER NOT NULL,"
 				+ "NomeCanal VARCHAR(10) NOT NULL,"
-				+ "Descricao VARCAHAR(100) NOT NULL,"
-				+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE"
+				+ "Descricao VARCAHAR(100) NOT NULL"
+				//+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE"
 				+ ");"
 				
 		);
-		//stm.executeUpdate("INSERT INTO Video VALUES ('Video 1', 'https:', '11/09/2020','15.8', 'Canal', 'Seja bem vindo ao vídeo 1');");
-		//stm.executeUpdate("INSERT INTO Video VALUES ('Video 2', 'https:/', '11/09/2020', '10', 'Canal', 'Seja bem vindo ao vídeo 2');");
-		//stm.executeUpdate("INSERT INTO Video VALUES ('Video 3', 'https://', '12/09/2020', '0', 'Canal', 'Seja bem vindo ao vídeo 3');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 1', 'https:', '11/09/2020','15.8', 'Canal', 'Seja bem vindo ao vídeo 1');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 2', 'https:/', '11/09/2020', '10', 'Canal', 'Seja bem vindo ao vídeo 2');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Video 3', 'https://', '12/09/2020', '0', 'Canal', 'Seja bem vindo ao vídeo 3');");
 	}
 
 	private static void criarCanal(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS Canal");
 		stm.executeUpdate("CREATE TABLE Canal ("
-				+ "Nome VARCHAR(10) NOT NULL,"
+				+ "Nome VARCHAR(10) PRIMARY KEY NOT NULL,"
 				+ "Email VARCHAR(30) NOT NULL,"
 				+ "Descricao VARCHAR(100) NOT NULL,"
 				+ "Publico VARCHAR(10) NOT NULL,"

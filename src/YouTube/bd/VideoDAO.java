@@ -21,8 +21,8 @@ public class VideoDAO implements InterfaceDAO<Video> {
 					+ video.getDescricao() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível inserir o Usuario no banco!");
-			System.out.println("Não foi possível inserir o jogador no banco!");
+			//AlertaFX.erro("Não foi possível inserir o Video no banco!");
+			System.out.println("Não foi possível inserir o Video no banco!");
 		}
 	}
 
@@ -32,7 +32,8 @@ public class VideoDAO implements InterfaceDAO<Video> {
 			String sql = "DELETE FROM Video WHERE Nome = '" + referencia.getNome() + "'";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível remover o Canal do banco!");
+			//AlertaFX.erro("Não foi possível remover o Video do banco!");
+			System.out.println("Não foi possível remover o Video do banco!");
 		}
 		
 	}
@@ -58,12 +59,26 @@ public class VideoDAO implements InterfaceDAO<Video> {
 			resultSet.getStatement().close();
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível consultar todas os Canais do banco!");
+			System.out.println("Não foi possível consultar todas os Canais do banco!");
 		}
 		return retorno;
 	}
 
-	public void atualizar(Video referencia) {
-		// TODO Auto-generated method stub
+	public void atualizar(Video video, String auxiliar) {
+		try {
+			String sql = "UPDATE Video SET "
+					+ "Nome = '" + video.getNome() + "', "
+					+ "Link = '" + video.getLink() + "', "
+					+ "Date = '" + video.getDate() + "', "
+					+ "Preco = '" + video.getPreco() + "', "
+					+ "NomeCanal = '" + video.getCanal().getNome() + "', "
+					+ "Descricao = '" + video.getDescricao() + "' "
+					+ "WHERE Nome = '" + auxiliar + "';";
+			UtilBD.alterarBD(sql);
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível atualizar o Video do banco!");
+			System.out.println("Não foi possível atualizar o Video do banco!");
+		}
 		
 	}
 

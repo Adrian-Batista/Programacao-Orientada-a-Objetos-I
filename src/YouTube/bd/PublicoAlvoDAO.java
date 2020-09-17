@@ -14,28 +14,37 @@ public class PublicoAlvoDAO implements InterfaceDAO<Canal> {
 	
 
 	@Override
-	public void adicionar(Canal referencia) {
+	public void adicionar(Canal canal) {
 		try {
-			String sql = "INSERT INTO PublicoAlvo VALUES ('" + referencia.getNome() + "','" + referencia.getPublico().getOpcao() + "')";
+			String sql = "INSERT INTO PublicoAlvo VALUES ('" + canal.getNome() + "','" + canal.getPublico().getOpcao() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível inserir o Usuario no banco!");
-			System.out.println("Não foi possível inserir o jogador no banco!");
+			//AlertaFX.erro("Não foi possível inserir o Publico no banco!");
+			System.out.println("Não foi possível inserir o Publico no banco!");
 		}
 	}
 
-	public void atualizar(Canal referencia) {
-		// TODO Auto-generated method stub
-		
-	}
-
 	@Override
-	public void remover(Canal referencia) {
+	public void remover(Canal canal) {
 		try {
-			String sql = "DELETE FROM PublicoAlvo WHERE NomeCanal = '" + referencia.getNome() + "'";
+			String sql = "DELETE FROM PublicoAlvo WHERE NomeCanal = '" + canal.getNome() + "'";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível remover o Canal do banco!");
+			//AlertaFX.erro("Não foi possível remover o Publico no banco!");
+			System.out.println("Não foi possível remover o Publico no banco!");
+		}
+	}
+	
+	public void atualizar(Canal canal, String auxiliar) {
+		try {
+			String sql = "UPDATE PublicoAlvo SET "
+					+ "NomeCanal = '" + canal.getNome() + "', "
+					+ "TipoPublico = '" + canal.getPublico().getOpcao() + "' "
+					+ "WHERE NomeCanal = '" + auxiliar + "';";
+			UtilBD.alterarBD(sql);
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível atualizar o Video do banco!");
+			System.out.println("Não foi possível atualizar o Video do banco!");
 		}
 		
 	}
@@ -44,7 +53,7 @@ public class PublicoAlvoDAO implements InterfaceDAO<Canal> {
 	public List<Canal> todos() {
 		List<Canal> retorno = new ArrayList<Canal>();
 		try {
-			String sql = "SELECT Nome, Publico FROM Canal";
+			String sql = "SELECT Nome, Publico Publico FROM Canal";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
 			while (resultSet.next()) {
 				Canal objeto = new Canal(null, null, null, null, null);
@@ -59,7 +68,8 @@ public class PublicoAlvoDAO implements InterfaceDAO<Canal> {
 			}
 			resultSet.getStatement().close();
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível consultar todas os Canais do banco!");
+			//AlertaFX.erro("Não foi possível consultar todos os Publicos do banco!");
+			System.out.println("Não foi possível consultar todos os Publicos do banco!");
 		}
 		return retorno;
 	}

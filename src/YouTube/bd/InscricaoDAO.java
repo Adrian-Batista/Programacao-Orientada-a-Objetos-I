@@ -10,13 +10,9 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 	@Override
 	public void adicionar(Canal inscricao) {
 		try {
-			for(int j =0; j<inscricao.getInscrito().getLista().length; j++) {
-				if(inscricao.getInscrito().getLista()[j].getNome()==null) {
-					break;
-				}
-				String sql = "INSERT INTO Inscricao VALUES ('" + inscricao.getNome() + "','" + inscricao.getInscrito().getLista()[j].getNome() + "')";
-				UtilBD.alterarBD(sql);
-			}
+			int j = inscricao.getInscrito().getLista().length;
+			String sql = "INSERT INTO Inscricao VALUES ('" + inscricao.getNome() + "','" + inscricao.getInscrito().getLista()[j].getNome() + "')";
+			UtilBD.alterarBD(sql);
 			
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível inserir a inscricao no banco!");
