@@ -9,15 +9,19 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 
 	@Override
 	public void adicionar(Canal inscricao) {
-		try {
-			int j = inscricao.getInscrito().getLista().length;
-			String sql = "INSERT INTO Inscricao VALUES ('" + inscricao.getNome() + "','" + inscricao.getInscrito().getLista()[j].getNome() + "')";
-			UtilBD.alterarBD(sql);
+		/*try {
+			for(int j =0; j<inscricao.getInscrito().getLista().length; j++) {
+				if(inscricao.getInscrito().getLista()[j].getNome()==null) {
+					break;
+				}
+				String sql = "INSERT INTO Inscricao VALUES ('" + inscricao.getNome() + "','" + inscricao.getInscrito().getLista()[j].getNome() + "');";
+				UtilBD.alterarBD(sql);
+			}
 			
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível inserir a inscricao no banco!");
 			System.out.println("Não foi possível inserir a inscricao no banco!");
-		}
+		}*/
 	}
 
 	@Override
@@ -48,9 +52,21 @@ public class InscricaoDAO implements InterfaceDAO<Canal>{
 		
 	}
 	
+	public void adicionarInscricao(Canal canal, String auxiliar) {
+		try {
+			String sql = "INSERT INTO Inscricao VALUES ('" + canal.getNome() + "','" + auxiliar + "')";
+			UtilBD.alterarBD(sql);
+			
+		} catch (SQLException e) {
+			//AlertaFX.erro("Não foi possível inserir a inscricao no banco!");
+			System.out.println("Não foi possível inserir a inscricao no banco!");
+		}
+	}
+	
 	public void removerInscricao(Canal inscricao, String nomeuser) {
 		try {
-			String sql = "DELETE FROM Inscricao WHERE NomeCanal = '" + inscricao.getNome() + "', NomeUsuario = '" + nomeuser + "' ";
+			String sql = "DELETE FROM Inscricao WHERE "
+					+ "NomeCanal = '" + inscricao.getNome() + "' AND NomeUsuario = '" + nomeuser + "';";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
 			//AlertaFX.erro("Não foi possível remover a inscricao do banco!");

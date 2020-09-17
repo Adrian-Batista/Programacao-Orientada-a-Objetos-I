@@ -134,9 +134,9 @@ public class UtilBD {
 		stm.executeUpdate("DROP TABLE IF EXISTS Inscricao");
 		stm.executeUpdate("CREATE TABLE Inscricao ("
 				+ "NomeCanal VARCHAR(10) NOT NULL,"
-				+ "NomeUsuario VARCHAR(10) NOT NULL,"
-				+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE,"
-				+ "FOREIGN KEY (NomeUsuario) REFERENCES Usuario(Nome) ON DELETE CASCADE"
+				+ "NomeUsuario VARCHAR(10) NOT NULL"
+				//+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE,"
+				//+ "FOREIGN KEY (NomeUsuario) REFERENCES Usuario(Nome) ON DELETE CASCADE"
 				+ ");"
 		);
 		//stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal', 'usuario')");

@@ -816,7 +816,8 @@ public class Main {
 														quant = canal.get(i).getInscrito().getNumeroInscritos();
 														quant++;
 														canal.get(i).getInscrito().setNumeroInscritos(quant);
-														objInscricao.adicionar(canal.get(indice)); // - adicionando dados na Tabela Inscricao 
+														//objInscricao.adicionar(canal.get(indice)); // - adicionando dados na Tabela Inscricao
+														objInscricao.adicionarInscricao(canal.get(indice), NomeUsuario); // -- Comando adicionando dados na Tabela Inscricao
 														System.out.println("Dados armazenados com sucesso!");
 														System.in.read();
 														break;
