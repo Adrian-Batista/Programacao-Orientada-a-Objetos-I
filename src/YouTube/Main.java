@@ -3,20 +3,13 @@ package YouTube;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
-import YouTube.bd.CanalDAO;
-import YouTube.bd.InscricaoDAO;
-import YouTube.bd.PublicoAlvoDAO;
-import YouTube.bd.UsuarioDAO;
 import YouTube.bd.UtilBD;
-import YouTube.bd.VideoDAO;
 import YouTube.entidades.Canal;
-import YouTube.entidades.Inscricao;
-import YouTube.entidades.Perfil;
-import YouTube.entidades.PublicoAlvo;
 import YouTube.entidades.Usuario;
 import YouTube.entidades.Video;
+import YouTube.ihc.LoginFX;
+import javafx.application.Application;
 
 public class Main {
 
@@ -27,8 +20,10 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 
 		UtilBD.initBD();
-
-		int opcao = 0;
+		
+		Application.launch(LoginFX.class);
+		
+		/*int opcao = 0;
 		int opcao2 = 0;
 		int opcao3 = 0;
 		int opcao4 = 0;
@@ -949,16 +944,16 @@ public class Main {
 			}	
 
 		} while (opcao != 0);
-		entrada.close();
+		entrada.close();*/
 		UtilBD.fecharConexao();
 
 	}
 
 	// ------------------------------------ MÉTODO LIMPAR TELA ------------------------------------------------
 
-	public static void LimparTela() {
+	/*public static void LimparTela() {
 		for(int i = 0; i < 100; i++)
 			System.out.println("");
-	}
+	}*/
 
 }
