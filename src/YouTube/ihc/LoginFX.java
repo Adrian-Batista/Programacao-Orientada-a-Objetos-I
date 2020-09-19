@@ -44,32 +44,39 @@ public class LoginFX extends Application {
 
 	private void initComponentes() {
 		lblYouTube = new Label("Bem-vindo ao YouTube");
+		lblYouTube.styleProperty().set("-fx-text-fill: white");
 
 		txtUsuario = new TextField();
 		txtUsuario.setPromptText("Digite aqui seu usuário");
+		txtUsuario.styleProperty().set("-fx-border-color: #00EE00;");
 
 		txtSenha = new PasswordField();
 		txtSenha.setPromptText("Digite aqui sua senha");
+		txtSenha.styleProperty().set("-fx-border-color: #00EE00;");
 
 		btnEntrar = new Button("Entrar");
 		btnEntrar.setOnAction(entrar());
+		btnEntrar.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 
 		btnSair = new Button("Sair");
 		btnSair.setOnAction(sair());
+		btnSair.styleProperty().set("-fx-text-fill: white; -fx-background-color: red;");
 
-		btnCadastrar = new Button("Registrar nova conta");
+		btnCadastrar = new Button("Nova conta");
 		btnCadastrar.setOnAction(abrirJanelaCadastro());
+		btnCadastrar.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 
 		pane = new AnchorPane();
 
 		pane.getChildren().add(lblYouTube);
 		pane.getChildren().addAll(txtUsuario, txtSenha, btnEntrar, btnSair, btnCadastrar);
+		pane.styleProperty().set("-fx-background-color: #696969");
 	}
 
 	private void configLayout() {
-		pane.setPrefSize(320, 180);
+		pane.setPrefSize(320, 185);
 		
-		lblYouTube.setLayoutX(10);
+		lblYouTube.setLayoutX(90);
 		lblYouTube.setLayoutY(10);
 
 		txtUsuario.setLayoutX(10);
@@ -87,15 +94,15 @@ public class LoginFX extends Application {
 		btnEntrar.setPrefHeight(20);
 		btnEntrar.setPrefWidth((pane.getPrefWidth() - 30) / 2);
 
-		btnSair.setLayoutX(btnEntrar.getPrefWidth() + 20);
-		btnSair.setLayoutY(115);
-		btnSair.setPrefHeight(20);
-		btnSair.setPrefWidth((pane.getPrefWidth() - 30) / 2);
-
-		btnCadastrar.setLayoutX(10);
-		btnCadastrar.setLayoutY(145);
+		btnCadastrar.setLayoutX(btnEntrar.getPrefWidth() + 20);
+		btnCadastrar.setLayoutY(115);
 		btnCadastrar.setPrefHeight(20);
-		btnCadastrar.setPrefWidth(pane.getPrefWidth() - 20);
+		btnCadastrar.setPrefWidth((pane.getPrefWidth() - 30) / 2);
+
+		btnSair.setLayoutX(10);
+		btnSair.setLayoutY(150);
+		btnSair.setPrefHeight(20);
+		btnSair.setPrefWidth(pane.getPrefWidth() - 20);
 	}
 
 	private EventHandler<ActionEvent> entrar() {

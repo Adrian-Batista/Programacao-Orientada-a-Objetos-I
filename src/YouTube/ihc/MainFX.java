@@ -59,19 +59,23 @@ public class MainFX extends Application {
 
 		btnCadastrarVideo = new Button("Cadastrar Vídeo");
 		btnCadastrarVideo.setOnAction(abrirCadastroVideo());
+		btnCadastrarVideo.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 
 		btnAlterarVideo = new Button("Alterar Vídeo");
 		btnAlterarVideo.setOnAction(abrirAlteracaoVideo());
+		btnAlterarVideo.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 
 		btnExcluirVideo = new Button("Excluir Vídeo");
 		btnExcluirVideo.setOnAction(excluirVideo());
+		btnExcluirVideo.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 
 		btnSair = new Button("Sair");
 		btnSair.setOnAction(sair());
+		btnSair.styleProperty().set("-fx-text-fill: white; -fx-background-color: red;");
 
 		pane = new AnchorPane();
 		pane.getChildren().addAll(listaVideo, btnCadastrarVideo, btnAlterarVideo, btnExcluirVideo, btnSair);
-
+		pane.styleProperty().set("-fx-background-color: #696969");
 	}
 
 	private void configLayout() {
@@ -82,25 +86,25 @@ public class MainFX extends Application {
 		listaVideo.setPrefHeight(pane.getPrefHeight() - 55);
 		listaVideo.setPrefWidth(pane.getPrefWidth() - 20);
 
-		btnCadastrarVideo.setLayoutX(pane.getPrefWidth() - 590);
+		btnCadastrarVideo.setLayoutX(pane.getPrefWidth() - 620);
 		btnCadastrarVideo.setLayoutY(pane.getPrefHeight() - 35);
 		btnCadastrarVideo.setPrefHeight(20);
 		btnCadastrarVideo.setPrefWidth(150);
 
-		btnAlterarVideo.setLayoutX(pane.getPrefWidth() - 430);
+		btnAlterarVideo.setLayoutX(pane.getPrefWidth() - 460);
 		btnAlterarVideo.setLayoutY(pane.getPrefHeight() - 35);
 		btnAlterarVideo.setPrefHeight(20);
 		btnAlterarVideo.setPrefWidth(150);
 
-		btnExcluirVideo.setLayoutX(pane.getPrefWidth() - 270);
+		btnExcluirVideo.setLayoutX(pane.getPrefWidth() - 300);
 		btnExcluirVideo.setLayoutY(pane.getPrefHeight() - 35);
 		btnExcluirVideo.setPrefHeight(20);
 		btnExcluirVideo.setPrefWidth(150);
 
-		btnSair.setLayoutX(pane.getPrefWidth() - 110);
+		btnSair.setLayoutX(pane.getPrefWidth() - 140);
 		btnSair.setLayoutY(pane.getPrefHeight() - 35);
 		btnSair.setPrefHeight(20);
-		btnSair.setPrefWidth(100);
+		btnSair.setPrefWidth(130);
 	}
 
 	private List<String> geraListaVideos() {
