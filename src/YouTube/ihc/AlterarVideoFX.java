@@ -1,10 +1,12 @@
 package YouTube.ihc;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
 import YouTube.bd.CanalDAO;
+import YouTube.bd.VideoDAO;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Video;
 import javafx.application.Application;
@@ -79,6 +81,7 @@ public class AlterarVideoFX extends Application {
         datePicker.setValue(LocalDate.of(2020, 9, 20));
         datePicker.setShowWeekNumbers(true);
         lblDate = datePicker;
+        video.setLink(datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
 		
         lblPreco = new Label("Digite o Preço:");
 		txtPreco = new TextField();
@@ -108,30 +111,38 @@ public class AlterarVideoFX extends Application {
 		txtNome.setLayoutY(10);
 		txtNome.setPrefHeight(30);
 		txtNome.setPrefWidth(pane.getPrefWidth() - 20);
+		txtNome.styleProperty().set("-fx-border-color: #00EE00;");
 		
 		txtLink.setLayoutX(10);
 		txtLink.setLayoutY(50);
 		txtLink.setPrefHeight(30);
 		txtLink.setPrefWidth(pane.getPrefWidth() - 20);
+		txtLink.styleProperty().set("-fx-border-color: #00EE00;");
 		
 		lblPreco.setLayoutX(10);
 		lblPreco.setLayoutY(90);
+		lblPreco.styleProperty().set("-fx-text-fill: white;");
 		txtPreco.setLayoutX(10);
 		txtPreco.setLayoutY(110);
 		txtPreco.setPrefHeight(30);
 		txtPreco.setPrefWidth(pane.getPrefWidth() - 20);
+		txtPreco.styleProperty().set("-fx-border-color: #00EE00;");
 		
 		lblCanal.setLayoutX(10);
 		lblCanal.setLayoutY(150);
+		lblCanal.styleProperty().set("-fx-text-fill: white;");
 		cmbCanal.setLayoutX(10);
 		cmbCanal.setLayoutY(170);
 		cmbCanal.setPrefHeight(30);
 		cmbCanal.setPrefWidth(pane.getPrefWidth() - 20);
+		cmbCanal.styleProperty().set("-fx-text-fill: white; -fx-text-fill: white; -fx-background-color: white;");
 		
 		lblData.setLayoutX(10);
 		lblData.setLayoutY(210);
+		lblData.styleProperty().set("-fx-text-fill: white;");
 		lblDate.setLayoutX(10);
 		lblDate.setLayoutY(230);
+		lblDate.styleProperty().set("-fx-text-fill: white; -fx-text-fill: white; -fx-background-color: #00EE00;");
 		
 		btnAlterar.setLayoutX(10);
 		btnAlterar.setLayoutY(275);
@@ -167,18 +178,23 @@ public class AlterarVideoFX extends Application {
 		return new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				//if (txtPreco.getText().isBlank()) {
-					//AlertaFX.alerta("Preço em branco!");
+				if (txtPreco.getText().isBlank()) {
+					AlertaFX.alerta("Preço em branco!");
 					return;
 				}
+				video.setNome(txtNome.getText());
+				video.setLink(txtLink.getText());
+				video.setPreco(Double.valueOf(txtPreco.getText()));
+				video.setDate(String.valueOf(lblDate));
+				video.getCanal().setNome(String.valueOf(cmbCanal.getSelectionModel()));
+				video.setDescricao(null);
+				
+				new VideoDAO().atualizar(video, videoAtual.getNome());
+				
+				AlertaFX.info("Vídeo atualizado com sucesso :)");
 
-				//video.setPreco(Double.valueOf(txtPreco.getText()));
-				//new VideoDAO().atualizar(video, videoAtual.getNome());
-
-				//AlertaFX.info("Vídeo atualizado com sucesso :)");
-
-				//abrirJanelaPrincipal();
-			
+				abrirJanelaPrincipal();
+			}
 		};
 	}
 
