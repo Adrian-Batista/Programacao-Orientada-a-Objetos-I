@@ -80,18 +80,23 @@ public class VideoDAO implements InterfaceDAO<Video> {
 	}
 	
 	public Video get(String nome) {
-		Video retorno = new Video(null, null, 0);
+		//Canal canal = new Canal(null, null, null, null, null);
+		Video retorno = new Video(null, null, null, null, null, 0);
+		//retorno.setCanal(canal);
 		try {
-			String sql = "SELECT Nome, Preco, NomeCanal FROM Video WHERE Nome = '" + nome + "'";
+			String sql = "SELECT Nome FROM Video WHERE Nome = '" + nome + "'";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
 			while (resultSet.next()) {
 				retorno.setNome(resultSet.getString("Nome"));
+				/*retorno.setLink(resultSet.getString("Link"));
+				retorno.setDate(resultSet.getString("Date"));
 				retorno.setPreco(resultSet.getDouble("Preco"));
 				retorno.getCanal().setNome(resultSet.getString("NomeCanal"));
+				retorno.setDescricao(resultSet.getString("Descricao"));*/
 			}
 			resultSet.getStatement().close();
 		} catch (SQLException e) {
-			AlertaFX.erro("Não foi possível consultar um jogo do banco!");
+			AlertaFX.erro("Não foi possível consultar um Vídeo do banco!");
 		}
 		return retorno;
 	}

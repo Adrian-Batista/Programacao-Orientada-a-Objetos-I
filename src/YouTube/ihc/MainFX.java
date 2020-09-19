@@ -150,9 +150,9 @@ public class MainFX extends Application {
 				Video video = new VideoDAO().get(nomeVideo);
 				
 				try {
-					//new AlterarVideoFX(usuarioLogado, video).start(stage);
+					new AlterarVideoFX(usuarioLogado, video).start(stage);
 				} catch (Exception e) {
-					AlertaFX.erro("Não foi possível iniciar a tela de cadastro de um jogo!");
+					AlertaFX.erro("Não foi possível iniciar a tela de cadastro de um Vídeo!");
 				}
 			}
 		};

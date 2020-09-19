@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import YouTube.bd.CanalDAO;
+import YouTube.bd.InscricaoDAO;
+import YouTube.bd.PublicoAlvoDAO;
 import YouTube.bd.UsuarioDAO;
 import YouTube.bd.UtilBD;
 import YouTube.bd.VideoDAO;
@@ -26,6 +28,8 @@ public class Main {
 		
 		UsuarioDAO objUsuario = new UsuarioDAO();
 		CanalDAO objCanal = new CanalDAO();
+		//InscricaoDAO objInscricao = new InscricaoDAO();
+		//PublicoAlvoDAO objPublico = new PublicoAlvoDAO();
 		VideoDAO objVideo = new VideoDAO();
 
 		usuario = objUsuario.todos();
@@ -320,7 +324,7 @@ public class Main {
 					case 1:
 						Main.LimparTela();
 
-						Video videos = new Video(null, null, null, null, null);
+						Video videos = new Video(null, null, null, null, null, 0);
 						Canal C = new Canal(null, null, null, null, null);
 						videos.setCanal(C);
 						int opc= 0;
@@ -446,7 +450,7 @@ public class Main {
 							if (Main.video.get(indice).getNome().contentEquals(nomeUpdate)) {
 								aux++;	
 								Main.LimparTela();
-								Video update = new Video(null, null, null, null, null);
+								Video update = new Video(null, null, null, null, null, 0);
 								Canal canal = new Canal(null, null, null, null, null);
 								update.setCanal(canal);
 								do {

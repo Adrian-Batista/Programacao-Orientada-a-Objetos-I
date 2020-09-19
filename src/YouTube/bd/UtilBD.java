@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-//import steam.ihc.AlertaFX;
+import YouTube.ihc.AlertaFX;
 
 public class UtilBD {
 	private static Connection conexao;
@@ -21,8 +21,7 @@ public class UtilBD {
 				abrirConexao();
 
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não consegui abrir a conexão com o banco!");
-			System.out.println("Não consegui abrir a conexão com o banco!");
+			AlertaFX.erro("Não consegui abrir a conexão com o banco!");
 		}
 
 		return conexao;
@@ -33,11 +32,9 @@ public class UtilBD {
 			Class.forName("org.sqlite.JDBC");
 			conexao = DriverManager.getConnection("jdbc:sqlite:banco.sqlite");
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não consegui abrir a conexão com o banco!");
-			System.out.println("Não consegui abrir a conexão com o banco!");
+			AlertaFX.erro("Não consegui abrir a conexão com o banco!");
 		} catch (ClassNotFoundException e2) {
-			//AlertaFX.erro("A biblioteca do SQLite não está funcionando corretamente!");
-			System.out.println("A biblioteca do SQLite não está funcionando corretamente!");
+			AlertaFX.erro("A biblioteca do SQLite não está funcionando corretamente!");
 		}
 	}
 
@@ -49,8 +46,7 @@ public class UtilBD {
 			if (!conexao.isClosed())
 				conexao.close();
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não consegui fechar a conexão com o banco!");
-			System.out.println("Não consegui fechar a conexão com o banco!");
+			AlertaFX.erro("Não consegui fechar a conexão com o banco!");
 		}
 	}
 
@@ -66,23 +62,22 @@ public class UtilBD {
 			stm.executeUpdate("PRAGMA foreign_keys=ON");
 			stm.close();
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não consegui criar o banco!");
-			System.out.println("Não consegui criar o banco!");
+			AlertaFX.erro("Não consegui criar o banco!");
 		}
 	}
 
 	private static void criarUsuario(Statement stm) throws SQLException {		
 		stm.executeUpdate("DROP TABLE IF EXISTS Usuario");
 		stm.executeUpdate("CREATE TABLE Usuario ("
-			+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
-			+ "Nome VARCHAR(10) NOT NULL,"
-			+ "Email VARCHAR(30) NOT NULL,"
-			+ "Senha VARCHAR(20) NOT NULL"
-			+ ");"
-		);
+				+ "id INTEGER PRIMARY KEY AUTOINCREMENT,"
+				+ "Nome VARCHAR(10) NOT NULL,"
+				+ "Email VARCHAR(30) NOT NULL,"
+				+ "Senha VARCHAR(20) NOT NULL"
+				+ ");"
+				);
 		stm.executeUpdate("INSERT INTO Usuario (Nome, Email, Senha) VALUES ('usuario','usuario.teste@gmail.com','123');");
 		stm.executeUpdate("INSERT INTO Usuario (Nome, Email, Senha) VALUES ('usuario2','usuario2.teste@gmail.com','321');");
-}	
+	}	
 
 	private static void criarPublicoAlvo(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS PublicoAlvo");
@@ -92,7 +87,7 @@ public class UtilBD {
 				//+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE,"
 				//+ "FOREIGN KEY (TipoPublico) REFERENCES Canal(Publico) ON DELETE CASCADE"
 				+ ");"
-		);
+				);
 		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal','Todos')");
 		stm.executeUpdate("INSERT INTO PublicoAlvo VALUES ('Canal 2','Jovens')");
 	}
@@ -108,8 +103,8 @@ public class UtilBD {
 				+ "Descricao VARCAHAR(100) NOT NULL"
 				//+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE"
 				+ ");"
-				
-		);
+
+				);
 		stm.executeUpdate("INSERT INTO Video VALUES ('Video 1', 'https:', '11/09/2020','15.8', 'Canal', 'Seja bem vindo ao vídeo 1');");
 		stm.executeUpdate("INSERT INTO Video VALUES ('Video 2', 'https:/', '11/09/2020', '10', 'Canal', 'Seja bem vindo ao vídeo 2');");
 		stm.executeUpdate("INSERT INTO Video VALUES ('Video 3', 'https://', '12/09/2020', '0', 'Canal', 'Seja bem vindo ao vídeo 3');");
@@ -124,10 +119,10 @@ public class UtilBD {
 				+ "Publico VARCHAR(10) NOT NULL,"
 				+ "Inscricao INTEGER NOT NULL"
 				+ ");"
-		);
+				);
 		stm.executeUpdate("INSERT INTO Canal VALUES ('Canal','canal.teste@gmail.com', 'Seja bem vindo ao Canal', 'Todos', '1')");
 		stm.executeUpdate("INSERT INTO Canal VALUES ('Canal 2','canal2.teste@gmail.com', 'Seja bem vindo ao Canal 2', 'Jovens', '2')");
-		
+
 	}
 
 	private static void criarInscricao(Statement stm) throws SQLException {
@@ -138,7 +133,7 @@ public class UtilBD {
 				//+ "FOREIGN KEY (NomeCanal) REFERENCES Canal(Nome) ON DELETE CASCADE,"
 				//+ "FOREIGN KEY (NomeUsuario) REFERENCES Usuario(Nome) ON DELETE CASCADE"
 				+ ");"
-		);
+				);
 		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal', 'usuario')");
 		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2', 'usuario')");
 		stm.executeUpdate("INSERT INTO Inscricao VALUES ('Canal 2', 'usuario2')");
@@ -148,16 +143,14 @@ public class UtilBD {
 		Connection bd = UtilBD.getConexao();
 		Statement stm = bd.createStatement();
 		stm.executeUpdate(sql);
-		//System.out.println("Executei: " + sql);
 		stm.close();
 	}
-	
+
 	@SuppressWarnings("exports")
 	public static ResultSet consultarBD(String sql) throws SQLException {
 		Connection bd = UtilBD.getConexao();
 		Statement stm = bd.createStatement();
 		ResultSet retorno = stm.executeQuery(sql);
-		//System.out.println("Executei: " + sql);
 		return retorno;
 	}
 }
