@@ -124,7 +124,7 @@ public class LoginFX extends Application {
 						return;
 					}
 
-					//new MainFX(txtUsuario.getText()).start(stage);
+					new MainFX(txtUsuario.getText()).start(stage);
 				} catch (Exception e) {
 					AlertaFX.erro("Não foi possível iniciar a tela principal!");
 				}
@@ -146,7 +146,7 @@ public class LoginFX extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					//new CadastrarJogadorFX().start(stage);
+					new CadastrarUsuarioFX().start(stage);
 				} catch (Exception e) {
 					AlertaFX.erro("Não foi possível iniciar a tela de cadastro de jogador!");
 				}

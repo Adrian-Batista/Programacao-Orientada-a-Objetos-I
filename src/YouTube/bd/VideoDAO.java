@@ -7,6 +7,7 @@ import java.util.List;
 
 import YouTube.entidades.Canal;
 import YouTube.entidades.Video;
+import YouTube.ihc.AlertaFX;
 
 public class VideoDAO implements InterfaceDAO<Video> {
 
@@ -21,8 +22,7 @@ public class VideoDAO implements InterfaceDAO<Video> {
 					+ video.getDescricao() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível inserir o Video no banco!");
-			System.out.println("Não foi possível inserir o Video no banco!");
+			AlertaFX.erro("Não foi possível inserir o Video no banco!");
 		}
 	}
 
@@ -32,8 +32,7 @@ public class VideoDAO implements InterfaceDAO<Video> {
 			String sql = "DELETE FROM Video WHERE Nome = '" + referencia.getNome() + "'";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível remover o Video do banco!");
-			System.out.println("Não foi possível remover o Video do banco!");
+			AlertaFX.erro("Não foi possível remover o Video do banco!");
 		}
 
 	}
@@ -45,7 +44,7 @@ public class VideoDAO implements InterfaceDAO<Video> {
 			String sql = "SELECT * FROM Video";
 			ResultSet resultSet = UtilBD.consultarBD(sql);
 			while (resultSet.next()) {
-				Video objeto = new Video(null, null, null, null, null);
+				Video objeto = new Video(null, null, null, null, null, 0);
 				Canal C = new Canal(null, null, null, null, null);
 				objeto.setCanal(C);
 				objeto.setNome(resultSet.getString("Nome"));
@@ -58,8 +57,7 @@ public class VideoDAO implements InterfaceDAO<Video> {
 			}
 			resultSet.getStatement().close();
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível consultar todas os Canais do banco!");
-			System.out.println("Não foi possível consultar todas os Canais do banco!");
+			AlertaFX.erro("Não foi possível consultar todas os Canais do banco!");
 		}
 		return retorno;
 	}
@@ -76,10 +74,26 @@ public class VideoDAO implements InterfaceDAO<Video> {
 					+ "WHERE Nome = '" + auxiliar + "';";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível atualizar o Video do banco!");
-			System.out.println("Não foi possível atualizar o Video do banco!");
+			AlertaFX.erro("Não foi possível atualizar o Video do banco!");
 		}
 
+	}
+	
+	public Video get(String nome) {
+		Video retorno = new Video(null, null, 0);
+		try {
+			String sql = "SELECT Nome, Preco, NomeCanal FROM Video WHERE Nome = '" + nome + "'";
+			ResultSet resultSet = UtilBD.consultarBD(sql);
+			while (resultSet.next()) {
+				retorno.setNome(resultSet.getString("Nome"));
+				retorno.setPreco(resultSet.getDouble("Preco"));
+				retorno.getCanal().setNome(resultSet.getString("NomeCanal"));
+			}
+			resultSet.getStatement().close();
+		} catch (SQLException e) {
+			AlertaFX.erro("Não foi possível consultar um jogo do banco!");
+		}
+		return retorno;
 	}
 
 }

@@ -4,7 +4,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import YouTube.bd.CanalDAO;
+import YouTube.bd.UsuarioDAO;
 import YouTube.bd.UtilBD;
+import YouTube.bd.VideoDAO;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Usuario;
 import YouTube.entidades.Video;
@@ -20,6 +23,14 @@ public class Main {
 	public static void main(String[] args) throws IOException {
 
 		UtilBD.initBD();
+		
+		UsuarioDAO objUsuario = new UsuarioDAO();
+		CanalDAO objCanal = new CanalDAO();
+		VideoDAO objVideo = new VideoDAO();
+
+		usuario = objUsuario.todos();
+		canal = objCanal.todos();
+		video = objVideo.todos();
 		
 		Application.launch(LoginFX.class);
 		
@@ -951,9 +962,9 @@ public class Main {
 
 	// ------------------------------------ MÉTODO LIMPAR TELA ------------------------------------------------
 
-	/*public static void LimparTela() {
+	public static void LimparTela() {
 		for(int i = 0; i < 100; i++)
 			System.out.println("");
-	}*/
+	}
 
 }

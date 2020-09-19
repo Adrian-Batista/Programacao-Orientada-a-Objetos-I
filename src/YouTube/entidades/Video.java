@@ -22,14 +22,14 @@ public class Video{
 		this.preco = preco;
 	}
 
-	public Video(String nome, String link, String date, Canal canal, String descricao) {
+	public Video(String nome, Canal canal, double preco) {
 		super();
 		this.nome = nome;
-		this.link = link;
-		this.date = date;
+		this.link = null;
+		this.date = null;
 		this.canal = canal;
-		this.descricao = descricao;
-		this.preco = 0;
+		this.descricao = null;
+		this.preco = preco;
 	}
 
 	public static boolean VerificaTitulo(String auxiliar) {
