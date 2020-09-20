@@ -18,6 +18,7 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -30,6 +31,8 @@ public class MainFX extends Application {
 	private Stage stage;
 	private Pane pane;
 	private String usuarioLogado;
+	private Label lblVideo;
+	private Label lblCanal;
 	private Button btnSair;
 	private Button btnCadastrarVideo;
 	private Button btnAlterarVideo;
@@ -72,11 +75,14 @@ public class MainFX extends Application {
 		logo = new ImageView(image);
 
 		
-		
+		lblVideo = new Label("Escolha um Vídeo:");
+		lblVideo.styleProperty().set("-fx-text-fill: white;");
 		listaVideo = new ListView<String>();
 		ObservableList<String> items = FXCollections.observableArrayList(geraListaVideos());
 		listaVideo.setItems(items);
 		
+		lblCanal = new Label("Escolha um Canal:");
+		lblCanal.styleProperty().set("-fx-text-fill: white;");
 		listaCanal = new ListView<String>();
 		ObservableList<String> item = FXCollections.observableArrayList(geraListaCanais());
 		listaCanal.setItems(item);
@@ -106,7 +112,7 @@ public class MainFX extends Application {
 		btnSair.styleProperty().set("-fx-text-fill: white; -fx-background-color: red;");
 
 		pane = new AnchorPane();
-		pane.getChildren().addAll(logo, listaVideo, listaCanal, btnCadastrarVideo, btnAlterarVideo, btnExcluirVideo,
+		pane.getChildren().addAll(lblVideo, lblCanal, listaVideo, listaCanal, btnCadastrarVideo, btnAlterarVideo, btnExcluirVideo,
 				btnCadastrarCanal,btnVizuBrowser, btnSair);
 		
 		pane.styleProperty().set("-fx-background-color: #696969");
@@ -115,16 +121,21 @@ public class MainFX extends Application {
 	private void configLayout() {
 		pane.setPrefSize(645, 480);
 	
-		logo.setLayoutX(10);
+		/*logo.setLayoutX(10);
 		logo.setLayoutY(10);
 		logo.setFitHeight(pane.getPrefHeight() - 20);
-		logo.setFitWidth(pane.getPrefWidth() - 280);
+		logo.setFitWidth(pane.getPrefWidth() - 280);*/
 		
+		
+		lblVideo.setLayoutX(35);
+		lblVideo.setLayoutY(95);
 		listaVideo.setLayoutX(35);
 		listaVideo.setLayoutY(115);
 		listaVideo.setPrefHeight(pane.getPrefHeight() - 200);
 		listaVideo.setPrefWidth(pane.getPrefWidth() - 370);
 		
+		lblCanal.setLayoutX(335);
+		lblCanal.setLayoutY(95);
 		listaCanal.setLayoutX(335);
 		listaCanal.setLayoutY(115);
 		listaCanal.setPrefHeight(pane.getPrefHeight() - 200);
