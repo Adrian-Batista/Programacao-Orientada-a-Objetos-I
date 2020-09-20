@@ -11,6 +11,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+
 import YouTube.bd.UsuarioDAO;
 import YouTube.entidades.Usuario;
 
@@ -44,10 +45,10 @@ public class CadastrarUsuarioFX extends Application {
 	}
 
 	private void initComponentes() {
-		
+
 		lblYouTube = new Label("Preencha todos os campos.");
 		lblYouTube.styleProperty().set("-fx-text-fill: white");
-		
+
 		txtUsuario = new TextField();
 		txtUsuario.setPromptText("Digite aqui seu usuário");
 		txtUsuario.styleProperty().set("-fx-border-color: #00EE00;");
@@ -79,10 +80,10 @@ public class CadastrarUsuarioFX extends Application {
 
 	private void configLayout() {
 		pane.setPrefSize(320, 230);
-		
+
 		lblYouTube.setLayoutX(80);
 		lblYouTube.setLayoutY(10);
-		
+
 		txtUsuario.setLayoutX(10);
 		txtUsuario.setLayoutY(35);
 		txtUsuario.setPrefHeight(30);

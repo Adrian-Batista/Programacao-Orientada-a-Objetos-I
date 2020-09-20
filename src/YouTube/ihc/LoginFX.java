@@ -2,6 +2,7 @@ package YouTube.ihc;
 
 import YouTube.bd.UsuarioDAO;
 import YouTube.entidades.Usuario;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -26,9 +27,10 @@ public class LoginFX extends Application {
 	private Button btnCadastrar;
 	private Pane pane;
 
+
 	@Override
 	public void start(Stage stage) { 
-		
+
 		this.stage = stage;
 		initComponentes();
 		configLayout();
@@ -43,7 +45,7 @@ public class LoginFX extends Application {
 	}
 
 	private void initComponentes() {
-		     
+
 		lblYouTube = new Label("Bem-vindo ao YouTube");
 		lblYouTube.styleProperty().set("-fx-text-fill: white");
 
@@ -76,7 +78,7 @@ public class LoginFX extends Application {
 
 	private void configLayout() {
 		pane.setPrefSize(320, 185);
-		
+
 		lblYouTube.setLayoutX(90);
 		lblYouTube.setLayoutY(10);
 
@@ -156,7 +158,7 @@ public class LoginFX extends Application {
 				try {
 					new CadastrarUsuarioFX().start(stage);
 				} catch (Exception e) {
-					AlertaFX.erro("Não foi possível iniciar a tela de cadastro de jogador!");
+					AlertaFX.erro("Não foi possível iniciar a tela de cadastro!");
 				}
 			}
 		};

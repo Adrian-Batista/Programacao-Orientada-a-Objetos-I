@@ -9,6 +9,7 @@ import YouTube.bd.CanalDAO;
 import YouTube.bd.VideoDAO;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Video;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -66,28 +67,28 @@ public class AdicionarVideoFX extends Application {
 		Canal C = new Canal(null, null, null, null, null);
 		video = new Video(null, null, null, null, null, 0);
 		video.setCanal(C);
-		
+
 		txtNome = new TextField();
 		txtNome.setPromptText("Digite o Nome do Vídeo");
 		txtNome.setText(video.getNome());
-		
+
 		txtLink = new TextField();
 		txtLink.setPromptText("Digite o Link do Vídeo");
 		txtLink.setText(video.getLink());
-		
+
 		txtDescricao = new TextField();
 		txtDescricao.setPromptText("Digite uma Descrição para o Vídeo");
 		txtDescricao.setText(video.getDescricao());
-		
+
 		lblData = new Label("Escolha a Data:");
 		DatePicker datePicker = new DatePicker();
-        datePicker.setValue(LocalDate.of(2020, 9, 20));
-        lblDate = datePicker;        
-		
-        lblPreco = new Label("Digite o Preço:");
+		datePicker.setValue(LocalDate.of(2020, 9, 20));
+		lblDate = datePicker;        
+
+		lblPreco = new Label("Digite o Preço:");
 		txtPreco = new TextField();
 		txtPreco.setText(String.valueOf(video.getPreco()));
-		
+
 		lblCanal = new Label("Escolha o Canal:");
 		cmbCanal = new ComboBox<>();
 		cmbCanal.setPromptText("Selecionar");
@@ -113,19 +114,19 @@ public class AdicionarVideoFX extends Application {
 		txtNome.setPrefHeight(30);
 		txtNome.setPrefWidth(pane.getPrefWidth() - 20);
 		txtNome.styleProperty().set("-fx-border-color: #00EE00;");
-		
+
 		txtLink.setLayoutX(10);
 		txtLink.setLayoutY(50);
 		txtLink.setPrefHeight(30);
 		txtLink.setPrefWidth(pane.getPrefWidth() - 20);
 		txtLink.styleProperty().set("-fx-border-color: #00EE00;");
-		
+
 		txtDescricao.setLayoutX(10);
 		txtDescricao.setLayoutY(90);
 		txtDescricao.setPrefHeight(30);
 		txtDescricao.setPrefWidth(pane.getPrefWidth() - 20);
 		txtDescricao.styleProperty().set("-fx-border-color: #00EE00;");
-		
+
 		lblPreco.setLayoutX(10);
 		lblPreco.setLayoutY(130);
 		lblPreco.styleProperty().set("-fx-text-fill: white;");
@@ -134,7 +135,7 @@ public class AdicionarVideoFX extends Application {
 		txtPreco.setPrefHeight(30);
 		txtPreco.setPrefWidth(pane.getPrefWidth() - 20);
 		txtPreco.styleProperty().set("-fx-border-color: #00EE00;");
-		
+
 		lblCanal.setLayoutX(10);
 		lblCanal.setLayoutY(190);
 		lblCanal.styleProperty().set("-fx-text-fill: white;");
@@ -143,14 +144,14 @@ public class AdicionarVideoFX extends Application {
 		cmbCanal.setPrefHeight(30);
 		cmbCanal.setPrefWidth(pane.getPrefWidth() - 20);
 		cmbCanal.styleProperty().set("-fx-text-fill: white; -fx-text-fill: white; -fx-background-color: white;");
-		
+
 		lblData.setLayoutX(10);
 		lblData.setLayoutY(250);
 		lblData.styleProperty().set("-fx-text-fill: white;");
 		lblDate.setLayoutX(10);
 		lblDate.setLayoutY(270);
 		lblDate.styleProperty().set("-fx-text-fill: white; -fx-text-fill: white; -fx-background-color: #00EE00;");
-		
+
 		btnCadastrar.setLayoutX(10);
 		btnCadastrar.setLayoutY(310);
 		btnCadastrar.setPrefHeight(20);
@@ -195,32 +196,32 @@ public class AdicionarVideoFX extends Application {
 						return;
 					}
 					try {
-				        Double.parseDouble(txtPreco.getText());
-				    } catch (NumberFormatException e) {
-				        AlertaFX.alerta("O Campo Preço deve ser preenchido com números!");
-				        return; 
-				    }
+						Double.parseDouble(txtPreco.getText());
+					} catch (NumberFormatException e) {
+						AlertaFX.alerta("O Campo Preço deve ser preenchido com números!");
+						return; 
+					}
 					if(cmbCanal.valueProperty().get()==null) {
 						AlertaFX.alerta("Canal em branco!");
 						return;
 					}
-					
+
 					video.setNome(txtNome.getText());
 					video.setLink(txtLink.getText());
 					video.setPreco(Double.valueOf(txtPreco.getText()));
 					video.setDate(String.valueOf(lblDate.getValue().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"))));
 					video.getCanal().setNome(cmbCanal.valueProperty().get());
 					video.setDescricao(txtDescricao.getText());
-					
+
 					new VideoDAO().adicionar(video);
-					
+
 					AlertaFX.info("Vídeo Cadastrado com sucesso :)");
 
 					abrirJanelaPrincipal();
 				}catch(Exception e){
 					AlertaFX.erro("Não foi Possível Adicionar o Vídeo!");
 				}
-				
+
 			}
 		};
 	}

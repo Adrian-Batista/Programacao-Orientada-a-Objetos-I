@@ -6,6 +6,7 @@ import YouTube.bd.CanalDAO;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Inscricao;
 import YouTube.entidades.PublicoAlvo;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -65,15 +66,15 @@ public class AdicionarCanalFX extends Application {
 		txtNome = new TextField();
 		txtNome.setPromptText("Digite o Nome do Canal");
 		txtNome.setText(canal.getNome());
-		
+
 		txtEmail = new TextField();
 		txtEmail.setPromptText("Digite o E-mail do Canal");
 		txtEmail.setText(canal.getEmail());
-		
+
 		txtDescricao = new TextField();
 		txtDescricao.setPromptText("Digite uma Descrição para o Canal");
 		txtDescricao.setText(canal.getDescricao());
-		
+
 		lblPublico = new Label("Escolha o Canal:");
 		cmbPublico = new ComboBox<>();
 		cmbPublico.setPromptText("Selecionar");
@@ -99,19 +100,19 @@ public class AdicionarCanalFX extends Application {
 		txtNome.setPrefHeight(30);
 		txtNome.setPrefWidth(pane.getPrefWidth() - 20);
 		txtNome.styleProperty().set("-fx-border-color: #00EE00;");
-		
+
 		txtEmail.setLayoutX(10);
 		txtEmail.setLayoutY(50);
 		txtEmail.setPrefHeight(30);
 		txtEmail.setPrefWidth(pane.getPrefWidth() - 20);
 		txtEmail.styleProperty().set("-fx-border-color: #00EE00;");
-		
+
 		txtDescricao.setLayoutX(10);
 		txtDescricao.setLayoutY(90);
 		txtDescricao.setPrefHeight(30);
 		txtDescricao.setPrefWidth(pane.getPrefWidth() - 20);
 		txtDescricao.styleProperty().set("-fx-border-color: #00EE00;");
-		
+
 		lblPublico.setLayoutX(10);
 		lblPublico.setLayoutY(130);
 		lblPublico.styleProperty().set("-fx-text-fill: white;");
@@ -120,7 +121,7 @@ public class AdicionarCanalFX extends Application {
 		cmbPublico.setPrefHeight(30);
 		cmbPublico.setPrefWidth(pane.getPrefWidth() - 20);
 		cmbPublico.styleProperty().set("-fx-text-fill: white; -fx-text-fill: white; -fx-background-color: white;");
-		
+
 		btnCadastrar.setLayoutX(10);
 		btnCadastrar.setLayoutY(190);
 		btnCadastrar.setPrefHeight(20);
@@ -136,7 +137,7 @@ public class AdicionarCanalFX extends Application {
 
 	private List<String> geraListaPublico() {
 		ObservableList<String> itens = FXCollections.observableArrayList();
-	    itens.addAll("Crianças", "Jovens", "Adultos", "Idosos", "Todos");
+		itens.addAll("Crianças", "Jovens", "Adultos", "Idosos", "Todos");
 		return itens;
 	}
 
@@ -154,7 +155,7 @@ public class AdicionarCanalFX extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					
+
 					if(txtNome.getText().isBlank()) {
 						AlertaFX.alerta("Nome do Canal em branco!");
 						return;
@@ -167,28 +168,28 @@ public class AdicionarCanalFX extends Application {
 						AlertaFX.alerta("Público em branco!");
 						return;
 					}
-					
+
 					canal.setNome(txtNome.getText());
 					canal.setEmail(txtEmail.getText());
 					canal.setDescricao(txtDescricao.getText());
 					canal.getPublico().setOpcao(cmbPublico.valueProperty().get());
 					canal.getInscrito().setNumeroInscritos(0);
-					
+
 					System.out.println(canal.getNome());
 					System.out.println(canal.getEmail());
 					System.out.println(canal.getDescricao());
 					System.out.println(canal.getPublico().getOpcao());
 					System.out.println(canal.getInscrito().getNumeroInscritos());
-					
+
 					new CanalDAO().adicionar(canal);
-					
+
 					AlertaFX.info("Canal Cadastrado com sucesso :)");
 
 					abrirJanelaPrincipal();
 				}catch(Exception e){
 					AlertaFX.erro("Não foi Possível Adicionar o Canal!");
 				}
-				
+
 			}
 		};
 	}

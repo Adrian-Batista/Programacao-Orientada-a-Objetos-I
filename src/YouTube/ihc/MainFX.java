@@ -1,7 +1,6 @@
 package YouTube.ihc;
 
 import java.awt.Desktop;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
@@ -13,6 +12,7 @@ import YouTube.bd.CanalDAO;
 import YouTube.bd.VideoDAO;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Video;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,8 +22,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -35,7 +33,6 @@ public class MainFX extends Application {
 	private String usuarioLogado;
 	private Label lblVideo;
 	private Label lblCanal;
-	private ImageView lblFundo;
 	private Button btnSair;
 	private Button btnCadastrarVideo;
 	private Button btnAlterarVideo;
@@ -70,18 +67,13 @@ public class MainFX extends Application {
 	}
 
 	private void initComponentes() throws FileNotFoundException {
-		
-		FileInputStream inputstream = new FileInputStream("C:/Users/adria/OneDrive/Documentos/GitHub/Programacao-Orientada-a-Objetos-I/src/img/logo.png"); 
-		Image image = new Image(inputstream); 
-		ImageView imageView = new ImageView(image);
-		lblFundo = imageView;
 
 		lblVideo = new Label("Escolha um Vídeo:");
 		lblVideo.styleProperty().set("-fx-text-fill: white;");
 		listaVideo = new ListView<String>();
 		ObservableList<String> items = FXCollections.observableArrayList(geraListaVideos());
 		listaVideo.setItems(items);
-		
+
 		lblCanal = new Label("Lista de Canais:");
 		lblCanal.styleProperty().set("-fx-text-fill: white;");
 		listaCanal = new ListView<String>();
@@ -99,11 +91,11 @@ public class MainFX extends Application {
 		btnExcluirVideo = new Button("Excluir Vídeo");
 		btnExcluirVideo.setOnAction(excluirVideo());
 		btnExcluirVideo.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
-		
+
 		btnCadastrarCanal = new Button("Cadastrar Canal");
 		btnCadastrarCanal.setOnAction(cadastrarCanal());
 		btnCadastrarCanal.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
-		
+
 		btnVizuBrowser = new Button("Visualizar no YouTube");
 		btnVizuBrowser.setOnAction(abrirVideoBrowser());
 		btnVizuBrowser.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
@@ -113,25 +105,22 @@ public class MainFX extends Application {
 		btnSair.styleProperty().set("-fx-text-fill: white; -fx-background-color: red;");
 
 		pane = new AnchorPane();
-		pane.getChildren().addAll(lblFundo, lblVideo, lblCanal, listaVideo, listaCanal, btnCadastrarVideo, btnAlterarVideo, btnExcluirVideo,
+		pane.getChildren().addAll(lblVideo, lblCanal, listaVideo, listaCanal, btnCadastrarVideo, btnAlterarVideo, btnExcluirVideo,
 				btnCadastrarCanal,btnVizuBrowser, btnSair);
-		
+
 		pane.styleProperty().set("-fx-background-color: #696969");
 	}
 
 	private void configLayout() {
 		pane.setPrefSize(645, 480);
-		
-		lblFundo.setFitHeight(pane.getPrefHeight());
-		lblFundo.setFitWidth(pane.getPrefWidth());
-		
+
 		lblVideo.setLayoutX(pane.getPrefWidth() - 610);
 		lblVideo.setLayoutY(95);
 		listaVideo.setLayoutX(pane.getPrefWidth() - 610);
 		listaVideo.setLayoutY(115);
 		listaVideo.setPrefHeight(pane.getPrefHeight() - 200);
 		listaVideo.setPrefWidth(385);
-		
+
 		lblCanal.setLayoutX(pane.getPrefWidth() - 210);
 		lblCanal.setLayoutY(95);
 		listaCanal.setLayoutX(pane.getPrefWidth() - 210);
@@ -153,12 +142,12 @@ public class MainFX extends Application {
 		btnExcluirVideo.setLayoutY(pane.getPrefHeight() - 70);
 		btnExcluirVideo.setPrefHeight(20);
 		btnExcluirVideo.setPrefWidth(185);
-		
+
 		btnCadastrarCanal.setLayoutX(pane.getPrefWidth() - 610);
 		btnCadastrarCanal.setLayoutY(pane.getPrefHeight() - 35);
 		btnCadastrarCanal.setPrefHeight(20);
 		btnCadastrarCanal.setPrefWidth(185);
-		
+
 		btnVizuBrowser.setLayoutX(pane.getPrefWidth() - 410);
 		btnVizuBrowser.setLayoutY(pane.getPrefHeight() - 35);
 		btnVizuBrowser.setPrefHeight(20);
@@ -169,7 +158,7 @@ public class MainFX extends Application {
 		btnSair.setPrefHeight(20);
 		btnSair.setPrefWidth(185);
 	}
-	
+
 	private EventHandler<ActionEvent> abrirAlteracaoVideo() {
 		return new EventHandler<ActionEvent>() {
 			@Override
@@ -178,10 +167,10 @@ public class MainFX extends Application {
 					AlertaFX.alerta("Selecione um jogo para ser alterado.");
 					return;
 				}
-				
+
 				String nomeVideo = listaVideo.getSelectionModel().getSelectedItem();
 				Video video = new VideoDAO().get(nomeVideo);
-				
+
 				try {
 					new AlterarVideoFX(usuarioLogado, video).start(stage);
 				} catch (Exception e) {
@@ -190,7 +179,7 @@ public class MainFX extends Application {
 			}
 		};
 	}
-	
+
 	private EventHandler<ActionEvent> cadastrarVideo() {
 		return new EventHandler<ActionEvent>() {
 			@Override
@@ -203,14 +192,14 @@ public class MainFX extends Application {
 			}
 		};
 	}
-	
+
 	private EventHandler<ActionEvent> cadastrarCanal() {
 		return new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
 					new AdicionarCanalFX(usuarioLogado).start(stage);
-					
+
 				} catch (Exception e) {
 					AlertaFX.erro("Não foi possível iniciar a tela de cadastro de um Canal!");
 				}
@@ -225,7 +214,7 @@ public class MainFX extends Application {
 			retorno.add(video.getNome());
 		return retorno;
 	}
-	
+
 	private List<String> geraListaCanais() {
 		List<String> retorno = new ArrayList<String>();
 		List<Canal> canais = new CanalDAO().todos();
@@ -254,7 +243,7 @@ public class MainFX extends Application {
 			}
 		};
 	}
-	
+
 	private EventHandler<ActionEvent> abrirVideoBrowser() {
 		return new EventHandler<ActionEvent>() {
 			public void handle(ActionEvent event) {
@@ -266,14 +255,14 @@ public class MainFX extends Application {
 				VideoDAO dao = new VideoDAO();
 				Video video = dao.get(listaVideo.getSelectionModel().getSelectedItem());
 				video = dao.get(video.getNome());
-				
+
 				try {
 					Desktop.getDesktop().browse(new URI(video.getLink()));
 				} catch (IOException | URISyntaxException e) {
 					AlertaFX.erro("Não foi Possivel Abrir o Navegador!");
 					e.printStackTrace();
 				}
-				
+
 				atualizarListaVideo();
 			}
 		};
