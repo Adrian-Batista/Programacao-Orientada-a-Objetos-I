@@ -30,6 +30,7 @@ public class AlterarVideoFX extends Application {
 	private Pane pane;
 	private TextField txtNome;
 	private TextField txtLink;
+	private TextField txtDescricao;
 	private TextField txtPreco;
 	private Label lblPreco;
 	private Label lblCanal;
@@ -76,12 +77,14 @@ public class AlterarVideoFX extends Application {
 		txtLink.setPromptText("Digite o Link do Vídeo");
 		txtLink.setText(video.getLink());
 		
+		txtDescricao = new TextField();
+		txtDescricao.setPromptText("Digite uma Descrição para o Vídeo");
+		txtDescricao.setText(video.getDescricao());
+		
 		lblData = new Label("Escolha a Data:");
 		DatePicker datePicker = new DatePicker();
         datePicker.setValue(LocalDate.of(2020, 9, 20));
-        datePicker.setShowWeekNumbers(true);
-        lblDate = datePicker;
-        video.setLink(datePicker.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+        lblDate = datePicker;        
 		
         lblPreco = new Label("Digite o Preço:");
 		txtPreco = new TextField();
@@ -100,12 +103,12 @@ public class AlterarVideoFX extends Application {
 		btnVoltar.setOnAction(voltar());
 
 		pane = new AnchorPane();
-		pane.getChildren().addAll(txtNome, txtLink, lblPreco, txtPreco, lblCanal, cmbCanal,lblData, lblDate, btnAlterar, btnVoltar);
+		pane.getChildren().addAll(txtNome, txtLink, txtDescricao, lblPreco, txtPreco, lblCanal, cmbCanal,lblData, lblDate, btnAlterar, btnVoltar);
 		pane.styleProperty().set("-fx-background-color: #696969");
 	}
 
 	private void configLayout() {
-		pane.setPrefSize(320, 310);
+		pane.setPrefSize(320, 340);
 
 		txtNome.setLayoutX(10);
 		txtNome.setLayoutY(10);
@@ -119,39 +122,45 @@ public class AlterarVideoFX extends Application {
 		txtLink.setPrefWidth(pane.getPrefWidth() - 20);
 		txtLink.styleProperty().set("-fx-border-color: #00EE00;");
 		
+		txtDescricao.setLayoutX(10);
+		txtDescricao.setLayoutY(90);
+		txtDescricao.setPrefHeight(30);
+		txtDescricao.setPrefWidth(pane.getPrefWidth() - 20);
+		txtDescricao.styleProperty().set("-fx-border-color: #00EE00;");
+		
 		lblPreco.setLayoutX(10);
-		lblPreco.setLayoutY(90);
+		lblPreco.setLayoutY(130);
 		lblPreco.styleProperty().set("-fx-text-fill: white;");
 		txtPreco.setLayoutX(10);
-		txtPreco.setLayoutY(110);
+		txtPreco.setLayoutY(150);
 		txtPreco.setPrefHeight(30);
 		txtPreco.setPrefWidth(pane.getPrefWidth() - 20);
 		txtPreco.styleProperty().set("-fx-border-color: #00EE00;");
 		
 		lblCanal.setLayoutX(10);
-		lblCanal.setLayoutY(150);
+		lblCanal.setLayoutY(190);
 		lblCanal.styleProperty().set("-fx-text-fill: white;");
 		cmbCanal.setLayoutX(10);
-		cmbCanal.setLayoutY(170);
+		cmbCanal.setLayoutY(210);
 		cmbCanal.setPrefHeight(30);
 		cmbCanal.setPrefWidth(pane.getPrefWidth() - 20);
 		cmbCanal.styleProperty().set("-fx-text-fill: white; -fx-text-fill: white; -fx-background-color: white;");
 		
 		lblData.setLayoutX(10);
-		lblData.setLayoutY(210);
+		lblData.setLayoutY(250);
 		lblData.styleProperty().set("-fx-text-fill: white;");
 		lblDate.setLayoutX(10);
-		lblDate.setLayoutY(230);
+		lblDate.setLayoutY(270);
 		lblDate.styleProperty().set("-fx-text-fill: white; -fx-text-fill: white; -fx-background-color: #00EE00;");
 		
 		btnAlterar.setLayoutX(10);
-		btnAlterar.setLayoutY(275);
+		btnAlterar.setLayoutY(310);
 		btnAlterar.setPrefHeight(20);
 		btnAlterar.setPrefWidth((pane.getPrefWidth() - 30) / 2);
 		btnAlterar.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 
 		btnVoltar.setLayoutX(btnAlterar.getPrefWidth() + 20);
-		btnVoltar.setLayoutY(275);
+		btnVoltar.setLayoutY(310);
 		btnVoltar.setPrefHeight(20);
 		btnVoltar.setPrefWidth((pane.getPrefWidth() - 30) / 2);
 		btnVoltar.styleProperty().set("-fx-text-fill: white; -fx-background-color: red;");
@@ -178,22 +187,40 @@ public class AlterarVideoFX extends Application {
 		return new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
-				if (txtPreco.getText().isBlank()) {
-					AlertaFX.alerta("Preço em branco!");
-					return;
-				}
-				video.setNome(txtNome.getText());
-				video.setLink(txtLink.getText());
-				video.setPreco(Double.valueOf(txtPreco.getText()));
-				video.setDate(String.valueOf(lblDate));
-				video.getCanal().setNome(String.valueOf(cmbCanal.getSelectionModel()));
-				video.setDescricao(null);
-				
-				new VideoDAO().atualizar(video, videoAtual.getNome());
-				
-				AlertaFX.info("Vídeo atualizado com sucesso :)");
+				try {
+					if(txtNome.getText().isBlank()) {
+						AlertaFX.alerta("Nome do Vídeo em branco!");
+						return;
+					}
+					if(txtLink.getText().isBlank()) {
+						AlertaFX.alerta("Link do Vídeo em branco!");
+						return;
+					}
+					if (txtPreco.getText().isBlank()) {
+						AlertaFX.alerta("Preço em branco!");
+						return;
+					}
+					if(cmbCanal.valueProperty().get()==null) {
+						AlertaFX.alerta("Canal em branco!");
+						return;
+					}
+					
+					video.setNome(txtNome.getText());
+					video.setLink(txtLink.getText());
+					video.setPreco(Double.valueOf(txtPreco.getText()));
+					video.setDate(String.valueOf(lblDate.getValue().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))));
+					video.getCanal().setNome(cmbCanal.valueProperty().get());
+					video.setDescricao(txtDescricao.getText());
+					
+					new VideoDAO().atualizar(video, videoAtual.getNome());
+					
+					AlertaFX.info("Vídeo atualizado com sucesso :)");
 
-				abrirJanelaPrincipal();
+					abrirJanelaPrincipal();
+				}catch(Exception e){
+					AlertaFX.erro("Não foi Possível Atualizar o Vídeo!");
+				}
+				
 			}
 		};
 	}

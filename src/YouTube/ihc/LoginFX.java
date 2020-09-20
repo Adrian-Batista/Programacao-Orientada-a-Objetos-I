@@ -1,5 +1,7 @@
 package YouTube.ihc;
 
+import YouTube.bd.UsuarioDAO;
+import YouTube.entidades.Usuario;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -12,8 +14,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import YouTube.bd.UsuarioDAO;
-import YouTube.entidades.Usuario;
 
 public class LoginFX extends Application {
 
@@ -43,6 +43,7 @@ public class LoginFX extends Application {
 	}
 
 	private void initComponentes() {
+		     
 		lblYouTube = new Label("Bem-vindo ao YouTube");
 		lblYouTube.styleProperty().set("-fx-text-fill: white");
 
