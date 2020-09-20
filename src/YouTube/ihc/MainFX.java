@@ -1,6 +1,8 @@
 package YouTube.ihc;
 
 import java.awt.Desktop;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -33,6 +35,7 @@ public class MainFX extends Application {
 	private String usuarioLogado;
 	private Label lblVideo;
 	private Label lblCanal;
+	private ImageView lblFundo;
 	private Button btnSair;
 	private Button btnCadastrarVideo;
 	private Button btnAlterarVideo;
@@ -41,9 +44,6 @@ public class MainFX extends Application {
 	private Button btnVizuBrowser;
 	private ListView<String> listaVideo;
 	private ListView<String> listaCanal;
-	private ImageView logo;
-	private final String IMG_URL = "http://www.oracle.com/ocom/groups/public/@otn/documents/digitalasset/402460.gif";
-
 
 	public MainFX(String usuarioLogado) {
 		if (usuarioLogado.isBlank())
@@ -69,19 +69,20 @@ public class MainFX extends Application {
 		stage.show();
 	}
 
-	private void initComponentes() {
+	private void initComponentes() throws FileNotFoundException {
 		
-		Image image = new Image(IMG_URL);
-		logo = new ImageView(image);
+		FileInputStream inputstream = new FileInputStream("C:/Users/adria/OneDrive/Documentos/GitHub/Programacao-Orientada-a-Objetos-I/src/img/fundo.jpg"); 
+		Image image = new Image(inputstream); 
+		ImageView imageView = new ImageView(image);
+		lblFundo = imageView;
 
-		
 		lblVideo = new Label("Escolha um Vídeo:");
 		lblVideo.styleProperty().set("-fx-text-fill: white;");
 		listaVideo = new ListView<String>();
 		ObservableList<String> items = FXCollections.observableArrayList(geraListaVideos());
 		listaVideo.setItems(items);
 		
-		lblCanal = new Label("Escolha um Canal:");
+		lblCanal = new Label("Lista de Canais:");
 		lblCanal.styleProperty().set("-fx-text-fill: white;");
 		listaCanal = new ListView<String>();
 		ObservableList<String> item = FXCollections.observableArrayList(geraListaCanais());
@@ -112,7 +113,7 @@ public class MainFX extends Application {
 		btnSair.styleProperty().set("-fx-text-fill: white; -fx-background-color: red;");
 
 		pane = new AnchorPane();
-		pane.getChildren().addAll(lblVideo, lblCanal, listaVideo, listaCanal, btnCadastrarVideo, btnAlterarVideo, btnExcluirVideo,
+		pane.getChildren().addAll(lblFundo, lblVideo, lblCanal, listaVideo, listaCanal, btnCadastrarVideo, btnAlterarVideo, btnExcluirVideo,
 				btnCadastrarCanal,btnVizuBrowser, btnSair);
 		
 		pane.styleProperty().set("-fx-background-color: #696969");
@@ -120,26 +121,23 @@ public class MainFX extends Application {
 
 	private void configLayout() {
 		pane.setPrefSize(645, 480);
-	
-		/*logo.setLayoutX(10);
-		logo.setLayoutY(10);
-		logo.setFitHeight(pane.getPrefHeight() - 20);
-		logo.setFitWidth(pane.getPrefWidth() - 280);*/
 		
+		lblFundo.setFitHeight(pane.getPrefHeight());
+		lblFundo.setFitWidth(pane.getPrefWidth());
 		
-		lblVideo.setLayoutX(35);
+		lblVideo.setLayoutX(pane.getPrefWidth() - 610);
 		lblVideo.setLayoutY(95);
-		listaVideo.setLayoutX(35);
+		listaVideo.setLayoutX(pane.getPrefWidth() - 610);
 		listaVideo.setLayoutY(115);
 		listaVideo.setPrefHeight(pane.getPrefHeight() - 200);
-		listaVideo.setPrefWidth(pane.getPrefWidth() - 370);
+		listaVideo.setPrefWidth(385);
 		
-		lblCanal.setLayoutX(335);
+		lblCanal.setLayoutX(pane.getPrefWidth() - 210);
 		lblCanal.setLayoutY(95);
-		listaCanal.setLayoutX(335);
+		listaCanal.setLayoutX(pane.getPrefWidth() - 210);
 		listaCanal.setLayoutY(115);
 		listaCanal.setPrefHeight(pane.getPrefHeight() - 200);
-		listaCanal.setPrefWidth(pane.getPrefWidth() - 360);
+		listaCanal.setPrefWidth(185);
 
 		btnCadastrarVideo.setLayoutX(pane.getPrefWidth() - 610);
 		btnCadastrarVideo.setLayoutY(pane.getPrefHeight() - 70);
@@ -239,11 +237,6 @@ public class MainFX extends Application {
 	private void atualizarListaVideo() {
 		ObservableList<String> items = FXCollections.observableArrayList(geraListaVideos());
 		listaVideo.setItems(items);
-	}
-	
-	private void atualizarListaCanal() {
-		ObservableList<String> items = FXCollections.observableArrayList(geraListaCanais());
-		listaCanal.setItems(items);
 	}
 
 	private EventHandler<ActionEvent> excluirVideo() {

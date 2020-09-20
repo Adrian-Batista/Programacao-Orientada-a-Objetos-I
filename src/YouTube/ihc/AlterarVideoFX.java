@@ -1,5 +1,7 @@
 package YouTube.ihc;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -64,10 +68,16 @@ public class AlterarVideoFX extends Application {
 		stage.show();
 	}
 
-	private void initComponentes() {
+	private void initComponentes() throws FileNotFoundException {
 		Canal C = new Canal(null, null, null, null, null);
 		video = new Video(null, null, null, null, null, 0);
 		video.setCanal(C);
+		
+		FileInputStream inputstream = new FileInputStream("C:/Users/adria/OneDrive/Documentos/GitHub/Programacao-Orientada-a-Objetos-I/src/img/logo.png"); 
+		Image image = new Image(inputstream); 
+		ImageView imageView = new ImageView(image);
+		imageView.setLayoutX(10);
+		imageView.setLayoutY(10);
 		
 		txtNome = new TextField();
 		txtNome.setPromptText("Digite o Nome do Vídeo");
@@ -103,13 +113,13 @@ public class AlterarVideoFX extends Application {
 		btnVoltar.setOnAction(voltar());
 
 		pane = new AnchorPane();
-		pane.getChildren().addAll(txtNome, txtLink, txtDescricao, lblPreco, txtPreco, lblCanal, cmbCanal,lblData, lblDate, btnAlterar, btnVoltar);
+		pane.getChildren().addAll(imageView, txtNome, txtLink, txtDescricao, lblPreco, txtPreco, lblCanal, cmbCanal,lblData, lblDate, btnAlterar, btnVoltar);
 		pane.styleProperty().set("-fx-background-color: #696969");
 	}
 
 	private void configLayout() {
 		pane.setPrefSize(320, 340);
-
+		
 		txtNome.setLayoutX(10);
 		txtNome.setLayoutY(10);
 		txtNome.setPrefHeight(30);
