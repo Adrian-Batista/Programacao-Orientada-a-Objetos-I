@@ -71,7 +71,7 @@ public class MainFX extends Application {
 
 	private void initComponentes() throws FileNotFoundException {
 		
-		FileInputStream inputstream = new FileInputStream("C:/Users/adria/OneDrive/Documentos/GitHub/Programacao-Orientada-a-Objetos-I/src/img/fundo.jpg"); 
+		FileInputStream inputstream = new FileInputStream("C:/Users/adria/OneDrive/Documentos/GitHub/Programacao-Orientada-a-Objetos-I/src/img/logo.png"); 
 		Image image = new Image(inputstream); 
 		ImageView imageView = new ImageView(image);
 		lblFundo = imageView;
