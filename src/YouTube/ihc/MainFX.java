@@ -1,8 +1,16 @@
 package YouTube.ihc;
 
+import java.awt.Desktop;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.List;
 
+import YouTube.bd.CanalDAO;
+import YouTube.bd.VideoDAO;
+import YouTube.entidades.Canal;
+import YouTube.entidades.Video;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -16,8 +24,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import YouTube.bd.VideoDAO;
-import YouTube.entidades.Video;
 
 public class MainFX extends Application {
 
@@ -29,8 +35,10 @@ public class MainFX extends Application {
 	private Button btnAlterarVideo;
 	private Button btnExcluirVideo;
 	private Button btnCadastrarCanal;
-	private Button btnRemoverCanal;
+	private Button btnVizuBrowser;
 	private ListView<String> listaVideo;
+	private ListView<String> listaCanal;
+	private ImageView logo;
 	private final String IMG_URL = "http://www.oracle.com/ocom/groups/public/@otn/documents/digitalasset/402460.gif";
 
 
@@ -53,26 +61,28 @@ public class MainFX extends Application {
 		btnSair.requestFocus();
 
 		stage.setScene(scene);
-		stage.setTitle("Steam de " + usuarioLogado);
+		stage.setTitle("YouTube de " + usuarioLogado);
 		stage.setResizable(false);
 		stage.show();
 	}
 
 	private void initComponentes() {
 		
-		 Image imagem = new Image(IMG_URL); // 1
-		 ImageView visualizadorImagem = new ImageView(imagem); // 2
-		 visualizadorImagem.setTranslateX(80); // 3
-		 visualizadorImagem.setTranslateY(5); // 4
+		Image image = new Image(IMG_URL);
+		logo = new ImageView(image);
 
 		
 		
 		listaVideo = new ListView<String>();
 		ObservableList<String> items = FXCollections.observableArrayList(geraListaVideos());
 		listaVideo.setItems(items);
+		
+		listaCanal = new ListView<String>();
+		ObservableList<String> item = FXCollections.observableArrayList(geraListaCanais());
+		listaCanal.setItems(item);
 
 		btnCadastrarVideo = new Button("Cadastrar Vídeo");
-		btnCadastrarVideo.setOnAction(abrirCadastroVideo());
+		btnCadastrarVideo.setOnAction(cadastrarVideo());
 		btnCadastrarVideo.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 
 		btnAlterarVideo = new Button("Alterar Vídeo");
@@ -87,29 +97,38 @@ public class MainFX extends Application {
 		btnCadastrarCanal.setOnAction(cadastrarCanal());
 		btnCadastrarCanal.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 		
-		btnRemoverCanal = new Button("Remover Canal");
-		btnRemoverCanal.setOnAction(removerCanal());
-		btnRemoverCanal.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
+		btnVizuBrowser = new Button("Visualizar no YouTube");
+		btnVizuBrowser.setOnAction(abrirVideoBrowser());
+		btnVizuBrowser.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 
 		btnSair = new Button("Sair");
 		btnSair.setOnAction(sair());
 		btnSair.styleProperty().set("-fx-text-fill: white; -fx-background-color: red;");
 
 		pane = new AnchorPane();
-		pane.getChildren().addAll(visualizadorImagem, listaVideo, btnCadastrarVideo, btnAlterarVideo, btnExcluirVideo,
-				btnCadastrarCanal,btnRemoverCanal, btnSair);
+		pane.getChildren().addAll(logo, listaVideo, listaCanal, btnCadastrarVideo, btnAlterarVideo, btnExcluirVideo,
+				btnCadastrarCanal,btnVizuBrowser, btnSair);
 		
 		pane.styleProperty().set("-fx-background-color: #696969");
 	}
 
 	private void configLayout() {
 		pane.setPrefSize(645, 480);
-		
+	
+		logo.setLayoutX(10);
+		logo.setLayoutY(10);
+		logo.setFitHeight(pane.getPrefHeight() - 20);
+		logo.setFitWidth(pane.getPrefWidth() - 280);
 		
 		listaVideo.setLayoutX(35);
 		listaVideo.setLayoutY(115);
 		listaVideo.setPrefHeight(pane.getPrefHeight() - 200);
-		listaVideo.setPrefWidth(pane.getPrefWidth() - 60);
+		listaVideo.setPrefWidth(pane.getPrefWidth() - 370);
+		
+		listaCanal.setLayoutX(335);
+		listaCanal.setLayoutY(115);
+		listaCanal.setPrefHeight(pane.getPrefHeight() - 200);
+		listaCanal.setPrefWidth(pane.getPrefWidth() - 360);
 
 		btnCadastrarVideo.setLayoutX(pane.getPrefWidth() - 610);
 		btnCadastrarVideo.setLayoutY(pane.getPrefHeight() - 70);
@@ -131,47 +150,17 @@ public class MainFX extends Application {
 		btnCadastrarCanal.setPrefHeight(20);
 		btnCadastrarCanal.setPrefWidth(185);
 		
-		btnRemoverCanal.setLayoutX(pane.getPrefWidth() - 410);
-		btnRemoverCanal.setLayoutY(pane.getPrefHeight() - 35);
-		btnRemoverCanal.setPrefHeight(20);
-		btnRemoverCanal.setPrefWidth(185);
+		btnVizuBrowser.setLayoutX(pane.getPrefWidth() - 410);
+		btnVizuBrowser.setLayoutY(pane.getPrefHeight() - 35);
+		btnVizuBrowser.setPrefHeight(20);
+		btnVizuBrowser.setPrefWidth(185);
 
 		btnSair.setLayoutX(pane.getPrefWidth() - 210);
 		btnSair.setLayoutY(pane.getPrefHeight() - 35);
 		btnSair.setPrefHeight(20);
 		btnSair.setPrefWidth(185);
 	}
-
-	private List<String> geraListaVideos() {
-		List<String> retorno = new ArrayList<String>();
-		List<Video> videos = new VideoDAO().todos();
-		for (Video video : videos)
-			retorno.add(video.getNome());
-		return retorno;
-	}
-
-	private EventHandler<ActionEvent> excluirVideo() {
-		return new EventHandler<ActionEvent>() {
-			@Override
-			public void handle(ActionEvent event) {
-				if (listaVideo.getSelectionModel().isEmpty()) {
-					AlertaFX.alerta("Selecione um Vídeo para ser excluído.");
-					return;
-				}
-
-				VideoDAO dao = new VideoDAO();
-				Video video = dao.get(listaVideo.getSelectionModel().getSelectedItem());
-				dao.remover(video);
-				atualizarLista();
-			}
-		};
-	}
-
-	private void atualizarLista() {
-		ObservableList<String> items = FXCollections.observableArrayList(geraListaVideos());
-		listaVideo.setItems(items);
-	}
-
+	
 	private EventHandler<ActionEvent> abrirAlteracaoVideo() {
 		return new EventHandler<ActionEvent>() {
 			@Override
@@ -192,8 +181,8 @@ public class MainFX extends Application {
 			}
 		};
 	}
-
-	private EventHandler<ActionEvent> abrirCadastroVideo() {
+	
+	private EventHandler<ActionEvent> cadastrarVideo() {
 		return new EventHandler<ActionEvent>() {
 			@Override
 			public void handle(ActionEvent event) {
@@ -211,27 +200,77 @@ public class MainFX extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				try {
-					new AdicionarVideoFX(usuarioLogado).start(stage);
+					new AdicionarCanalFX(usuarioLogado).start(stage);
+					
 				} catch (Exception e) {
 					AlertaFX.erro("Não foi possível iniciar a tela de cadastro de um Canal!");
 				}
 			}
 		};
 	}
+
+	private List<String> geraListaVideos() {
+		List<String> retorno = new ArrayList<String>();
+		List<Video> videos = new VideoDAO().todos();
+		for (Video video : videos)
+			retorno.add(video.getNome());
+		return retorno;
+	}
 	
-	private EventHandler<ActionEvent> removerCanal() {
+	private List<String> geraListaCanais() {
+		List<String> retorno = new ArrayList<String>();
+		List<Canal> canais = new CanalDAO().todos();
+		for (Canal canal : canais)
+			retorno.add(canal.getNome());
+		return retorno;
+	}
+
+	private void atualizarListaVideo() {
+		ObservableList<String> items = FXCollections.observableArrayList(geraListaVideos());
+		listaVideo.setItems(items);
+	}
+	
+	private void atualizarListaCanal() {
+		ObservableList<String> items = FXCollections.observableArrayList(geraListaCanais());
+		listaCanal.setItems(items);
+	}
+
+	private EventHandler<ActionEvent> excluirVideo() {
 		return new EventHandler<ActionEvent>() {
-			@Override
 			public void handle(ActionEvent event) {
 				if (listaVideo.getSelectionModel().isEmpty()) {
-					AlertaFX.alerta("Selecione um Canal para ser excluído.");
+					AlertaFX.alerta("Selecione um Vídeo para ser excluído.");
 					return;
 				}
 
 				VideoDAO dao = new VideoDAO();
 				Video video = dao.get(listaVideo.getSelectionModel().getSelectedItem());
 				dao.remover(video);
-				atualizarLista();
+				atualizarListaVideo();
+			}
+		};
+	}
+	
+	private EventHandler<ActionEvent> abrirVideoBrowser() {
+		return new EventHandler<ActionEvent>() {
+			public void handle(ActionEvent event) {
+				if (listaVideo.getSelectionModel().isEmpty()) {
+					AlertaFX.alerta("Selecione um Vídeo para ser aberto.");
+					return;
+				}
+
+				VideoDAO dao = new VideoDAO();
+				Video video = dao.get(listaVideo.getSelectionModel().getSelectedItem());
+				video = dao.get(video.getNome());
+				
+				try {
+					Desktop.getDesktop().browse(new URI(video.getLink()));
+				} catch (IOException | URISyntaxException e) {
+					AlertaFX.erro("Não foi Possivel Abrir o Navegador!");
+					e.printStackTrace();
+				}
+				
+				atualizarListaVideo();
 			}
 		};
 	}

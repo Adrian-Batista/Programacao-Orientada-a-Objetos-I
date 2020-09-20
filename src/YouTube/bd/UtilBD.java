@@ -75,8 +75,8 @@ public class UtilBD {
 				+ "Senha VARCHAR(20) NOT NULL"
 				+ ");"
 				);
-		stm.executeUpdate("INSERT INTO Usuario (Nome, Email, Senha) VALUES ('usuario','usuario.teste@gmail.com','123');");
-		stm.executeUpdate("INSERT INTO Usuario (Nome, Email, Senha) VALUES ('usuario2','usuario2.teste@gmail.com','321');");
+		stm.executeUpdate("INSERT INTO Usuario (Nome, Email, Senha) VALUES ('admin','usuario.teste@gmail.com','123');");
+		stm.executeUpdate("INSERT INTO Usuario (Nome, Email, Senha) VALUES ('Adrian','Adrian.teste@gmail.com','321');");
 	}	
 
 	private static void criarPublicoAlvo(Statement stm) throws SQLException {
@@ -95,8 +95,8 @@ public class UtilBD {
 	private static void criarVideo(Statement stm) throws SQLException {
 		stm.executeUpdate("DROP TABLE IF EXISTS Video");
 		stm.executeUpdate("CREATE TABLE Video ("
-				+ "Nome VARCHAR(20) NOT NULL,"
-				+ "Link VARCHAR(30) NOT NULL,"
+				+ "Nome VARCHAR(50) NOT NULL,"
+				+ "Link VARCHAR(100) NOT NULL,"
 				+ "Date VARCHAR(10) NOT NULL,"
 				+ "Preco INTEGER NOT NULL,"
 				+ "NomeCanal VARCHAR(10) NOT NULL,"
@@ -105,9 +105,14 @@ public class UtilBD {
 				+ ");"
 
 				);
-		stm.executeUpdate("INSERT INTO Video VALUES ('Video 1', 'https:', '11/09/2020','15.8', 'Canal', 'Seja bem vindo ao vídeo 1');");
-		stm.executeUpdate("INSERT INTO Video VALUES ('Video 2', 'https:/', '11/09/2020', '10', 'Canal', 'Seja bem vindo ao vídeo 2');");
-		stm.executeUpdate("INSERT INTO Video VALUES ('Video 3', 'https://', '12/09/2020', '0', 'Canal', 'Seja bem vindo ao vídeo 3');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Intercâmbio para Programadores', 'https://www.youtube.com/watch?v=xcxz_PmpZ8w', '20/09/2020','16.80', 'Lucas Montano', 'Seja bem vindo ao vídeo 1');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('O Framework Que Vou Utilizar (Decisões Técnicas)', 'https://www.youtube.com/watch?v=1yx4KVpQfN4', '20/09/2020', '10', 'Lucas Montano', 'Seja bem vindo ao vídeo 2');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('VOU APRENDER TYPESCRIPT (3 motivos)', 'https://www.youtube.com/watch?v=M57zuClvRbM', '20/09/2020', '0', 'Filipe Deschamps', 'Seja bem vindo ao vídeo 3');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('Minha Carreira Teria Sido MUITO Melhor', 'https://www.youtube.com/watch?v=NA4srP35Maw&list=RDCMUCU5JicSrEM5A63jkJ2QvGYw&index=14', '20/09/2020', '10.60', 'Filipe Deschamps', 'Seja bem vindo ao vídeo 4');");
+		stm.executeUpdate("INSERT INTO Video VALUES ('6 dicas fundamentais para um código de qualidade', 'https://www.youtube.com/watch?v=MMAu_1KMcMA&list=RDCMUCU5JicSrEM5A63jkJ2QvGYw&index=15', '20/09/2020', '0', 'Filipe Deschamps', 'Seja bem vindo ao vídeo 5');");
+		
+	
+	
 	}
 
 	private static void criarCanal(Statement stm) throws SQLException {
@@ -120,9 +125,11 @@ public class UtilBD {
 				+ "Inscricao INTEGER NOT NULL"
 				+ ");"
 				);
-		stm.executeUpdate("INSERT INTO Canal VALUES ('Canal','canal.teste@gmail.com', 'Seja bem vindo ao Canal', 'Todos', '1')");
-		stm.executeUpdate("INSERT INTO Canal VALUES ('Canal 2','canal2.teste@gmail.com', 'Seja bem vindo ao Canal 2', 'Jovens', '2')");
-
+		stm.executeUpdate("INSERT INTO Canal VALUES ('Filipe Deschamps','Filipe.teste@gmail.com', 'Seja bem vindo ao Canal Filipe D.', 'Todos', '1')");
+		stm.executeUpdate("INSERT INTO Canal VALUES ('Lucas Montano','Lucas.teste@gmail.com', 'Seja bem vindo ao Canal Lucas Montano', 'Jovens', '2')");
+		stm.executeUpdate("INSERT INTO Canal VALUES ('Curso em Vídeo','CeV.teste@gmail.com', 'Seja bem vindo ao Canal Curso em Vídeo', 'Todos', '3')");
+		stm.executeUpdate("INSERT INTO Canal VALUES ('Fabio Akita','Fabio.teste@gmail.com', 'Seja bem vindo ao Canal Fabio Akita', 'Jovens', '2')");
+		
 	}
 
 	private static void criarInscricao(Statement stm) throws SQLException {

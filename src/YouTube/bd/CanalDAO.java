@@ -8,6 +8,8 @@ import java.util.List;
 import YouTube.entidades.Canal;
 import YouTube.entidades.Inscricao;
 import YouTube.entidades.PublicoAlvo;
+import YouTube.entidades.Video;
+import YouTube.ihc.AlertaFX;
 
 public class CanalDAO implements InterfaceDAO<Canal> {
 
@@ -21,8 +23,8 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 					+ canal.getInscrito().getNumeroInscritos() + "')";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível inserir o Canal no banco!");
-			System.out.println("Não foi possível inserir o Canal no banco!");
+			AlertaFX.erro("Não foi possível inserir o Canal no banco!");
+			
 		}
 	}
 
@@ -31,8 +33,8 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 			String sql = "DELETE FROM Canal WHERE Nome = '" + canal.getNome() + "';" ;
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível remover o Canal do banco!");
-			System.out.println("Não foi possível remover o Canal do banco!");
+			AlertaFX.erro("Não foi possível remover o Canal do banco!");
+			
 		}
 
 	}
@@ -58,8 +60,8 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 			}
 			resultSet.getStatement().close();
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível consultar todas os Canais do banco!");
-			System.out.println("Não foi possível consultar todas os Canais do banco!");
+			AlertaFX.erro("Não foi possível consultar todas os Canais do banco!");
+			
 		}
 		return retorno;
 	}
@@ -75,10 +77,26 @@ public class CanalDAO implements InterfaceDAO<Canal> {
 					+ "WHERE Nome = '" + auxiliar + "';";
 			UtilBD.alterarBD(sql);
 		} catch (SQLException e) {
-			//AlertaFX.erro("Não foi possível atualizar o Canal do banco!");
-			System.out.println("Não foi possível atualizar o Canal do banco!");
+			AlertaFX.erro("Não foi possível atualizar o Canal do banco!");
+		
 		}
 
 	}
+	
+	public Canal get(String nome) {
+		Canal retorno = new Canal(null, null, null, null, null);
+		try {
+			String sql = "SELECT Nome FROM Video WHERE Nome = '" + nome + "'";
+			ResultSet resultSet = UtilBD.consultarBD(sql);
+			while (resultSet.next()) {
+				retorno.setNome(resultSet.getString("Nome"));
+			}
+			resultSet.getStatement().close();
+		} catch (SQLException e) {
+			return null;
+		}
+		return retorno;
+	}
+
 
 }

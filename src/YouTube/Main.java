@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import YouTube.bd.CanalDAO;
-import YouTube.bd.InscricaoDAO;
-import YouTube.bd.PublicoAlvoDAO;
 import YouTube.bd.UsuarioDAO;
 import YouTube.bd.UtilBD;
 import YouTube.bd.VideoDAO;
@@ -15,6 +13,7 @@ import YouTube.entidades.Usuario;
 import YouTube.entidades.Video;
 import YouTube.ihc.LoginFX;
 import javafx.application.Application;
+
 
 public class Main {
 
