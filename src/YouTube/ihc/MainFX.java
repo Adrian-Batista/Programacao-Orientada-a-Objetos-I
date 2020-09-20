@@ -112,49 +112,49 @@ public class MainFX extends Application {
 	}
 
 	private void configLayout() {
-		pane.setPrefSize(645, 480);
+		pane.setPrefSize(645, 440);
 
-		lblVideo.setLayoutX(pane.getPrefWidth() - 610);
-		lblVideo.setLayoutY(95);
-		listaVideo.setLayoutX(pane.getPrefWidth() - 610);
-		listaVideo.setLayoutY(115);
-		listaVideo.setPrefHeight(pane.getPrefHeight() - 200);
+		lblVideo.setLayoutX(30);
+		lblVideo.setLayoutY(35);
+		listaVideo.setLayoutX(30);
+		listaVideo.setLayoutY(55);
+		listaVideo.setPrefHeight(280);
 		listaVideo.setPrefWidth(385);
 
-		lblCanal.setLayoutX(pane.getPrefWidth() - 210);
-		lblCanal.setLayoutY(95);
-		listaCanal.setLayoutX(pane.getPrefWidth() - 210);
-		listaCanal.setLayoutY(115);
-		listaCanal.setPrefHeight(pane.getPrefHeight() - 200);
+		lblCanal.setLayoutX(435);
+		lblCanal.setLayoutY(35);
+		listaCanal.setLayoutX(435);
+		listaCanal.setLayoutY(55);
+		listaCanal.setPrefHeight(280);
 		listaCanal.setPrefWidth(185);
 
-		btnCadastrarVideo.setLayoutX(pane.getPrefWidth() - 610);
-		btnCadastrarVideo.setLayoutY(pane.getPrefHeight() - 70);
+		btnCadastrarVideo.setLayoutX(30);
+		btnCadastrarVideo.setLayoutY(355);
 		btnCadastrarVideo.setPrefHeight(20);
 		btnCadastrarVideo.setPrefWidth(185);
 
-		btnAlterarVideo.setLayoutX(pane.getPrefWidth() - 410);
-		btnAlterarVideo.setLayoutY(pane.getPrefHeight() - 70);
+		btnAlterarVideo.setLayoutX(235);
+		btnAlterarVideo.setLayoutY(355);
 		btnAlterarVideo.setPrefHeight(20);
 		btnAlterarVideo.setPrefWidth(185);
 
-		btnExcluirVideo.setLayoutX(pane.getPrefWidth() - 210);
-		btnExcluirVideo.setLayoutY(pane.getPrefHeight() - 70);
+		btnExcluirVideo.setLayoutX(435);
+		btnExcluirVideo.setLayoutY(355);
 		btnExcluirVideo.setPrefHeight(20);
 		btnExcluirVideo.setPrefWidth(185);
 
-		btnCadastrarCanal.setLayoutX(pane.getPrefWidth() - 610);
-		btnCadastrarCanal.setLayoutY(pane.getPrefHeight() - 35);
+		btnCadastrarCanal.setLayoutX(30);
+		btnCadastrarCanal.setLayoutY(395);
 		btnCadastrarCanal.setPrefHeight(20);
 		btnCadastrarCanal.setPrefWidth(185);
 
-		btnVizuBrowser.setLayoutX(pane.getPrefWidth() - 410);
-		btnVizuBrowser.setLayoutY(pane.getPrefHeight() - 35);
+		btnVizuBrowser.setLayoutX(235);
+		btnVizuBrowser.setLayoutY(395);
 		btnVizuBrowser.setPrefHeight(20);
 		btnVizuBrowser.setPrefWidth(185);
 
-		btnSair.setLayoutX(pane.getPrefWidth() - 210);
-		btnSair.setLayoutY(pane.getPrefHeight() - 35);
+		btnSair.setLayoutX(435);
+		btnSair.setLayoutY(395);
 		btnSair.setPrefHeight(20);
 		btnSair.setPrefWidth(185);
 	}
@@ -164,7 +164,7 @@ public class MainFX extends Application {
 			@Override
 			public void handle(ActionEvent event) {
 				if (listaVideo.getSelectionModel().isEmpty()) {
-					AlertaFX.alerta("Selecione um jogo para ser alterado.");
+					AlertaFX.alerta("Selecione um Vídeo para ser alterado.");
 					return;
 				}
 
@@ -187,7 +187,7 @@ public class MainFX extends Application {
 				try {
 					new AdicionarVideoFX(usuarioLogado).start(stage);
 				} catch (Exception e) {
-					AlertaFX.erro("Não foi possível iniciar a tela de cadastro de um jogo!");
+					AlertaFX.erro("Não foi possível iniciar a tela de cadastro de um Vídeo!");
 				}
 			}
 		};
@@ -240,6 +240,7 @@ public class MainFX extends Application {
 				Video video = dao.get(listaVideo.getSelectionModel().getSelectedItem());
 				dao.remover(video);
 				atualizarListaVideo();
+				AlertaFX.info("Vídeo Removido com Sucesso!! :)");
 			}
 		};
 	}
