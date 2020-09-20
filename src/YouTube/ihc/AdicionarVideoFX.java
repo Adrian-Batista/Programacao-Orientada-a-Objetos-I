@@ -23,7 +23,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
-public class AlterarVideoFX extends Application {
+public class AdicionarVideoFX extends Application {
 
 	private String usuarioLogado;
 	private Stage stage;
@@ -38,13 +38,11 @@ public class AlterarVideoFX extends Application {
 	private DatePicker lblDate;
 	private ComboBox<String> cmbCanal;
 	private Button btnVoltar;
-	private Button btnAlterar;
+	private Button btnCadastrar;
 	private Video video;
-	private Video videoAtual;
 
-	public AlterarVideoFX(String usuarioLogado, Video videoAtual) {
+	public AdicionarVideoFX(String usuarioLogado) {
 		this.usuarioLogado = usuarioLogado;
-		this.videoAtual = videoAtual;
 	}
 
 	@Override
@@ -59,7 +57,7 @@ public class AlterarVideoFX extends Application {
 		btnVoltar.requestFocus();
 
 		stage.setScene(scene);
-		stage.setTitle("Alteração de um Vídeo");
+		stage.setTitle("Cadastro de um Vídeo");
 		stage.setResizable(false);
 		stage.show();
 	}
@@ -96,14 +94,14 @@ public class AlterarVideoFX extends Application {
 		cmbCanal.setItems(FXCollections.observableArrayList(geraListaCanais()));
 		cmbCanal.getSelectionModel().select(video.getCanal().getNome());
 
-		btnAlterar = new Button("Alterar");
-		btnAlterar.setOnAction(alterar());
+		btnCadastrar = new Button("Cadastrar");
+		btnCadastrar.setOnAction(alterar());
 
 		btnVoltar = new Button("Voltar");
 		btnVoltar.setOnAction(voltar());
 
 		pane = new AnchorPane();
-		pane.getChildren().addAll(txtNome, txtLink, txtDescricao, lblPreco, txtPreco, lblCanal, cmbCanal,lblData, lblDate, btnAlterar, btnVoltar);
+		pane.getChildren().addAll(txtNome, txtLink, txtDescricao, lblPreco, txtPreco, lblCanal, cmbCanal,lblData, lblDate, btnCadastrar, btnVoltar);
 		pane.styleProperty().set("-fx-background-color: #696969");
 	}
 
@@ -153,13 +151,13 @@ public class AlterarVideoFX extends Application {
 		lblDate.setLayoutY(270);
 		lblDate.styleProperty().set("-fx-text-fill: white; -fx-text-fill: white; -fx-background-color: #00EE00;");
 		
-		btnAlterar.setLayoutX(10);
-		btnAlterar.setLayoutY(310);
-		btnAlterar.setPrefHeight(20);
-		btnAlterar.setPrefWidth((pane.getPrefWidth() - 30) / 2);
-		btnAlterar.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
+		btnCadastrar.setLayoutX(10);
+		btnCadastrar.setLayoutY(310);
+		btnCadastrar.setPrefHeight(20);
+		btnCadastrar.setPrefWidth((pane.getPrefWidth() - 30) / 2);
+		btnCadastrar.styleProperty().set("-fx-text-fill: white; -fx-background-color: #00EE00;");
 
-		btnVoltar.setLayoutX(btnAlterar.getPrefWidth() + 20);
+		btnVoltar.setLayoutX(btnCadastrar.getPrefWidth() + 20);
 		btnVoltar.setLayoutY(310);
 		btnVoltar.setPrefHeight(20);
 		btnVoltar.setPrefWidth((pane.getPrefWidth() - 30) / 2);
@@ -196,10 +194,12 @@ public class AlterarVideoFX extends Application {
 						AlertaFX.alerta("Link do Vídeo em branco!");
 						return;
 					}
-					if (txtPreco.getText().isBlank()) {
-						AlertaFX.alerta("Preço em branco!");
-						return;
-					}
+					try {
+				        Double.parseDouble(txtPreco.getText());
+				    } catch (NumberFormatException e) {
+				        AlertaFX.alerta("O Campo Preço deve ser preenchido com números!");
+				        return; 
+				    }
 					if(cmbCanal.valueProperty().get()==null) {
 						AlertaFX.alerta("Canal em branco!");
 						return;
@@ -212,13 +212,13 @@ public class AlterarVideoFX extends Application {
 					video.getCanal().setNome(cmbCanal.valueProperty().get());
 					video.setDescricao(txtDescricao.getText());
 					
-					new VideoDAO().atualizar(video, videoAtual.getNome());
+					new VideoDAO().adicionar(video);
 					
-					AlertaFX.info("Vídeo atualizado com sucesso :)");
+					AlertaFX.info("Vídeo Cadastrado com sucesso :)");
 
 					abrirJanelaPrincipal();
 				}catch(Exception e){
-					AlertaFX.erro("Não foi Possível Atualizar o Vídeo!");
+					AlertaFX.erro("Não foi Possível Adicionar o Vídeo!");
 				}
 				
 			}
