@@ -75,7 +75,7 @@ public class AdicionarCanalFX extends Application {
 		txtDescricao.setPromptText("Digite uma Descrição para o Canal");
 		txtDescricao.setText(canal.getDescricao());
 
-		lblPublico = new Label("Escolha o Canal:");
+		lblPublico = new Label("Escolha o Público:");
 		cmbPublico = new ComboBox<>();
 		cmbPublico.setPromptText("Selecionar");
 		cmbPublico.setItems(FXCollections.observableArrayList(geraListaPublico()));
